@@ -1,0 +1,8 @@
+body {
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+:root {
+    --main-color: #88ad35;
+    --main-bg-Color: #ecf4d3;
+}
