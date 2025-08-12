@@ -25,9 +25,9 @@ html {
 /* Start Header */
 header {
     position: relative;
-    background-image: url(../images/head-img.avif);
-    background-size: 150%;
-    background-position: center;
+    background-image: url(../images/head-img1.avif);
+    background-size: 160%;
+    background-position: top center;
     background-repeat: no-repeat;
     height: 100vh;
     color: white;
@@ -92,7 +92,7 @@ header .container-main .nav-bar a .count-orders {
 
 header .heed-welcome {
     text-align: center;
-    padding-top: 80px;
+    margin-top: 120px;
 }
 
 header .heed-welcome .welcome {
@@ -145,7 +145,8 @@ header .container-main button i {
 /* Media Quary */
 @media (max-width:767px) {
     header {
-        background-size: 315%;
+        background-size: 400%;
+        background-position: top center;
     }
 
     header .heed-welcome h1 {
@@ -158,6 +159,11 @@ header .container-main button i {
 }
 
 @media (max-width:991px) {
+    header {
+        background-size: 300%;
+        background-position: top center;
+    }
+
     header .heed-welcome h1 {
         font-size: 50px;
     }
@@ -175,7 +181,7 @@ header .container-main button i {
         position: absolute;
         top: 10%;
         left: 0;
-        height: 45%;
+        height: 310px;
         width: 100%;
         background-color: white;
         flex-direction: column;
