@@ -4,12 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Main Style -->
+    <link rel="stylesheet" href="/css/_main.css">
+    <!-- Home Style -->
+    <link rel="stylesheet" href="css/home.css">
+    <!-- CDN Of Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <title>Urban-Jungle | home</title>
 
 </head>
 
 <body>
-    <nav></nav>
+    <header>
+        <div class="container-main margin-page">
+            <div class="logo">
+                <img src="../images/logo.svg" alt="Waiting">
+            </div>
+            <div class="nav-bar" id="nav-bar-id">
+                <a href="./index.html">Home</a>
+                <a href="./html/shop.html">Shop</a>
+                <a href="./html/about.html">About</a>
+                <a href="./html/contact.html">Contact</a>
+                <a href="./html/login.html">LogIn</a>
+                <a href="#">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <div class="count-orders">0</div>
+                </a>
+            </div>
+            <button class="menu-btn" onclick="menuBtnOnClick()"><i class="fa-solid fa-bars"></i></button>
+            <button class="close-btn" onclick="closeBtnOnClick()"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="heed-welcome margin-page">
+            <p class="welcome">Welome To Urban Jungle Co.</p>
+            <h1>Discover the Beauty of <br> Nature at Your Fingertips</h1>
+            <a href="./html/shop.html">Shop Now</a>
+        </div>
+    </header>
+    <script src="./js/_main.js"></script>
 </body>
 
 </html>
