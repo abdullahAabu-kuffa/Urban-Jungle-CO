@@ -6,3 +6,7 @@ body {
     --main-color: #88ad35;
     --main-bg-Color: #ecf4d3;
 }
+
+html {
+    scroll-behavior: smooth;
+}
