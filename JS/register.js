@@ -1,4 +1,4 @@
-function initalizeApp() {
+function registeration() {
     document.querySelector('.login-button').addEventListener('click', function (e) {
         e.preventDefault();
         var name = document.getElementById('name')
@@ -51,4 +51,4 @@ function initalizeApp() {
         window.location.replace('login.html')
     })
 }
-initalizeApp()
+registeration()
