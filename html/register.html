@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="../css/_main.css">
+    <link rel="stylesheet" href="../css/login&register.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Registeration Page</h1>
+        </div>
+        <br>
+        <div class="form-container">
+            <form action="" method="post">
+                <div class="name">
+                    <label for="name">Name</label>
+                    <br>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter Your Name">
+
+                </div>
+                <div class="email">
+                    <label for="email">Email</label>
+                    <br>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter Your Email">
+                    <span class="errorEmail"></span>
+                </div>
+                <div class="password">
+                    <label for="password">Password</label>
+                    <br>
+                    <input type="password" id="password" name="password" class="form-input"
+                        placeholder="Enter Password at leaset 8 charchers">
+                        <span class="errorPassword"></span>
+                </div>
+                <div class="role">
+                    <label for="role">Role</label>
+                    <br>
+                    <select id="role" name="role" class="form-input">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                
+                <span class="error"></span>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+            <div class="register-link">
+                <p>Don't have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/register.js"></script>
+</body>
+
+</html>
