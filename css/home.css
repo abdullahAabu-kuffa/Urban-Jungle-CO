@@ -180,7 +180,7 @@ section .content .col h2 {
 .Ready-to-Find {
     margin-top: 40px;
     height: 400px;
-    background-image: url(./images/home/bg-readytofind.avif);
+    background-image: url(../images/home/bg-readytofind.avif);
     background-size: cover;
     background-position: bottom;
 }
