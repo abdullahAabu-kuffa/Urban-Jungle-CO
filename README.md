@@ -1,6 +1,6 @@
 # Urban-Jungle-CO
 Urban Jungle Commerce 
-#Template link: 
+# Template link: 
 https://websitedemos.net/generic-ecommerce-02/
 
 # Abdullah
