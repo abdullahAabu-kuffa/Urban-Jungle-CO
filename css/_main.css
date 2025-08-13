@@ -15,6 +15,7 @@ body {
 :root {
     --main-color: #88ad35;
     --main-bg-Color: #ecf4d3;
+    --main-font-color: rgb(33, 33, 33);
 }
 
 html {
@@ -69,10 +70,15 @@ header .container-main .nav-bar a:hover {
     color: var(--main-bg-Color);
 }
 
+header .container-main .nav-bar a:active {
+    color: var(--main-color);
+}
+
 header .container-main .nav-bar a i {
     position: relative;
     font-size: 20px;
 }
+
 
 header .container-main .nav-bar a .count-orders {
     position: absolute;
@@ -226,3 +232,81 @@ header .container-main button i {
         margin: 15px;
     }
 }
+
+/* Start Footer */
+footer {
+    background-color: var(--main-bg-Color);
+}
+
+footer .footer-content {
+    padding-top: 60px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+footer .footer-content .col-footer ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .footer-content .social-icons a {
+    color: var(--main-font-color);
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+footer .footer-content .col-footer ul a {
+    text-decoration: none;
+    margin: 0 15px;
+    color: var(--main-font-color);
+}
+
+footer .footer-content .col-footer ul a:hover {
+    color: var(--main-color);
+}
+
+footer .footer-content .col-footer ul a:active {
+    color: var(--main-color);
+}
+
+footer .copy-right {
+    padding: 30px 0;
+    text-align: center;
+    color: var(--main-font-color);
+    font-size: 15px;
+}
+
+/* End Footer */
+
+/* Scroll to Top */
+.back-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background-color: var(--main-color);
+    color: white;
+    padding: 8px 12px;
+    font-size: 18px;
+    text-decoration: none;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    -webkit-transition: background-color 0.3s ease, opacity 0.3s ease;
+    -moz-transition: background-color 0.3s ease, opacity 0.3s ease;
+    -ms-transition: background-color 0.3s ease, opacity 0.3s ease;
+    -o-transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: var(--main-bg-color);
+    color: black;
+}
+
+/* Scroll to Top */
