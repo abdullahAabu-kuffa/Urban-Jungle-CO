@@ -273,18 +273,26 @@ header .cart-orders .cart-orders-content .cart-orders-items .cancel-order {
 
     header #nav-bar-id a {
         color: black;
-        margin: 15px;
+        width: 90%;
+        padding: 15px;
+        margin-left: 20px;
     }
 
     header #nav-bar-id a:hover {
-        color: #88ad35;
+        color: white;
+        background-color: rgb(0 0 0 /50%);
     }
 }
 
-@media (min-width:767px)and (max-width:991px) {
+@media(min-width:767px)and(max-width:991px) {
     header {
         background-size: 300%;
         background-position: top center;
+    }
+
+    header .container-main .nav-bar a .count-orders {
+        background-color: var(--main-font-color);
+        color: white;
     }
 
     header .heed-welcome h1 {
@@ -314,11 +322,14 @@ header .cart-orders .cart-orders-content .cart-orders-items .cancel-order {
 
     header #nav-bar-id a {
         color: black;
-        margin: 15px;
+        width: 90%;
+        padding: 15px;
+        margin-left: 20px;
     }
 
     header #nav-bar-id a:hover {
-        color: #bfde7d;
+        color: white;
+        background-color: rgb(0 0 0 /50%);
     }
 }
 

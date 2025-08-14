@@ -59,8 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
         if (link.getAttribute('href').split('/').pop() == currentPage) {
-            console.log(currentPage);
-            console.log(link.getAttribute('href').split('/').pop())
             link.classList.add('active');
         } else {
             link.classList.remove('active');
