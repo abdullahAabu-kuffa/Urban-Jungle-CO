@@ -1,11 +1,6 @@
 /* Miain css file */
 @import url("./main.css");
 
-::selection {
-    background-color: var(--main-color);
-    color: white;
-}
-
 header {
     background-image: url(../images/head-img4.avif) !important;
     background-size: cover !important;
