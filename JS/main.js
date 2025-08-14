@@ -17,14 +17,29 @@ function closeBtnOnClick() {
 
 // Back to Top Button Functionality
 const btn = document.querySelector('.back-to-top');
+if (btn) {
+    window.addEventListener('scroll', () => {
+        btn.style.display = window.scrollY > 200 ? 'flex' : 'none';
+    });
 
-window.addEventListener('scroll', () => {
-    btn.style.display = window.scrollY > 200 ? 'flex' : 'none';
-});
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+        });
+    });
+}
 
-btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
+// Highlighting the active navigation link based on the current page
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    navLinks.forEach(link => {
+        if (link.getAttribute('href').split('/').pop() == currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
     });
 });

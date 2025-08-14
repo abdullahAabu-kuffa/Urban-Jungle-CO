@@ -70,8 +70,8 @@ header .container-main .nav-bar a:hover {
     color: var(--main-bg-Color);
 }
 
-header .container-main .nav-bar a:active {
-    color: var(--main-color);
+header .container-main .nav-bar a.active {
+    color: #bfde7d;
 }
 
 header .container-main .nav-bar a i {
@@ -293,16 +293,18 @@ footer {
 footer .footer-content {
     padding-top: 60px;
     padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ccc;
+    flex-wrap: wrap;
 }
 
 footer .footer-content .col-footer ul {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
+    padding: 15px 0;
 }
 
 footer .footer-content .social-icons a {
@@ -330,6 +332,12 @@ footer .copy-right {
     text-align: center;
     color: var(--main-font-color);
     font-size: 15px;
+}
+
+@media (max-width:991px) {
+    footer .footer-content {
+        flex-direction: column;
+    }
 }
 
 /* End Footer */
