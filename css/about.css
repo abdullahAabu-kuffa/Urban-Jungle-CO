@@ -4,6 +4,10 @@ body {
   background-color: #fff;
 }
 
+
+
+
+
 .section-about {
   display: flex;
   align-items: flex-start;
@@ -27,11 +31,12 @@ body {
 .contant-about {
   padding: 0%;
   flex: 1;
-  margin-left: 30px;
+  /* margin-left: 30px; */
+
 }
 
 .contant-about h1 {
-  font-size: 36px;
+  font-size: 28px;
   line-height: 1.4;
   margin-bottom: 20px;
 }
@@ -98,13 +103,13 @@ body {
   background-color: #ecf4d3;
 }
 
-h1 {
+.container h1 {
   font-size: 36px;
   line-height: 1.4;
   margin-bottom: 20px;
 }
 
-.row {
+ .container .row {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -135,11 +140,11 @@ h1 {
   min-width: 50px;
 }
 
-h3 {
-  margin: 10px 0;
+.value-box h3 {
+  margin: 0 10%;
 }
 
-p {
+.value-box p {
   font-size: 14px;
   color: #555;
 }
@@ -149,6 +154,8 @@ p {
     flex: 0 0 100%;
     margin-bottom: 15px;
   }
+
+
 }
 
 .section {
@@ -171,9 +178,11 @@ p {
 .text-3 p {
   font-size: 16px;
   color: #555;
+  display: flex;
   margin-bottom: 25px;
   line-height: 1.6;
 }
+
 
 .list {
   display: flex;
@@ -218,8 +227,14 @@ p {
     text-align: center;
   }
 
+  .list {
+    flex-direction: column;
+  }
   .list-item {
     flex: 0 0 100%;
-    justify-content: center;
+  }
+
+  .section3{
+    text-align: left;
   }
 }
