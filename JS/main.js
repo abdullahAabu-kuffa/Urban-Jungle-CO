@@ -1,4 +1,4 @@
-// js/main.js
+
 // This code handles the navigation bar toggle functionality for mobile view
 
 // Function to toggle the navigation bar visibility
