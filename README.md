@@ -3,7 +3,7 @@ Urban Jungle Commerce
 # Template link: 
 https://websitedemos.net/generic-ecommerce-02/
 
-# Abdullah
+## Abdullah
 # To add google fonts:
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
