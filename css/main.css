@@ -233,6 +233,58 @@ header .container-main button i {
     }
 }
 
+/* Media Quary */
+
+/* Start Ready to Find */
+.Ready-to-Find {
+    margin-top: 40px;
+    height: 400px;
+    background-image: url(../images/home/bg-readytofind.avif);
+    background-size: cover;
+    background-position: bottom;
+}
+
+.Ready-to-Find .content {
+    height: 100%;
+    color: white;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.Ready-to-Find .content h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.Ready-to-Find .content a {
+    text-decoration: none;
+    margin-top: 40px;
+    background-color: var(--main-color);
+    padding: 10px 25px;
+    color: white;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.Ready-to-Find .content a:hover {
+    background-color: #6d9023;
+}
+
+@media (max-width:767px) {
+    .flash-sale .content h1 {
+        font-size: 30px;
+    }
+}
+
+/* End Ready to Find */
 /* Start Footer */
 footer {
     background-color: var(--main-bg-Color);
@@ -310,57 +362,3 @@ footer .copy-right {
 }
 
 /* Scroll to Top */
-
-
-
-
-/* Start Ready to Find */
-.Ready-to-Find {
-    margin-top: 40px;
-    height: 400px;
-    background-image: url(../images/home/bg-readytofind.avif);
-    background-size: cover;
-    background-position: bottom;
-}
-
-.Ready-to-Find .content {
-    height: 100%;
-    color: white;
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.Ready-to-Find .content h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.Ready-to-Find .content a {
-    text-decoration: none;
-    margin-top: 40px;
-    background-color: var(--main-color);
-    padding: 10px 25px;
-    color: white;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-}
-
-.Ready-to-Find .content a:hover {
-    background-color: #6d9023;
-}
-
-@media (max-width:767px) {
-    .flash-sale .content h1 {
-        font-size: 30px;
-    }
-}
-
-/* End Ready to Find */
