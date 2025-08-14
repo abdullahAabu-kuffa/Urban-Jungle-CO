@@ -7,6 +7,12 @@ header {
     background-size: 100% !important;
 }
 
+@media (max-width:767px) {
+    header {
+        background-size: 150% !important;
+    }
+}
+
 .container {
     display: flex;
     justify-content: space-evenly;

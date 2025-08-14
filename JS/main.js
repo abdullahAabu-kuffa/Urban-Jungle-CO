@@ -35,13 +35,13 @@ function closeBtnOnClick() {
 
 window.menuBtnOnClick = menuBtnOnClick;
 window.closeBtnOnClick = closeBtnOnClick;
+
 // Back to Top Button Functionality
 const btn = document.querySelector('.back-to-top');
 if (btn) {
     window.addEventListener('scroll', () => {
         btn.style.display = window.scrollY > 200 ? 'flex' : 'none';
     });
-
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({
@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
         if (link.getAttribute('href').split('/').pop() == currentPage) {
+            console.log(currentPage);
+            console.log(link.getAttribute('href').split('/').pop())
             link.classList.add('active');
         } else {
             link.classList.remove('active');
