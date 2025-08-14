@@ -1,11 +1,5 @@
 @import url('main.css');
 
-html,
-body {
-    height: 100%;
-    margin: 0;
-}
-
 .container {
     position: relative;
     background: linear-gradient(to bottom, #4caf50, #81c784);
