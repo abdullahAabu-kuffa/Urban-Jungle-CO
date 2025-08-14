@@ -1,5 +1,5 @@
 // register.js
-import { auth, db } from './main.js';
+import { auth, db } from '../main.js';
 import {
     createUserWithEmailAndPassword,
     fetchSignInMethodsForEmail
