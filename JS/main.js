@@ -43,3 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Adding a border to the filter button when clicked
+let isBordered = false;
+const selectFilter = document.getElementById("filter-products");
+selectFilter.addEventListener("click", function () {
+    isBordered = !isBordered;
+    selectFilter.style.border = isBordered ? "1px dashed var(--main-font-color)" : "none";
+});
