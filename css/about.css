@@ -6,7 +6,9 @@ body {
 
 
 
-
+header {
+  background-image: url(../images/head-img.avif) !important;
+}
 
 .section-about {
   display: flex;
@@ -109,7 +111,7 @@ body {
   margin-bottom: 20px;
 }
 
- .container .row {
+.container .row {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -230,11 +232,12 @@ body {
   .list {
     flex-direction: column;
   }
+
   .list-item {
     flex: 0 0 100%;
   }
 
-  .section3{
+  .section3 {
     text-align: left;
   }
 }

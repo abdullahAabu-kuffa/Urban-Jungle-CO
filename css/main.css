@@ -71,7 +71,7 @@ header .container-main .nav-bar a:hover {
 }
 
 header .container-main .nav-bar a.active {
-    color: #bfde7d;
+    color: #c3dc8e !important;
 }
 
 header .container-main .nav-bar a i {
@@ -154,6 +154,83 @@ header .container-main button i {
     border: 1px solid var(--main-color);
 }
 
+/* Orders Cart */
+header .cart-orders {
+    position: absolute;
+    width: 550px;
+    height: 99%;
+    top: 0;
+    right: 0;
+    display: none;
+    background-color: white;
+}
+
+header .cart-orders .cart-orders-content .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+}
+
+header .cart-orders .cart-orders-content .head h3 {
+    font-weight: normal;
+    color: #777
+}
+
+header .cart-orders .cart-orders-content .head .close-orders-btn {
+    color: #777;
+    font-size: 25px;
+    background-color: #f1efefe6;
+    border: none;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+header .cart-orders .cart-orders-content .cart-orders-items .empty-cart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--main-font-color);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+header .cart-orders .cart-orders-content .cart-orders-item {
+    display: flex;
+    width: 100%;
+    color: var(--main-font-color);
+    padding: 20px;
+}
+
+header .cart-orders .cart-orders-content .cart-orders-item-info {
+    display: flex;
+    width: 100%;
+}
+
+header .cart-orders .cart-orders-content .cart-orders-item-info div {
+    padding: 0 10px;
+    text-align: center;
+}
+
+header .cart-orders .cart-orders-content .cart-orders-item-info .name {
+    padding: 10px 0;
+}
+
+header .cart-orders .cart-orders-content .cart-orders-items .cancel-order {
+    color: var(--main-font-color);
+}
+
 /* Media Quary */
 @media (max-width:767px) {
     header {
@@ -194,6 +271,10 @@ header .container-main button i {
         color: black;
         margin: 15px;
     }
+
+    header #nav-bar-id a:hover {
+        color: #88ad35;
+    }
 }
 
 @media (min-width:767px)and (max-width:991px) {
@@ -230,6 +311,10 @@ header .container-main button i {
     header #nav-bar-id a {
         color: black;
         margin: 15px;
+    }
+
+    header #nav-bar-id a:hover {
+        color: #bfde7d;
     }
 }
 
