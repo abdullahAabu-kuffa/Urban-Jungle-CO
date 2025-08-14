@@ -21,7 +21,7 @@ html {
     scroll-behavior: smooth;
 }
 
-::selection {
+body::selection {
     background-color: var(--main-color);
     color: white;
 }
