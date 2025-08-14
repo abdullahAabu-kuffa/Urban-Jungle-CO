@@ -21,20 +21,22 @@ export const db = getFirestore(app);
 // This code handles the navigation bar toggle functionality for mobile view
 
 // Function to toggle the navigation bar visibility
-function menuBtnOnClick() {
-    document.getElementById("nav-bar-id").style.display = "flex";
-    document.querySelector(".menu-btn").style.display = "none";
-    document.querySelector(".close-btn").style.display = "block";
-}
-// This function handles the close button click event to hide the navigation bar
-function closeBtnOnClick() {
-    document.getElementById("nav-bar-id").style.display = "none";
-    document.querySelector(".close-btn").style.display = "none";
-    document.querySelector(".menu-btn").style.display = "block";
-}
+const navBar = document.getElementById("nav-bar-id");
+const menuBtn = document.querySelector(".menu-btn");
+const closeBtn = document.querySelector(".close-btn");
+menuBtn.addEventListener("click", () => {
+    navBar.style.display = "flex";
+    menuBtn.style.display = "none";
+    closeBtn.style.display = "block";
 
-window.menuBtnOnClick = menuBtnOnClick;
-window.closeBtnOnClick = closeBtnOnClick;
+});
+// This function handles the close button click event to hide the navigation bar
+closeBtn.addEventListener("click", () => {
+    navBar.style.display = "none";
+    closeBtn.style.display = "none";
+    menuBtn.style.display = "block";
+});
+
 
 // Back to Top Button Functionality
 const btn = document.querySelector('.back-to-top');
@@ -68,8 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Adding a border to the filter button when clicked
 let isBordered = false;
-const selectFilter = document.getElementById("filter-products");
-selectFilter.addEventListener("click", function () {
-    isBordered = !isBordered;
-    selectFilter.style.border = isBordered ? "1px dashed var(--main-font-color)" : "none";
-});
+const selectFilter = document.getElementById(".filter-products");
+if (selectFilter) {
+    selectFilter.addEventListener("click", function () {
+        isBordered = !isBordered;
+        selectFilter.style.border = isBordered ? "1px dashed var(--main-font-color)" : "none";
+    });
+}
