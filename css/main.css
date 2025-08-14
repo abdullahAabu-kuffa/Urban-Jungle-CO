@@ -11,15 +11,19 @@ body {
     margin: 0;
 }
 
-
 :root {
-    --main-color: #88ad35;
+    --main-color: #779c26;
     --main-bg-Color: #ecf4d3;
     --main-font-color: rgb(33, 33, 33);
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+::selection {
+    background-color: var(--main-color);
+    color: white;
 }
 
 .margin-page {
