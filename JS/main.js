@@ -1,23 +1,23 @@
-// this code handles the firebase functionality
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+// // this code handles the firebase functionality
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+// import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+// import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCbneIlj9PY9pn2goEQYH_q34squP4kImE",
-    authDomain: "urban-jungle-318b7.firebaseapp.com",
-    projectId: "urban-jungle-318b7",
-    storageBucket: "urban-jungle-318b7.firebasestorage.app",
-    messagingSenderId: "103194548210",
-    appId: "1:103194548210:web:28bb7cd72aa92a5a95fd6b",
-    measurementId: "G-76S7RCYBK8"
-};
+// const firebaseConfig = {
+//     apiKey: "AIzaSyCbneIlj9PY9pn2goEQYH_q34squP4kImE",
+//     authDomain: "urban-jungle-318b7.firebaseapp.com",
+//     projectId: "urban-jungle-318b7",
+//     storageBucket: "urban-jungle-318b7.firebasestorage.app",
+//     messagingSenderId: "103194548210",
+//     appId: "1:103194548210:web:28bb7cd72aa92a5a95fd6b",
+//     measurementId: "G-76S7RCYBK8"
+// };
 
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
 
-// Auth & DB instances (export for use everywhere)
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+// // Auth & DB instances (export for use everywhere)
+// export const auth = getAuth(app);
+// export const db = getFirestore(app);
 // This code handles the navigation bar toggle functionality for mobile view
 
 // Function to toggle the navigation bar visibility
