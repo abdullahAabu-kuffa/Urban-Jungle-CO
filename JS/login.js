@@ -70,16 +70,27 @@ function login() {
         errorMessage.style.display = 'none';
 
         var users = JSON.parse(localStorage.getItem('users') || '[]')
+        let role = users.find(u => u.email === email && u.password === password)?.role;
         var user = users.find(u => u.email === email && u.password === password)
+        
         if (user) {
             errorMessage.style.display = 'none';
             errorMessage.textContent = ''
-            window.location.replace("../index.html");
+            if (role === 'admin') {
+                localStorage.setItem('currentAdmin', JSON.stringify(user));
+                console.log('User ' + user.email + ' is admin');
+                window.location.replace("../html/dashboard.html");
+
+            } else if (role === 'user') {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+
+                window.location.replace("../index.html");
+            }
         } else {
             emailInput.style.border = '1px solid red';
             passwordInput.style.border = '1px solid red';
             errorMessage.style.display = 'block';
-            errorMessage.textContent = 'There are no accounts with this email';
+            errorMessage.textContent = 'Invalid email or password.';
         }
     })
 }

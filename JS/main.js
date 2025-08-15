@@ -99,3 +99,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser')); // This holds the logged-in user
+
+    if (currentUser) {
+        document.querySelector('.is-logged').innerHTML = 'Profile';
+        document.querySelector('.is-logged').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '../html/profile.html';
+        });
+    } else {
+        document.querySelector('.is-logged').innerHTML = 'Login';
+    }
+});
