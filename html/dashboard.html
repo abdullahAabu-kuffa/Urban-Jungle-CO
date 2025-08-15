@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="../images/logo.svg" alt="Logo">
+        <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+
+    </div>
+    <ul>
+      <li><a href="#"><i class="fa-solid fa-user"></i> Profil</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#"><i class="fas fa-box"></i> Products</a></li>
+      <li><a href="#"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+      <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content-dash">
+    <header>
+      <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
+      <h1 class="header-dash">Product Dashboard</h1>
+      <div class="search-box">
+        <input type="text" placeholder="Search product...">
+        <button class="btn-search"><i class="fas fa-search"></i></button>
+      </div>
+    </header>
+
+    <!-- Add Product Form -->
+    <section class="form-section">
+     
+      <form>
+        <input type="text" placeholder="Product Name" required>
+        <input type="number" placeholder="Price" required>
+         <input type="text" placeholder="Category" required>
+        <input type="file" accept="image/*" required>
+        <textarea placeholder="Description" required></textarea>
+        <button type="submit">Add Product</button>
+      </form>
+    </section>
+
+    <!-- Products Table -->
+    <section class="table-Products">
+      <h2>Product List</h2>
+      <table>
+        <thead>
+          <tr>
+          
+            <th>Name</th>
+             <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Actions</th>
+         
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+           
+            <td> Product</td>
+            <td>$10</td>
+            <td>Indoor </td>
+            <td><img src="../images/home/product2.jpg" alt="Product"></td>
+            <td>Short description </td>
+             <td class="actions">
+            <i class="fa-solid fa-pencil edit-icon"></i>
+            <i class="fa-solid fa-trash delete-icon"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const closeBtn = document.getElementById("close-btn");
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    });
+
+  </script>
+
+</body>
+</html>

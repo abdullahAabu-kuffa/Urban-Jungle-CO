@@ -1,11 +1,16 @@
+import { auth } from '../main.js';
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
 function login() {
-    document.querySelector('.login-button').addEventListener('click', function (e) {
-        e.preventDefault()
+    document.querySelector('.login-button').addEventListener('click', async function (e) {
+        e.preventDefault();
+
         let emailInput = document.getElementById('email');
         let passwordInput = document.getElementById('password');
         let errorMessage = document.querySelector('.error');
-        let email = emailInput.value;
-        let password = passwordInput.value;
+
+        let email = emailInput.value.trim();
+        let password = passwordInput.value.trim();
 
         if (!email || !password) {
             emailInput.style.border = '1px solid red';
@@ -14,20 +19,25 @@ function login() {
             errorMessage.textContent = 'Please fill in all fields';
             return;
         }
-        errorMessage.style.display = 'none';
 
-        var users = JSON.parse(localStorage.getItem('users') || '[]')
-        var user = users.find(u => u.email === email && u.password === password)
-        if (user) {
-            errorMessage.style.display = 'none';
-            errorMessage.textContent = ''
-            window.location.href = "index.html";
-        } else {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            // Redirect to homepage
+            window.location.href = "/index.html";
+        } catch (error) {
             emailInput.style.border = '1px solid red';
             passwordInput.style.border = '1px solid red';
             errorMessage.style.display = 'block';
-            errorMessage.textContent = 'There are no accounts with this email';
+
+            if (error.code === 'auth/invalid-credential') {
+                errorMessage.textContent = 'Invalid email or password.';
+            } else if (error.code === 'auth/invalid-email') {
+                errorMessage.textContent = 'Invalid email format.';
+            } else {
+                errorMessage.textContent = 'Login failed: ' + error.message;
+            }
         }
-    })
+    });
 }
-login()
+
+login();

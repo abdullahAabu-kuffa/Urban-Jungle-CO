@@ -1,69 +1,117 @@
-function registeration() {
-    document.querySelector('.login-button').addEventListener('click', function (e) {
-        e.preventDefault();
-        var name = document.getElementById('name')
-        var email = document.getElementById('email')
-        var password = document.getElementById('password')
-        var role = document.getElementById('role')
-        let errorMessage = document.querySelector('.error');
+// register.js
+import { auth, db } from '../main.js';
+import {
+    createUserWithEmailAndPassword,
+    fetchSignInMethodsForEmail
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import {
+    setDoc,
+    doc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-        // validate form data name, email, password and role empty or not
+function registeration() {
+    const submitBtn = document.querySelector('.login-button');
+
+    submitBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        // Inputs
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const role = document.getElementById('role');
+
+        // Error spans
+        const errorMessage = document.querySelector('.error');
+        const errorEmail = document.querySelector('.errorEmail');
+        const errorPassword = document.querySelector('.errorPassword');
+
+        // Helper functions
+        const showError = (field, span, msg) => {
+            field.style.border = '1px solid red';
+            span.style.display = 'block';
+            span.textContent = msg;
+        };
+        const clearError = (field, span) => {
+            field.style.border = '';
+            span.style.display = 'none';
+            span.textContent = '';
+        };
+        const clearBorders = () => [name, email, password, role].forEach(f => f.style.border = '');
+
+        // Empty check
         if (!name.value || !email.value || !password.value || !role.value) {
-            name.style.border = '1px solid red';
-            email.style.border = '1px solid red';
-            password.style.border = '1px solid red';
-            role.style.border = '1px solid red';
             errorMessage.style.display = 'block';
             errorMessage.textContent = 'Please fill in all fields';
+            [name, email, password, role].forEach(f => f.style.border = '1px solid red');
             return;
         }
         errorMessage.style.display = 'none';
-        name.style.border = '';
-        email.style.border = '';
-        password.style.border = '';
-        role.style.border = '';
+        clearBorders();
 
-        // validate form data email and password with regex
-        var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
-        var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-        if (!emailPattern.test(email.value.trim())) {
-            document.querySelector('.errorEmail').style.display = 'block';
-            email.style.border = '1px solid red';
-            document.querySelector('.errorEmail').textContent = 'Please enter a valid email address';
-            return
+        const emailVal = email.value.trim();
+        const passwordVal = password.value.trim();
+        const nameVal = name.value.trim();
+        const roleVal = role.value.trim();
+
+        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+        if (!emailPattern.test(emailVal)) {
+            showError(email, errorEmail, 'Please enter a valid email address');
+            return;
         }
-        email.style.border = '';
+        clearError(email, errorEmail);
 
-        document.querySelector('.errorEmail').style.display = 'none';
-        if (!passwordPattern.test(password.value.trim())) {
-            document.querySelector('.errorPassword').style.display = 'block';
-            password.style.border = '1px solid red';
-
-            document.querySelector('.errorPassword').textContent = 'Password must be at least 8 characters long and contain at least one letter and one number';
-            return
+        if (!passwordPattern.test(passwordVal)) {
+            showError(password, errorPassword, 'Password must be at least 8 characters long and contain at least one letter and one number');
+            return;
         }
-        password.style.border = '';
+        clearError(password, errorPassword);
 
-        document.querySelector('.errorPassword').style.display = 'none';
+        submitBtn.disabled = true;
 
-        // validate if the email already exists
-        var users = JSON.parse(localStorage.getItem('users') || '[]')
-        var user = users.find(u => u.email === email.value)
-        if (user) {
-            email.style.border = '1px solid red';
-            document.querySelector('.errorEmail').style.display = 'block';
-            document.querySelector('.errorEmail').textContent = 'Email already exists. Please use a different email.';
-            return
+        try {
+            // Check email existence
+            const methods = await fetchSignInMethodsForEmail(auth, emailVal);
+            if (methods.length > 0) {
+                showError(email, errorEmail, 'Email already exists. Please use a different email.');
+                submitBtn.disabled = false;
+                return;
+            }
+
+            // Create user
+            const cred = await createUserWithEmailAndPassword(auth, emailVal, passwordVal);
+
+            // Save user data to Firestore
+            await setDoc(doc(db, "users", cred.user.uid), {
+                name: nameVal,
+                email: emailVal,
+                role: roleVal,
+                createdAt: serverTimestamp()
+            });
+
+            console.log("✅ User registered and saved. Redirecting...");
+            window.location.href = "login.html"; // change path if needed
+
+        } catch (error) {
+            console.error("❌ Registration error:", error);
+
+            if (error.code === 'auth/email-already-in-use') {
+                showError(email, errorEmail, 'Email already exists. Please use a different email.');
+            } else if (error.code === 'auth/invalid-email') {
+                showError(email, errorEmail, 'Invalid email format.');
+            } else if (error.code === 'auth/weak-password') {
+                showError(password, errorPassword, 'Password is too weak.');
+            } else {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = error.message || 'Registration failed.';
+            }
+        } finally {
+            submitBtn.disabled = false;
         }
-        email.style.border = '';
-
-        document.querySelector('.errorEmail').style.display = 'none';
-
-        // save user data
-        var users = JSON.parse(localStorage.getItem('users') || '[]')
-        users.push({ name: name.value.trim(), email: email.value.trim(), password: password.value.trim(), role: role.value.trim() })
-        localStorage.setItem('users', JSON.stringify(users))
-        window.location.replace('login.html')
-    })
+    });
 }
-registeration()
+
+registeration();
