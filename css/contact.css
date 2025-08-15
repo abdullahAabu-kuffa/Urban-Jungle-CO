@@ -1,5 +1,29 @@
 /* Start Constants */
-@import url(./main.css); 
+   @import url(./main.css); 
+ /* Mobile */
+
+    @media (max-width: 767px) {
+    }
+
+    /* Small Screens  Tablet*/
+
+    @media (min-width: 768px) and (max-width: 991px) {
+    }
+
+    /* Medium Screens */
+
+    @media (min-width: 992px) {
+    }
+
+    /* Large Screens */
+
+    @media (min-width: 1200px) {
+    }
+
+    /* Custom */
+
+    @media (max-width: 1199px) {
+    }
 .container{
         display: flex;
         justify-content: space-evenly;
@@ -7,9 +31,24 @@
         gap: 30px;
         padding: 30px;
     }
+    @media (max-width: 767px) {
+    .container {
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .contact-info,
+    .form-info {
+        max-width: 100%;
+        padding-left: 0;
+    }
+}
     .container {
         margin-top: 50px;
     }
+  
+
+
     .contact-info{
         flex: 1;
         max-width: 45%;
@@ -24,9 +63,12 @@
         align-items: center;
         gap: 10px;
         }
-     .contact-info p{
-        margin: 5px 0 15px 50px;
-        }
+     @media (max-width: 767px) {
+    .contact-info p {
+        margin: 5px 0 15px 0;
+        text-align: center;  
+    }
+}
 
     .form-info{
         flex: 1;
