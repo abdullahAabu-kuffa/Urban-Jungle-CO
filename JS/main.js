@@ -70,8 +70,32 @@ document.addEventListener('DOMContentLoaded', () => {
 let isBordered = false;
 const selectFilter = document.getElementById(".filter-products");
 if (selectFilter) {
-    selectFilter.addEventListener("click", function () {
+    selectFilter.addEventListener("click", function (e) {
+        e.preventDefault();
         isBordered = !isBordered;
         selectFilter.style.border = isBordered ? "1px dashed var(--main-font-color)" : "none";
     });
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const cartOnClick = document.querySelector(".cart-on-click");
+    if (cartOnClick) {
+        cartOnClick.addEventListener("click", () => {
+            const cartOrders = document.querySelector(".cart-orders");
+            if (cartOrders) {
+                cartOrders.style.display = "block";
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const closeOrdersBtn = document.querySelector(".close-orders-btn");
+    if (closeOrdersBtn) {
+        closeOrdersBtn.addEventListener("click", () => {
+            const cartOrders = document.querySelector(".cart-orders");
+            if (cartOrders) {
+                cartOrders.style.display = "none";
+            }
+        });
+    }
+});
