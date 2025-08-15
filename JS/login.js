@@ -23,7 +23,7 @@ function login() {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             // Redirect to homepage
-            window.location.href = "/index.html";
+            window.location.replace("/index.html");
         } catch (error) {
             emailInput.style.border = '1px solid red';
             passwordInput.style.border = '1px solid red';

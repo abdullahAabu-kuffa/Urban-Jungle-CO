@@ -91,13 +91,9 @@ function registeration() {
                 role: roleVal,
                 createdAt: serverTimestamp()
             });
-
-            console.log("✅ User registered and saved. Redirecting...");
-            window.location.href = "login.html"; // change path if needed
+            window.location.replace("login.html");
 
         } catch (error) {
-            console.error("❌ Registration error:", error);
-
             if (error.code === 'auth/email-already-in-use') {
                 showError(email, errorEmail, 'Email already exists. Please use a different email.');
             } else if (error.code === 'auth/invalid-email') {
