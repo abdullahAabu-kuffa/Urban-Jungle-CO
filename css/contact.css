@@ -1,5 +1,109 @@
 /* Start Constants */
-@import url(./main.css);
+   @import url(./main.css); 
+ /* Mobile */
+
+    @media (max-width: 767px) {
+    }
+
+    /* Small Screens  Tablet*/
+
+    @media (min-width: 768px) and (max-width: 991px) {
+    }
+
+    /* Medium Screens */
+
+    @media (min-width: 992px) {
+    }
+
+    /* Large Screens */
+
+    @media (min-width: 1200px) {
+    }
+
+    /* Custom */
+
+    @media (max-width: 1199px) {
+    }
+.container{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        gap: 30px;
+        padding: 30px;
+    }
+    @media (max-width: 767px) {
+    .container {
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .contact-info,
+    .form-info {
+        max-width: 100%;
+        padding-left: 0;
+    }
+}
+    .container {
+        margin-top: 50px;
+    }
+  
+
+
+    .contact-info{
+        flex: 1;
+        max-width: 45%;
+        padding-left: 50px;
+    }
+    .contact-info h1{
+        margin-bottom: 50px;
+    }
+     .contact-info h3{
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        }
+     @media (max-width: 767px) {
+    .contact-info p {
+        margin: 5px 0 15px 0;
+        text-align: center;  
+    }
+        header {
+        background-size: 150% !important;
+
+    }
+}
+
+    .form-info{
+        flex: 1;
+        max-width: 55%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .form-info input,
+    .form-info textarea{
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 15px;
+        width: 100%;
+        box-sizing: border-box;
+        
+    }
+    .form-info textarea{
+        min-height: 120px;
+        resize: vertical;
+    }
+    .form-info button{
+        width: 100px;
+        background-color: #88ad35;
+        color: aliceblue;
+        cursor: pointer;
+        border: none;
+        padding: 10px;
+        border-radius: 20px;
+        margin-bottom: 50px;
+}
 
 header {
     background-image: url(../images/head-img2.avif) !important;
@@ -7,11 +111,6 @@ header {
     background-size: 100% !important;
 }
 
-@media (max-width:767px) {
-    header {
-        background-size: 150% !important;
-    }
-}
 
 .container {
     display: flex;
@@ -77,11 +176,56 @@ header {
     background-color: #e3f4be;
     border-radius: 50%;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    margin-right: 10px;
-    font-size: 16px;
+    align-items: center;  
+    justify-content: center; 
+    color: black; 
+    margin-right: 10px; 
+    font-size: 16px; 
+    }
+    .contact-info h3{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+   .follow-us {
+    background-color: #f1f9dd; 
+    text-align: center;
+    padding-top: 60px;
+    }
+    .follow-us p {
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-weight: 500;
+        color: #333;
+    }
+    .follow-us .social-section {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+    }
+    .follow-us .social-section a {
+    font-size: 20px;
+    color: #000;
+    transition: color 0.3s ease;
+}
+.follow-us .social-section a:hover {
+    color: #88ad35; 
+}
+.Ready-to-Find .content p{
+    color: white;
+}
+.col-footer ul li a.active{
+    color: #88ad35;
+}
+.copy-right {
+    background-color: #f1f9dd; 
+    text-align: center;
+   padding: 30px;
+    width: 100%;         
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .contact-info h3 {
