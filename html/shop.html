@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- Home Style -->
+    <link rel="stylesheet" href="../css/shoping.css">
+    <!-- CDN Of Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <title>Urban-Jungle | Shop</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="container-main margin-page">
+            <div class="logo">
+                <img src="../images/logo.svg" alt="Waiting">
+            </div>
+            <div class="nav-bar" id="nav-bar-id">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="./shop.html" class="nav-link">Shop</a>
+                <a href="./about.html" class="nav-link">About</a>
+                <a href="./contact.html" class="nav-link">Contact</a>
+                <a href="./login.html" class="nav-link">LogIn</a>
+                <a href="#">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <div class="count-orders">0</div>
+                </a>
+            </div>
+            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+            <button class="close-btn"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="heed-welcome margin-page">
+            <p class="welcome">Shop</p>
+            <h1>Ready to Find your<br> Perfect Plant?</h1>
+        </div>
+        <!--? Start Cart Orders -->
+        <div class="cart-orders">
+            <div class="cart-orders-content">
+                <div class="head">
+                    <h3>Shopping Cart</h3>
+                    <button class="close-orders-btn" <i class="fa-solid fa-times"></i></button>
+                </div>
+                <div class="cart-orders-items">
+                    <p class="empty-cart">No products in the cart.</p>
+                    <div class="cart-orders-item">
+                        <div class="cart-orders-item-info">
+                            <img src="/images/home/product1.jpg" width="60" height="60" alt="">
+                            <div>
+                                <div class="name">Tropical Breeze</div>
+                                <p class="price">1 X 80.00$</p>
+                            </div>
+                        </div>
+                        <button class="cancel-order" <i class="fa-solid fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--? End Cart Orders -->
+    </header>
+    <!-- ?Start Trending Products -->
+    <div class="trending-products margin-page">
+        <!--? filter -->
+        <div class="filter">
+            <div class="show">
+                Showing all 6 results
+            </div>
+            <div class="sort">
+                <select name="select" id="filter-products">
+                    <option value="default">Default sorting</option>
+                    <option value="popularity">Sort by popularity</option>
+                    <option value="rating">Sort by average rating</option>
+                    <option value="latest">Sort by latest</option>
+                    <option value="price">Sort by price: low to high</option>
+                    <option value="price-desc">Sort by price: high to low</option>
+                </select>
+            </div>
+        </div>
+        <!--? filter -->
+        <div class="content">
+            <a class="col-prodact">
+                <div class="image">
+                    <img src="../images/home/product1.jpg" alt="">
+                </div>
+                <div class="title-img">
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5>Tropical Breeze</h5>
+                    <p>Indoor Plants</p>
+                    <p>$80.00</p>
+                </div>
+                <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                    <div class="add-to-cart">Add to cart</div>
+                </i>
+            </a>
+            <a class="col-prodact">
+                <div class="image">
+                    <img src="../images/home/product2.jpg" alt="">
+                </div>
+                <div class="title-img">
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5>Zen Bomboo Grove</h5>
+                    <p>Indoor Plants</p>
+                    <p>$90.00</p>
+                </div>
+                <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                    <div class="add-to-cart">Add to cart</div>
+                </i>
+            </a>
+            <a class="col-prodact">
+                <div class="image">
+                    <img src="../images/home/product3.jpg" alt="">
+                </div>
+                <div class="title-img">
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5>Starlight Succulent</h5>
+                    <p>Indoor Plants</p>
+                    <p>$95.00</p>
+                </div>
+                <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                    <div class="add-to-cart">Add to cart</div>
+                </i>
+            </a>
+            <a class="col-prodact">
+                <div class="image">
+                    <img src="../images/shop/product-03.jpg" alt="">
+                </div>
+                <div class="title-img">
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5>Silver Mist</h5>
+                    <p>Indoor Plants</p>
+                    <p>$92.00</p>
+                </div>
+                <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                    <div class="add-to-cart">Add to cart</div>
+                </i>
+            </a>
+            <a class="col-prodact">
+                <div class="image">
+                    <img src="../images/shop/product-04.jpg" alt="">
+                </div>
+                <div class="title-img">
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5>Golden Glow</h5>
+                    <p>Indoor Plants</p>
+                    <p>$85.00</p>
+                </div>
+                <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                    <div class="add-to-cart">Add to cart</div>
+                </i>
+            </a>
+            <a class="col-prodact">
+                <div class="image">
+                    <img src="../images/shop/product-05.jpg" alt="">
+                </div>
+                <div class="title-img">
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5>desert Bloom</h5>
+                    <p>Indoor Plants</p>
+                    <p>$70.00</p>
+                </div>
+                <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                    <div class="add-to-cart">Add to cart</div>
+                </i>
+            </a>
+        </div>
+    </div>
+    <!-- ?End Trending Products -->
+    <div class="Ready-to-Find">
+        <div class="content">
+            <h1>Ready to Find your Perfect Plant?</h1>
+            <p>Browse our online store or visit us in person to experience the beauty of nature.</p>
+            <a href="#">Shop Now</a>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content margin-page">
+            <div class="logo">
+                <img src="/images/normal-header.svg" alt="Waiting">
+            </div>
+            <div class="col-footer">
+                <ul>
+                    <li><a href="./index.html" class="nav-link">Home</a></li>
+                    <li><a href="./shop.html" class="nav-link">Shop</a></li>
+                    <li><a href="./about.html" class="nav-link">About</a></li>
+                    <li><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="copy-right">
+            Copyright © 2025 Generic eCommerce
+        </div>
+    </footer>
+    <div class="to-top">
+        <a href="#" class="back-to-top">
+            <i class="fa-solid fa-angle-up"></i>
+        </a>
+    </div>
+    <script src="../JS/main.js"></script>
+</body>
+
+</html>

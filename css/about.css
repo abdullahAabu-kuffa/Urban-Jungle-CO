@@ -8,6 +8,8 @@ body {
 
 header {
   background-image: url(../images/head-img.avif) !important;
+  background-size: cover !important;
+  background-size: 100% !important;
 }
 
 .section-about {
