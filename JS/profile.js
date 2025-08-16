@@ -33,3 +33,32 @@ document.querySelector('.logout-btn').addEventListener('click', () => {
     localStorage.removeItem('currentUser');
     window.location.href = 'login.html';
 });
+
+
+
+//previous orders
+{/* <a class="col-prodact">
+    <div class="image">
+        <img src="../images/home/product1.jpg" alt="">
+    </div>
+    <div class="title-img">
+        <h5>Tropical Breeze</h5>
+        <p>Indoor Plants</p>
+        <p>$80.00</p>
+    </div>
+</a> */}
+
+
+let previousOrder = JSON.parse(localStorage.getItem('previousOrders')) || [];
+document.getElementById('product-card').innerHTML = previousOrder.map(order => `
+    <a class="col-prodact">
+        <div class="image">
+            <img src="${order.image}" alt="">
+        </div>
+        <div class="title-img">
+            <h5>${order.title}</h5>
+            <p>${order.category}</p>
+            <p>$${order.price}</p>
+        </div>
+    </a>
+`).join('');

@@ -39,6 +39,9 @@
         <i class="fa-solid fa-pen"></i>
         Edit
       </button>
+      <button class="edit-btn logout-btn">
+        Logout
+      </button>
     </div>
   </main>
 
@@ -54,7 +57,10 @@
     closeBtn.addEventListener("click", () => {
     sidebar.classList.remove("active");
     });
-
+    document.querySelector('.logout-btn').addEventListener('click', function () {
+        localStorage.removeItem('currentAdmin')
+        window.location.replace("../html/login.html");
+      })
   </script>
     
 </body>
