@@ -72,7 +72,7 @@ function login() {
         var users = JSON.parse(localStorage.getItem('users') || '[]')
         let role = users.find(u => u.email === email && u.password === password)?.role;
         var user = users.find(u => u.email === email && u.password === password)
-        
+
         if (user) {
             errorMessage.style.display = 'none';
             errorMessage.textContent = ''
@@ -85,6 +85,7 @@ function login() {
                 localStorage.setItem('currentUser', JSON.stringify(user));
 
                 window.location.replace("../index.html");
+
             }
         } else {
             emailInput.style.border = '1px solid red';
