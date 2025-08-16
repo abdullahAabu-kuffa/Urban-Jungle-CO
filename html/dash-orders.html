@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/dash-orders.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="../images/logo.svg" alt="Logo">
+      <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+
+    </div>
+    <ul>
+      <li><a href="./dash-profile.html"><i class="fa-solid fa-user"></i> Profil</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="./dashboard.html"><i class="fas fa-box"></i> Products</a></li>
+      <li><a href="./dash-orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+      <li><a href="../html/dsh-messages.html"><i class="fa-solid fa-comments"></i>User Messages </a></li>
+      <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+  </aside>
+
+  <div class="orders-container">
+            <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
+    <h2 class="orders-title">My Orders</h2>
+
+
+    <div class="orders-wrapper">
+        <div class="orders-table-wrapper">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+              <th>Actions</th> 
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="orders-product-cell">
+              <img src="../images/home/product1.jpg" alt="Golden Glow">
+              <span>Golden Glow</span>
+            </td>
+            <td>$85.00</td>
+            <td>3</td>
+            <td>$255.00</td>
+            <td class="orders-actions">
+              <i class="fa-solid fa-check"></i>
+              <i class="fa-solid fa-xmark"></i>
+            </td>
+          </tr>
+          <tr>
+            <td class="orders-product-cell">
+              <img src="../images/home/product2.jpg "alt="Starlight Succulent">
+              <span>Starlight Succulent</span>
+            </td>
+            <td>$95.00</td>
+            <td>1</td>
+            <td>$95.00</td>
+            <td class="orders-actions">
+              <i class="fa-solid fa-check"></i>
+              <i class="fa-solid fa-xmark"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="orders-totals-box">
+        <h3> Total Orders</h3>
+        <span>4</span>
+      </div>
+    </div>
+  </div>
+
+    <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const closeBtn = document.getElementById("close-btn");
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+    });
+
+  </script>
+
+</body>
+</html>
