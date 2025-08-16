@@ -27,8 +27,9 @@
                 <a href="./shop.html" class="nav-link">Shop</a>
                 <a href="./about.html" class="nav-link">About</a>
                 <a href="./contact.html" class="nav-link">Contact</a>
-                <a href="./login.html" class="nav-link">LogIn</a>
-                <a href="#">
+                <a href="./login.html" class="nav-link is-logged">LogIn</a>
+      
+                <a href="#" class="cart-on-click">
                     <i class="fa-solid fa-cart-plus"></i>
                     <div class="count-orders">0</div>
                 </a>
@@ -40,6 +41,41 @@
             <div class="welcome">About</div>
             <h1>We are Passionate <br> About Our Work</h1>
         </div>
+        <!-- ? Start Cart Orders -->
+        <div class="cart-orders">
+            <div class="cart-orders-content">
+                <div class="head">
+                    <h3>Shopping Cart</h3>
+                    <button class="close-orders-btn"> <i class="fa-solid fa-times"></i></button>
+                </div>
+                <div class="cart-orders-items">
+                    <p class="empty-cart">No products in the cart.</p>
+                    <div class="cart-orders-item">
+                        <div class="cart-orders-item-info">
+                            <img src="../images/home/product1.jpg" width="60" height="60" alt="">
+                            <div>
+                                <div class="name">Tropical Breeze</div>
+                                <span class="quantity"> 1</span>
+                                <span class="x">x</span>
+                                <span class="price">80.00$</span>
+                            </div>
+                        </div>
+                        <div class="pending">pending</div>
+                        <button class="cancel-order"> <i class="fa-solid fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="sum-price-orders">
+                    <div class="subtotal">
+                        Subtotal:
+                    </div>
+                    <div class="sum">
+                        $95.00
+                    </div>
+                </div>
+                <button class="check-out"> Checkout</button>
+            </div>
+        </div>
+        <!-- ? End Cart Orders -->
     </header>
     <section class="section-about margin-page ">
         <div class="img-about">
@@ -168,7 +204,7 @@
             <i class="fa-solid fa-angle-up"></i>
         </a>
     </div>
-    <script src="../JS/main.js" type="module"></script>
+    <script src="../JS/main.js"></script>
 
 </body>
 

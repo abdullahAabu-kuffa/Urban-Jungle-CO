@@ -30,8 +30,9 @@
                 <a href="./shop.html" class="nav-link">Shop</a>
                 <a href="./about.html" class="nav-link">About</a>
                 <a href="./contact.html" class="nav-link">Contact</a>
-                <a href="./login.html" class="nav-link">LogIn</a>
-                <a href="#">
+                <a href="./login.html" class="nav-link is-logged">LogIn</a>
+              
+                <a href="#" class="cart-on-click">
                     <i class="fa-solid fa-cart-plus"></i>
                     <div class="count-orders">0</div>
                 </a>
@@ -43,29 +44,41 @@
             <p class="welcome">Shop</p>
             <h1>Ready to Find your<br> Perfect Plant?</h1>
         </div>
-        <!--? Start Cart Orders -->
+        <!-- ? Start Cart Orders -->
         <div class="cart-orders">
             <div class="cart-orders-content">
                 <div class="head">
                     <h3>Shopping Cart</h3>
-                    <button class="close-orders-btn" <i class="fa-solid fa-times"></i></button>
+                    <button class="close-orders-btn"> <i class="fa-solid fa-times"></i></button>
                 </div>
                 <div class="cart-orders-items">
                     <p class="empty-cart">No products in the cart.</p>
                     <div class="cart-orders-item">
                         <div class="cart-orders-item-info">
-                            <img src="/images/home/product1.jpg" width="60" height="60" alt="">
+                            <img src="../images/home/product1.jpg" width="60" height="60" alt="">
                             <div>
                                 <div class="name">Tropical Breeze</div>
-                                <p class="price">1 X 80.00$</p>
+                                <span class="quantity"> 1</span>
+                                <span class="x">x</span>
+                                <span class="price">80.00$</span>
                             </div>
                         </div>
-                        <button class="cancel-order" <i class="fa-solid fa-times"></i></button>
+                        <div class="pending">pending</div>
+                        <button class="cancel-order"> <i class="fa-solid fa-times"></i></button>
                     </div>
                 </div>
+                <div class="sum-price-orders">
+                    <div class="subtotal">
+                        Subtotal:
+                    </div>
+                    <div class="sum">
+                        $95.00
+                    </div>
+                </div>
+                <button class="check-out"> Checkout</button>
             </div>
         </div>
-        <!--? End Cart Orders -->
+        <!-- ? End Cart Orders -->
     </header>
     <!-- ?Start Trending Products -->
     <div class="trending-products margin-page">
@@ -99,9 +112,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>Tropical Breeze</h5>
-                    <p>Indoor Plants</p>
-                    <p>$80.00</p>
+                    <h5 class="name">Tropical Breeze</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">$80.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -119,9 +132,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>Zen Bomboo Grove</h5>
-                    <p>Indoor Plants</p>
-                    <p>$90.00</p>
+                    <h5 class="name">Zen Bomboo Grove</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">$90.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -139,9 +152,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>Starlight Succulent</h5>
-                    <p>Indoor Plants</p>
-                    <p>$95.00</p>
+                    <h5 class="name">Starlight Succulent</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">>$95.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -159,9 +172,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>Silver Mist</h5>
-                    <p>Indoor Plants</p>
-                    <p>$92.00</p>
+                    <h5 class="name">Silver Mist</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">$92.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -179,9 +192,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>Golden Glow</h5>
-                    <p>Indoor Plants</p>
-                    <p>$85.00</p>
+                    <h5 class="name">Golden Glow</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">$85.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -199,9 +212,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>desert Bloom</h5>
-                    <p>Indoor Plants</p>
-                    <p>$70.00</p>
+                    <h5 class="name">desert Bloom</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">$70.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -220,7 +233,7 @@
     <footer>
         <div class="footer-content margin-page">
             <div class="logo">
-                <img src="/images/normal-header.svg" alt="Waiting">
+                <img src="../images/normal-header.svg" alt="Waiting">
             </div>
             <div class="col-footer">
                 <ul>
@@ -246,7 +259,7 @@
             <i class="fa-solid fa-angle-up"></i>
         </a>
     </div>
-    <script src="../JS/main.js" type="module"></script>
+    <script src="../JS/main.js"></script>
 </body>
 
 </html>
