@@ -20,8 +20,8 @@
       <li><a href="./dash-profile.html"><i class="fa-solid fa-user"></i> Profil</a></li>
       <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
       <li><a href="./dashboard.html"><i class="fas fa-box"></i> Products</a></li>
-      <li><a href="./dash-orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>  
-      <li><a href="../html/dsh-messages.html"><i class="fa-solid fa-comments"></i> User Messages </a></li>
+      <li><a href="#"><i class="fas fa-shopping-cart"></i> Orders</a></li>  
+      <li><a href="../html/dsh-messages.html"><i class="fas fa-shopping-cart"></i> User Messages </a></li>
       <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
     </ul>
     
@@ -58,9 +58,9 @@
     sidebar.classList.remove("active");
     });
     document.querySelector('.logout-btn').addEventListener('click', function () {
-        localStorage.removeItem('currentAdmin')
-        window.location.replace("../html/login.html");
-      })
+      localStorage.removeItem('currentAdmin')
+      window.location.replace("../html/login.html");
+    })
   </script>
     
 </body>
