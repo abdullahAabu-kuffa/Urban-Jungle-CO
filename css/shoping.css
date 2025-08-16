@@ -26,6 +26,8 @@ header {
 
 .trending-products .content .col-prodact {
     margin: 20px 0;
+    position: relative;
+    z-index: -1;
 }
 
 .trending-products .content .col-prodact img {
@@ -64,6 +66,7 @@ header {
 
 .trending-products .content .col-prodact {
     position: relative;
+    z-index: 0;
 }
 
 
