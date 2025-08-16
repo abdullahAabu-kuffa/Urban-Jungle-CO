@@ -58,9 +58,16 @@
                             <img src="./images/home/product1.jpg" width="60" height="60" alt="">
                             <div>
                                 <div class="name">Tropical Breeze</div>
-                                <p class="price">1 X 80.00$</p>
+                                <span class="quantity"> 1</span>
+                                <span class="x">x</span>
+                                <span class="price">80.00$</span>
+                            </div>
+                            <div class="quantity">
+                                <div class="quantity-label">Quantity</div>
+                                <span class="quantity-value">${item.quantity}</span>
                             </div>
                         </div>
+                        <div class="pending">pending</div>
                         <button class="cancel-order"> <i class="fa-solid fa-times"></i></button>
                     </div>
                 </div>
@@ -108,6 +115,7 @@
                 <div class="image">
                     <img src="./images/home/product1.jpg" alt="">
                 </div>
+                <p class="quantity"></p>
                 <div class="title-img">
                     <ul>
                         <li><i class="fa-regular fa-star"></i></li>
@@ -116,9 +124,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>Tropical Breeze</h5>
-                    <p>Indoor Plants</p>
-                    <p>$80.00</p>
+                    <h5 class="name">Tropical Breeze</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">$80.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -128,6 +136,7 @@
                 <div class="image">
                     <img src="./images/home/product2.jpg" alt="">
                 </div>
+                <p class="quantity"></p>
                 <div class="title-img">
                     <ul>
                         <li><i class="fa-regular fa-star"></i></li>
@@ -136,9 +145,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>Zen Bomboo Grove</h5>
-                    <p>Indoor Plants</p>
-                    <p>$90.00</p>
+                    <h5 class="name">Zen Bomboo Grove</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">$90.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -148,6 +157,7 @@
                 <div class="image">
                     <img src="./images/home/product3.jpg" alt="">
                 </div>
+                <p class="quantity"></p>
                 <div class="title-img">
                     <ul>
                         <li><i class="fa-regular fa-star"></i></li>
@@ -156,9 +166,9 @@
                         <li><i class="fa-regular fa-star"></i></li>
                         <li><i class="fa-regular fa-star"></i></li>
                     </ul>
-                    <h5>Starlight Succulent</h5>
-                    <p>Indoor Plants</p>
-                    <p>$95.00</p>
+                    <h5 class="name">Starlight Succulent</h5>
+                    <p class="category">Indoor Plants</p>
+                    <p class="price">$95.00</p>
                 </div>
                 <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
@@ -233,7 +243,7 @@
             <i class="fa-solid fa-angle-up"></i>
         </a>
     </div>
-    <script src="JS/main.js" type="module"></script>
+    <script src="JS/main.js"></script>
 </body>
 
 </html>
