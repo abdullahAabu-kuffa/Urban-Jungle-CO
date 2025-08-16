@@ -173,14 +173,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Save user
-        users.push({
-            name: nameInput.value.trim(),
-            email: emailVal,
-            password: passwordVal,
-            role: roleInput.value.trim()
-        });
-        localStorage.setItem('users', JSON.stringify(users));
+        if (roleInput.value.trim() === 'admin') {
+            if (emailInput.value.includes('@admin.com')) {
+                users.push({
+                    name: nameInput.value.trim(),
+                    email: emailVal,
+                    password: passwordVal,
+                    role: roleInput.value.trim()
+                });
+                errorEmail.textContent = '';
+                errorEmail.style.display = 'none';
+            }
+            else {
+                errorEmail.style.display = 'block';
+                errorEmail.textContent = 'You are not authorized to register as an admin.';
+                emailInput.style.border = '1px solid red';
+                return;
+            }
+        }
+        else if (roleInput.value.trim() === 'user') {
+            users.push({
+                name: nameInput.value.trim(),
+                email: emailVal,
+                password: passwordVal,
+                role: roleInput.value.trim()
+            });
+        }
 
+        localStorage.setItem('users', JSON.stringify(users));
         window.location.replace('login.html');
     });
 });

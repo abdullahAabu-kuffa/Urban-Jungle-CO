@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,14 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="logo">
       <img src="../images/logo.svg" alt="Logo">
-        <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+      <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
 
     </div>
     <ul>
@@ -39,11 +41,11 @@
 
     <!-- Add Product Form -->
     <section class="form-section">
-     
+
       <form>
         <input type="text" placeholder="Product Name" required>
         <input type="number" placeholder="Price" required>
-         <input type="text" placeholder="Category" required>
+        <input type="text" placeholder="Category" required>
         <input type="file" accept="image/*" required>
         <textarea placeholder="Description" required></textarea>
         <button type="submit">Add Product</button>
@@ -56,27 +58,27 @@
       <table>
         <thead>
           <tr>
-          
+
             <th>Name</th>
-             <th>Price</th>
+            <th>Price</th>
             <th>Category</th>
             <th>Image</th>
             <th>Description</th>
             <th>Actions</th>
-         
+
           </tr>
         </thead>
         <tbody>
           <tr>
-           
+
             <td> Product</td>
             <td>$10</td>
             <td>Indoor </td>
             <td><img src="../images/home/product2.jpg" alt="Product"></td>
             <td>Short description </td>
-             <td class="actions">
-            <i class="fa-solid fa-pencil edit-icon"></i>
-            <i class="fa-solid fa-trash delete-icon"></i>
+            <td class="actions">
+              <i class="fa-solid fa-pencil edit-icon"></i>
+              <i class="fa-solid fa-trash delete-icon"></i>
             </td>
           </tr>
         </tbody>
@@ -89,14 +91,15 @@
     const sidebar = document.getElementById("sidebar");
 
     menuBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("active");
+      sidebar.classList.toggle("active");
     });
 
     closeBtn.addEventListener("click", () => {
-    sidebar.classList.remove("active");
+      sidebar.classList.remove("active");
     });
 
   </script>
 
 </body>
+
 </html>
