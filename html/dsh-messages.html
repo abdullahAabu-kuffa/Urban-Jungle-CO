@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users Messages</title>
+  <link rel="stylesheet" href="../css/dsh-messages.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="../images/logo.svg" alt="Logo">
+      <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+
+    </div>
+    <ul>
+
+      <li><a href="./dash-profile.html"><i class="fa-solid fa-user"></i> Profil</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="./dashboard.html"><i class="fas fa-box"></i> Products</a></li>
+      <li><a href="#"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+      <li><a href="../html/dsh-messages.html"><i class="fas fa-shopping-cart"></i> User Messages </a></li>
+      <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+
+  </aside>
+
+  <!-- Messages contant -->
+
+  <div class="container-messages">
+    <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
+    <h2>Users Messages</h2>
+
+    <div class="messages">
+
+      <div class="message-box">
+        <div class="icon"><i class="fa-solid fa-comments"></i></div>
+
+        <p>
+          I am absolutely thrilled with the service I received from their company!
+          They were attentive, responsive, and genuinely cared about meeting my needs.
+          I highly recommend them.
+        </p>
+        <div class="client">
+          <img src="../images/about/testimonial.png" alt="Client">
+          <span> Ahmed</span>
+        </div>
+      </div>
+
+      <div class="message-box">
+        <div class="icon"><i class="fa-solid fa-comments"></i></div>
+
+        <p>
+          I am absolutely thrilled with the service I received from their company!
+          They were attentive, responsive, and genuinely cared about meeting my needs.
+          I highly recommend them.
+        </p>
+        <div class="client">
+          <img src="../images/about/testimonial.png" alt="Client">
+          <span>Mohammed</span>
+        </div>
+      </div>
+
+      <div class="message-box">
+        <div class="icon"><i class="fa-solid fa-comments"></i></div>
+
+        <p>
+          Their team exceeded our expectations. Their creative approach
+          and attention to detail brought our vision to life. Highly recommended!
+        </p>
+        <div class="client">
+          <img src="../images/about/testimonial.png" alt="Client">
+          <span>Ali</span>
+        </div>
+      </div>
+
+      <div class="message-box">
+        <div class="icon"><i class="fa-solid fa-comments"></i></div>
+
+        <p>
+          I am absolutely thrilled with the service I received from their company!
+          They were attentive, responsive, and genuinely cared about meeting my needs.
+          I highly recommend them.
+        </p>
+        <div class="client">
+          <img src="../images/about/testimonial.png" alt="Client">
+          <span>Aseal</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const closeBtn = document.getElementById("close-btn");
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+    });
+
+    
+  </script>
+
+
+</body>
+
+</html>
