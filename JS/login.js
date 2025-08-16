@@ -94,5 +94,16 @@ function login() {
             errorMessage.textContent = 'Invalid email or password.';
         }
     })
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const currentAdmin = JSON.parse(localStorage.getItem("currentAdmin"));
+
+        if (currentUser) {
+            window.location.replace("../index.html");
+        } else if (currentAdmin) {
+            window.location.replace("../html/dashboard.html");
+        }
+    });
 }
 login()
