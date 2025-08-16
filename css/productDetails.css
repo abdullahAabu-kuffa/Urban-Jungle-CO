@@ -1,11 +1,13 @@
 @import url('main.css');
+
 header {
-    height: 10vh;
-    /* padding-bottom: 10px; */
-    z-index: 1;
-    background-color: var(--main-bg-Color) !important;
-    background-image: none !important;
+  height: 10vh;
+  /* padding-bottom: 10px; */
+  z-index: 1;
+  background-color: var(--main-bg-Color) !important;
+  background-image: none !important;
 }
+
 .product-page {
   max-width: 1200px;
   margin: 40px auto;
@@ -55,7 +57,7 @@ header {
   margin: 0 0 10px;
 }
 
-.price {
+.pro-price {
   font-size: 22px;
   font-weight: bold;
   margin: 10px 0;
@@ -94,6 +96,10 @@ header {
   font-size: 16px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.cart-controls button:active {
+  background-color: #1a6602;
 }
 
 .product-meta {
