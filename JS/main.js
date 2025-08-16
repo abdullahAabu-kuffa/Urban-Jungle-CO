@@ -1,3 +1,17 @@
+// This holds the logged-in user
+document.addEventListener('DOMContentLoaded', () => {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (currentUser) {
+        document.querySelector('.is-logged').innerHTML = 'Profile';
+        document.querySelector('.is-logged').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '../html/profile.html';
+        });
+    } else {
+        document.querySelector('.is-logged').innerHTML = 'Login';
+    }
+});
 
 // Function to toggle the navigation bar visibility
 const navBar = document.getElementById("nav-bar-id");
@@ -63,11 +77,23 @@ document.addEventListener('DOMContentLoaded', () => {
         cartOnClick.addEventListener("click", () => {
             const cartOrders = document.querySelector(".cart-orders");
             if (cartOrders) {
-                cartOrders.style.display = "block";
+                cartOrders.classList.add("appeared"); // hides the cart panel
             }
         });
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const sumPrice = document.querySelector(".sum");
+    let total = 0;
+    cart.forEach(item => {
+        total += parseFloat(item.price.replace(item.price[0], '')) * parseInt(item.quantity);
+    });
+    if (sumPrice) {
+        sumPrice.textContent = `$${total}`;
+    }
+});
+
 
 // Functionality to close the cart orders when the close button is clicked
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,26 +102,24 @@ document.addEventListener('DOMContentLoaded', () => {
         closeOrdersBtn.addEventListener("click", () => {
             const cartOrders = document.querySelector(".cart-orders");
             if (cartOrders) {
-                cartOrders.style.display = "none";
+                cartOrders.classList.remove("appeared");
             }
         });
     }
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser')); // This holds the logged-in user
+document.addEventListener("DOMContentLoaded", () => {
+    const cartOrders = document.querySelector(".cart-orders");
 
-    if (currentUser) {
-        document.querySelector('.is-logged').innerHTML = 'Profile';
-        document.querySelector('.is-logged').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = '../html/profile.html';
-        });
-    } else {
-        document.querySelector('.is-logged').innerHTML = 'Login';
-    }
+    // Listen to scroll events
+    window.addEventListener("scroll", () => {
+        if (cartOrders && cartOrders.classList.contains("appeared")) {
+            cartOrders.classList.remove("appeared"); // hides the cart panel
+        }
+    });
 });
+
 
 // Functionality to add products to the cart
 document.addEventListener('DOMContentLoaded', () => {
@@ -149,13 +173,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const category = product.querySelector(".category").textContent;
             const imageSrc = product.querySelector(".pro-img").src;
             const quantityInput = product.querySelector("input[type='number']");
-            const quantity = quantityInput.value;
+            const quantity = parseInt(quantityInput.value);
 
             const productData = { name, price, category, imageSrc, quantity };
 
             const existingProduct = cart.find(item => item.name === name);
             if (existingProduct) {
-                existingProduct.quantity += quantity ? Number(quantity) : 1;
+                existingProduct.quantity += quantity;
             } else {
                 cart.push(productData);
             }
@@ -164,11 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCartCount();
         });
     }
-
-    console.log(JSON.parse(localStorage.getItem("cart")));
-
+    // console.log(JSON.parse(localStorage.getItem("cart")));
 });
 //localStorage.clear();
+
+
 
 // Functionality to redirect to product details page when a product is clicked
 document.addEventListener('DOMContentLoaded', () => {
@@ -182,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const category = product.querySelector(".category").textContent;
             const imageSrc = product.querySelector("img").src;
 
-            window.location.replace(`product-details.html?name=${name}&price=${price}&category=${category}&imageSrc=${imageSrc}`);
+            window.location.href = `/html/product-details.html?name=${name}&price=${price}&category=${category}&imageSrc=${imageSrc}`;
         });
     });
 });
@@ -237,11 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="quantity">${item.quantity}</span>
                         <span class="x">x</span>
                         <span class="price">${item.price}</span>
-                    </div>
-                    <div class = "quantity">
-                        <div class="quantity-label">Quantity</div>  
-                        <br>                      
-                        <span class="quantity-value">${item.quantity}</span>
                     </div>
                 </div>
                 <div class="pending">pending</div>

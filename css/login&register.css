@@ -8,17 +8,34 @@
     min-height: 100vh;
     width: 100%;
     padding: 2rem 1rem;
-    background-image: url(../images/head-img4.avif);
-    box-sizing: border-box;
+    background-image: url(../images/head-img3.avif);
+    background-size: cover;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 /60%);
+    z-index: 0;
 }
 
 .header {
     text-align: center;
-    color: black;
-    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 20px;
+    text-decoration: underline;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
 }
 
 .form-container {
+    position: relative;
+    z-index: 1;
     background-color: var(--main-bg-Color);
     padding: 2rem;
     border-radius: 8px;
@@ -43,9 +60,11 @@ form {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
 }
-label{
+
+label {
     font-size: 1rem;
 }
+
 .login-button {
     background-color: var(--main-color);
     color: white;
