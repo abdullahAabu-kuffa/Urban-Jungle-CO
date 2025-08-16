@@ -21,7 +21,9 @@
                 <a href="../html/about.html" class="nav-link">About</a>
                 <a href="../html/contact.html" class="nav-link">Contact</a>
                 <a href="../html/login.html" class="nav-link is-logged">LogIn</a>
-                <a href="#">
+              
+                <a href="#" class="cart-on-click">
+
                     <i class="fa-solid fa-cart-plus"></i>
                     <div class="count-orders">0</div>
                 </a>
@@ -29,53 +31,68 @@
             <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
             <button class="close-btn"><i class="fa-solid fa-times"></i></button>
         </div>
-
+        <!-- ? Start Cart Orders -->
         <div class="cart-orders">
             <div class="cart-orders-content">
                 <div class="head">
                     <h3>Shopping Cart</h3>
-                    <button class="close-orders-btn" <i class="fa-solid fa-times"></i></button>
+                    <button class="close-orders-btn"> <i class="fa-solid fa-times"></i></button>
                 </div>
                 <div class="cart-orders-items">
                     <p class="empty-cart">No products in the cart.</p>
                     <div class="cart-orders-item">
                         <div class="cart-orders-item-info">
-                            <img src="./images/home/product1.jpg" width="60" height="60" alt="">
+                            <img src="../images/home/product1.jpg" width="60" height="60" alt="">
                             <div>
                                 <div class="name">Tropical Breeze</div>
-                                <p class="price">1 X 80.00$</p>
+                                <span class="quantity"> 1</span>
+                                <span class="x">x</span>
+                                <span class="price">80.00$</span>
                             </div>
                         </div>
-                        <button class="cancel-order" <i class="fa-solid fa-times"></i></button>
+                        <div class="pending">pending</div>
+                        <button class="cancel-order"> <i class="fa-solid fa-times"></i></button>
                     </div>
                 </div>
+                <div class="sum-price-orders">
+                    <div class="subtotal">
+                        Subtotal:
+                    </div>
+                    <div class="sum">
+                        $95.00
+                    </div>
+                </div>
+                <button class="check-out"> Checkout</button>
             </div>
         </div>
+        <!-- ? End Cart Orders -->
     </header>
     <div class="product-page">
         <div class="product-container">
             <!-- left -->
             <div class="product-image">
-                <img src="../images/head-img.avif" alt="Zen Bamboo Grove" />
+                <img class="pro-img" src="../images/head-img.avif" alt="Zen Bamboo Grove" />
             </div>
-    
+
             <!-- right -->
             <div class="product-details">
                 <p class="category">Indoor Plants</p>
-                <h1>Zen Bamboo Grove</h1>
-                <div class="price">$90.00 <span class="shipping"> & Free Shipping</span></div>
+                <h1 class="name">Zen Bamboo Grove</h1>
+                <div class="pro-price"> <span class="price"> $90.00 </span> <span class="shipping"> & Free
+                        Shipping</span>
+                </div>
                 <p class="description">
                     Faucibus lacus tincidunt molestie accumsan nibh non odio aenean molestie purus tristique sed tempor
                     consequat risus tellus amet augue egestas mauris scelerisque donec ultrices.
                 </p>
                 <div class="cart-controls">
                     <input type="number" value="1" min="1" />
-                    <button>Add to cart</button>
+                    <button class="add-to-cart-button">Add to cart</button>
                 </div>
                 <div class="product-meta">
-                    Category: <span class="category-link">Indoor Plants</span>
+                    Category: <span class="category">Indoor Plants</span>
                 </div>
-    
+
                 <!-- Safe Checkout -->
                 <div class="safe-checkout-box">
                     <div class="checkout-title">

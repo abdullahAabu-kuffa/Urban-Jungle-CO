@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Save user
         if (roleInput.value.trim() === 'admin') {
-            if (emailInput.value.includes('@admin.com')) {
+            if (emailInput.value.includes('admin')) {
                 users.push({
                     id: Date.now() + 1,
                     name: nameInput.value.trim(),
