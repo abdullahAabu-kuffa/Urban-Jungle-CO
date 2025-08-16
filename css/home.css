@@ -122,6 +122,10 @@ section .content .col h2 {
     -o-transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.add-to-cart-icon:active {
+    color: #779c26 !important;
+}
+
 .trending-products .content .col-prodact:hover .add-to-cart-icon {
     opacity: 1;
 }
