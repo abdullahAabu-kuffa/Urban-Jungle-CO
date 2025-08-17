@@ -83,7 +83,8 @@ label {
 
 .error,
 .errorEmail,
-.errorPassword {
+.errorPassword,
+.errorName {
     display: none;
     padding: 0.5rem;
     margin-top: 0.5rem;
