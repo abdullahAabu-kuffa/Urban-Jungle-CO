@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/dash-orders.css">
 </head>
 
 <body>
@@ -28,85 +29,24 @@
     </div>
     <div class="container-title">
         <h2>Previous Orders</h2>
-        <p class="no-orders">You have no previous orders.</p>
     </div>
-    <div class="previous-orders">
-        <div class="row">
-            <div class="product-card">
-                <a class="col-prodact">
-                    <div class="image">
-                        <img src="../images/home/product1.jpg" alt="">
-                    </div>
-                    <div class="title-img">
-                        <!-- <ul>
-                                        <li><i class="fa-regular fa-star"></i></li>
-                                        <li><i class="fa-regular fa-star"></i></li>
-                                        <li><i class="fa-regular fa-star"></i></li>
-                                        <li><i class="fa-regular fa-star"></i></li>
-                                        <li><i class="fa-regular fa-star"></i></li>
-                                    </ul> -->
-                        <h5>Tropical Breeze</h5>
-                        <p>Indoor Plants</p>
-                        <p>$80.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <a class="col-prodact">
-                <div class="image">
-                    <img src="../images/home/product1.jpg" alt="">
-                </div>
-                <div class="title-img">
-                    <!-- <ul>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                    </ul> -->
-                    <h5>Tropical Breeze</h5>
-                    <p>Indoor Plants</p>
-                    <p>$80.00</p>
-                </div>
-               
-            </a>
-            <a class="col-prodact">
-                <div class="image">
-                    <img src="../images/home/product1.jpg" alt="">
-                </div>
-                <div class="title-img">
-                    <!-- <ul>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                </ul> -->
-                    <h5>Tropical Breeze</h5>
-                    <p>Indoor Plants</p>
-                    <p>$80.00</p>
-                </div>
-               
-            </a>
-            <a class="col-prodact">
-                <div class="image">
-                    <img src="../images/home/product1.jpg" alt="">
-                </div>
-                <div class="title-img">
-                    <!-- <ul>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                    <li><i class="fa-regular fa-star"></i></li>
-                                </ul> -->
-                    <h5>Tropical Breeze</h5>
-                    <p>Indoor Plants</p>
-                    <p>$80.00</p>
-                </div>
-                
-            </a>
-        </div>
+    
+    <div class="orders-wrapper">
+        <!-- <div class="orders-table-wrapper"> -->
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody class="orders-items">
+    
+                </tbody>
+            </table>
+        <!-- </div> -->
     </div>
     <script src="../JS/profile.js"></script>
 </body>

@@ -240,6 +240,7 @@ header .cart-orders .cart-orders-item {
     padding: 10px 20px;
     border-bottom: 1px solid #777;
     margin-top: 10px;
+    overflow-y: auto
 }
 
 header .cart-orders .cart-orders-item-info {

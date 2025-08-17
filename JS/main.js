@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sumPrice = document.querySelector(".sum");
     let total = 0;
     cart.forEach(item => {
-        total += parseFloat(item.price.replace(item.price[0], '')) * parseInt(item.quantity);
+        total += parseFloat(item.price.replace(item.price[0], '')) * parseFloat(item.quantity);
     });
     if (sumPrice) {
         sumPrice.textContent = `$${total}`;
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cartOrders) {
                 cartOrders.classList.remove("appeared");
             }
+            window.location.reload();
         });
     }
 });
@@ -111,8 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const cartOrders = document.querySelector(".cart-orders");
-
-    // Listen to scroll events
     window.addEventListener("scroll", () => {
         if (cartOrders && cartOrders.classList.contains("appeared")) {
             cartOrders.classList.remove("appeared"); // hides the cart panel
@@ -147,18 +146,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const imageSrc = product.querySelector("img").src;
             const quantityInput = product.querySelector(".quantity");
             const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
-            const productData = { name, price, category, imageSrc, quantity };
-
-            const existingProduct = cart.find(item => item.name === name);
-
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-            } else {
-                cart.push(productData);
+            const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+            if (!currentUser) {
+                window.location.replace("html/login.html");
             }
+            else {
+                const productData = { name, price, category, imageSrc, quantity, currentUser };
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
+                const existingProduct = cart.find(item => item.name === name);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push(productData);
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount();
+                window.location.reload(); // Reload the page to update the cart count
+            }
         });
     });
 
@@ -173,26 +179,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const category = product.querySelector(".category").textContent;
             const imageSrc = product.querySelector(".pro-img").src;
             const quantityInput = product.querySelector("input[type='number']");
-            const quantity = parseInt(quantityInput.value);
-
-            const productData = { name, price, category, imageSrc, quantity };
-
-            const existingProduct = cart.find(item => item.name === name);
-            if (existingProduct) {
-                existingProduct.quantity += quantity;
-            } else {
-                cart.push(productData);
+            const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (!currentUser) {
+                window.location.replace("login.html");
             }
+            else {
+                const productData = { name, price, category, imageSrc, quantity, currentUser };
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
+                const existingProduct = cart.find(item => item.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity += quantity;
+                } else {
+                    cart.push(productData);
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount();
+                window.location.reload();
+            }
         });
     }
-    // console.log(JSON.parse(localStorage.getItem("cart")));
 });
-//localStorage.clear();
-
-
 
 // Functionality to redirect to product details page when a product is clicked
 document.addEventListener('DOMContentLoaded', () => {
@@ -205,8 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const price = product.querySelector(".price").textContent;
             const category = product.querySelector(".category").textContent;
             const imageSrc = product.querySelector("img").src;
-
-            window.location.href = `/html/product-details.html?name=${name}&price=${price}&category=${category}&imageSrc=${imageSrc}`;
+            window.location.href = `/html/product-details.html?name=${name}&price=${price}&
+            category=${category}&imageSrc=${imageSrc}`;
         });
     });
 });
@@ -235,12 +243,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // Functionality to render cart items and handle their removal
 document.addEventListener("DOMContentLoaded", () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     const cartContainer = document.querySelector(".cart-orders-items");
     const emptyMsg = cartContainer.querySelector(".empty-cart");
 
     function renderCart() {
-
         cartContainer.querySelectorAll(".cart-orders-item").forEach(el => el.remove());
 
         if (cart.length === 0) {
@@ -267,14 +273,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="cancel-order"><i class="fa-solid fa-times"></i></button>
             `;
 
-
             itemEl.querySelector(".cancel-order").addEventListener("click", () => {
                 cart.splice(index, 1);
                 localStorage.setItem("cart", JSON.stringify(cart));
                 renderCart();
                 updateCounter();
             });
-
             cartContainer.appendChild(itemEl);
         });
     }
@@ -288,4 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
     updateCounter();
 });
+
+
+
 
