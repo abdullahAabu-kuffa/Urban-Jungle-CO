@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (sumPrice) {
         sumPrice.textContent = `$${total}`;
-        console.log(total);
     }
 });
 
@@ -147,20 +146,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const imageSrc = product.querySelector("img").src;
             const quantityInput = product.querySelector(".quantity");
             const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
-            const UurrentUserId = JSON.parse(localStorage.getItem("currentUser")).id;
-            const productData = { name, price, category, imageSrc, quantity, UurrentUserId };
-
-            const existingProduct = cart.find(item => item.name === name);
-
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-            } else {
-                cart.push(productData);
+            const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+            if (!currentUser) {
+                window.location.replace("html/login.html");
             }
+            else {
+                const productData = { name, price, category, imageSrc, quantity, currentUser };
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
-            window.location.reload(); // Reload the page to update the cart count
+                const existingProduct = cart.find(item => item.name === name);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push(productData);
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount();
+                window.location.reload(); // Reload the page to update the cart count
+            }
         });
     });
 
@@ -176,20 +180,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const imageSrc = product.querySelector(".pro-img").src;
             const quantityInput = product.querySelector("input[type='number']");
             const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
-
-            const UurrentUserId = JSON.parse(localStorage.getItem("currentUser")).id;
-            const productData = { name, price, category, imageSrc, quantity, UurrentUserId };
-
-            const existingProduct = cart.find(item => item.name === name);
-            if (existingProduct) {
-                existingProduct.quantity += quantity;
-            } else {
-                cart.push(productData);
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (!currentUser) {
+                window.location.replace("login.html");
             }
+            else {
+                const productData = { name, price, category, imageSrc, quantity, currentUser };
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
-            window.location.reload();
+                const existingProduct = cart.find(item => item.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity += quantity;
+                } else {
+                    cart.push(productData);
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount();
+                window.location.reload();
+            }
         });
     }
 });
