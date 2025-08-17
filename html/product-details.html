@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/productDetails.css">
+</head>
+
+<body>
+    <header class="product-header">
+        <div class="container-main margin-page">
+            <div class="logo">
+                <img src="../images/logo.svg" alt="Waiting">
+            </div>
+            <div class="nav-bar" id="nav-bar-id">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../html/shop.html" class="nav-link">Shop</a>
+                <a href="../html/about.html" class="nav-link">About</a>
+                <a href="../html/contact.html" class="nav-link">Contact</a>
+                <a href="../html/login.html" class="nav-link is-logged">LogIn</a>
+
+                <a href="#" class="cart-on-click">
+
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <div class="count-orders">0</div>
+                </a>
+            </div>
+            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+            <button class="close-btn"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <!-- ? Start Cart Orders -->
+        <div class="cart-orders">
+            <div class="cart-orders-content">
+                <div class="head">
+                    <h3>Shopping Cart</h3>
+                    <button class="close-orders-btn"> <i class="fa-solid fa-times"></i></button>
+                </div>
+                <div class="cart-orders-items">
+                    <p class="empty-cart">No products in the cart.</p>
+                    <div class="cart-orders-item">
+                        <div class="cart-orders-item-info">
+                            <img src="../images/home/product1.jpg" width="60" height="60" alt="">
+                            <div>
+                                <div class="name">Tropical Breeze</div>
+                                <span class="quantity"> 1</span>
+                                <span class="x">x</span>
+                                <span class="price">80.00$</span>
+                            </div>
+                        </div>
+                        <div class="pending">pending</div>
+                        <button class="cancel-order"> <i class="fa-solid fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="sum-price-orders">
+                    <div class="subtotal">
+                        Subtotal:
+                    </div>
+                    <div class="sum">
+                        $95.00
+                    </div>
+                </div>
+                <button class="check-out"> Checkout</button>
+            </div>
+        </div>
+        <!-- ? End Cart Orders -->
+    </header>
+    <div class="product-page">
+        <div class="product-container">
+            <!-- left -->
+            <div class="product-image">
+                <img class="pro-img" src="../images/head-img.avif" alt="Zen Bamboo Grove" />
+            </div>
+
+            <!-- right -->
+            <div class="product-details">
+                <p class="category">Indoor Plants</p>
+                <h1 class="name">Zen Bamboo Grove</h1>
+                <div class="pro-price"> <span class="price"> $90.00 </span> <span class="shipping"> & Free
+                        Shipping</span>
+                </div>
+                <p class="description">
+                    Faucibus lacus tincidunt molestie accumsan nibh non odio aenean molestie purus tristique sed tempor
+                    consequat risus tellus amet augue egestas mauris scelerisque donec ultrices.
+                </p>
+                <div class="cart-controls">
+                    <input type="number" value="1" min="1" />
+                    <button class="add-to-cart-button">Add to cart</button>
+                </div>
+                <div class="product-meta">
+                    Category: <span class="category">Indoor Plants</span>
+                </div>
+
+                <!-- Safe Checkout -->
+                <div class="safe-checkout-box">
+                    <div class="checkout-title">
+                        <span>Guaranteed Safe Checkout</span>
+                    </div>
+                    <div class="payment-icons">
+                        <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+                        <img src="https://img.icons8.com/color/48/mastercard-logo.png" alt="MasterCard">
+                        <img src="https://img.icons8.com/color/48/discover.png" alt="Discover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Ready-to-Find">
+        <div class="content">
+            <h1>Ready to Find your Perfect Plant?</h1>
+            <p>Browse our online store or visit us in person to experience the beauty of nature.</p>
+            <a href="./html/shop.html">Shop Now</a>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content margin-page">
+            <div class="logo">
+                <img src="../images/normal-header.svg" alt="Waiting">
+            </div>
+            <div class="col-footer">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="./html/shop.html" class="nav-link">Shop</a></li>
+                    <li><a href="./html/about.html" class="nav-link">About</a></li>
+                    <li><a href="./html/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/mustafa.mohamed.419571"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="copy-right">
+            Copyright © 2025 Generic E-Commerce
+        </div>
+    </footer>
+    <div class="to-top">
+        <a href="#" class="back-to-top">
+            <i class="fa-solid fa-angle-up"></i>
+        </a>
+    </div>
+    <script src="../JS/main.js"></script>
+</body>
+
+</html>

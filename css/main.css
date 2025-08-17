@@ -11,15 +11,19 @@ body {
     margin: 0;
 }
 
-
 :root {
-    --main-color: #88ad35;
+    --main-color: #779c26;
     --main-bg-Color: #ecf4d3;
     --main-font-color: rgb(33, 33, 33);
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+body::selection {
+    background-color: var(--main-color);
+    color: white;
 }
 
 .margin-page {
@@ -46,7 +50,7 @@ header::after {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(0 0 0 /65%);
+    background-color: rgb(0 0 0 /60%);
     z-index: -1;
 }
 
@@ -64,8 +68,6 @@ header .container-main .nav-bar a {
     position: relative;
 }
 
-
-
 header .container-main .nav-bar a:hover {
     color: var(--main-bg-Color);
 }
@@ -78,7 +80,6 @@ header .container-main .nav-bar a i {
     position: relative;
     font-size: 20px;
 }
-
 
 header .container-main .nav-bar a .count-orders {
     position: absolute;
@@ -118,7 +119,6 @@ header .heed-welcome h1 {
     margin-bottom: 60px;
 }
 
-
 header .heed-welcome a {
     padding: 12px 30px;
     width: 130px;
@@ -154,15 +154,37 @@ header .container-main button i {
     border: 1px solid var(--main-color);
 }
 
-/* Orders Cart */
+/* ?Orders Cart */
 header .cart-orders {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, opacity 0.2s ease-in-out;
     position: absolute;
-    width: 550px;
+    width: 500px;
     height: 99%;
     top: 0;
     right: 0;
-    display: none;
     background-color: white;
+    z-index: 1;
+    position: fixed;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -webkit-transition: transform 0.3s ease, opacity 0.2s ease-in-out;
+    -moz-transition: transform 0.3s ease, opacity 0.2s ease-in-out;
+    -ms-transition: transform 0.3s ease, opacity 0.2s ease-in-out;
+    -o-transition: transform 0.3s ease, opacity 0.2s ease-in-out;
+}
+
+.cart-orders.appeared {
+    opacity: 1;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
 }
 
 header .cart-orders .cart-orders-content .head {
@@ -174,12 +196,17 @@ header .cart-orders .cart-orders-content .head {
     padding: 20px;
 }
 
-header .cart-orders .cart-orders-content .head h3 {
+header .cart-orders .head h3 {
     font-weight: normal;
     color: #777
 }
 
-header .cart-orders .cart-orders-content .head .close-orders-btn {
+header .cart-orders .cart-orders-items {
+    padding: 0 10px;
+    height: 500px;
+}
+
+header .close-orders-btn {
     color: #777;
     font-size: 25px;
     background-color: #f1efefe6;
@@ -194,7 +221,7 @@ header .cart-orders .cart-orders-content .head .close-orders-btn {
     -o-border-radius: 50%;
 }
 
-header .cart-orders .cart-orders-content .cart-orders-items .empty-cart {
+header .cart-orders .cart-orders-items .empty-cart {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -206,31 +233,78 @@ header .cart-orders .cart-orders-content .cart-orders-items .empty-cart {
     -o-transform: translate(-50%, -50%);
 }
 
-header .cart-orders .cart-orders-content .cart-orders-item {
+header .cart-orders .cart-orders-item {
     display: flex;
     width: 100%;
     color: var(--main-font-color);
-    padding: 20px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #777;
+    margin-top: 10px;
 }
 
-header .cart-orders .cart-orders-content .cart-orders-item-info {
+header .cart-orders .cart-orders-item-info {
     display: flex;
     width: 100%;
 }
 
-header .cart-orders .cart-orders-content .cart-orders-item-info div {
+header .cart-orders .cart-orders-item-info div {
     padding: 0 10px;
     text-align: center;
 }
 
-header .cart-orders .cart-orders-content .cart-orders-item-info .name {
-    padding: 10px 0;
+header .cart-orders .cart-orders-item-info .name {
+    padding-bottom: 10px;
 }
 
-header .cart-orders .cart-orders-content .cart-orders-items .cancel-order {
-    color: var(--main-font-color);
+header .cart-orders .cart-orders-items .cancel-order {
+    color: #777;
+    height: 25px;
+    width: 25px;
+    align-self: center;
+    background-color: transparent;
+    border-color: #777;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
 
+header .sum-price-orders {
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    padding: 15px;
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #777;
+}
+
+header .check-out {
+    background-color: var(--main-color);
+    color: white;
+    width: 400px;
+    padding: 16px;
+    margin: 15px auto;
+    display: block;
+    border: none;
+    font-size: 20px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+
+}
+
+header .cart-orders .pending {
+    color: rgb(176, 176, 50);
+    font-size: 12px;
+    align-self: center;
+    margin-right: 30px;
+
+}
+
+/* ?End Cart Order */
 /* Media Quary */
 @media (max-width:767px) {
     header {
@@ -269,18 +343,26 @@ header .cart-orders .cart-orders-content .cart-orders-items .cancel-order {
 
     header #nav-bar-id a {
         color: black;
-        margin: 15px;
+        width: 90%;
+        padding: 15px;
+        margin-left: 20px;
     }
 
     header #nav-bar-id a:hover {
-        color: #88ad35;
+        color: white;
+        background-color: rgb(0 0 0 /50%);
     }
 }
 
-@media (min-width:767px)and (max-width:991px) {
+@media(min-width:768px) and (max-width:991px) {
     header {
         background-size: 300%;
         background-position: top center;
+    }
+
+    header .container-main .nav-bar a .count-orders {
+        background-color: var(--main-font-color);
+        color: white;
     }
 
     header .heed-welcome h1 {
@@ -310,11 +392,14 @@ header .cart-orders .cart-orders-content .cart-orders-items .cancel-order {
 
     header #nav-bar-id a {
         color: black;
-        margin: 15px;
+        width: 90%;
+        padding: 15px;
+        margin-left: 20px;
     }
 
     header #nav-bar-id a:hover {
-        color: #bfde7d;
+        color: white;
+        background-color: rgb(0 0 0 /50%);
     }
 }
 
@@ -328,6 +413,7 @@ header .cart-orders .cart-orders-content .cart-orders-items .cancel-order {
     background-size: cover;
     background-position: bottom;
 }
+
 
 .Ready-to-Find .content {
     height: 100%;

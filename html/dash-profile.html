@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/dash-profile.css">
+</head>
+<body>
+   <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="../images/logo.svg" alt="Logo">
+        <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+
+    </div>
+    <ul>
+      
+      <li><a href="./dash-profile.html"><i class="fa-solid fa-user"></i> Profil</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="./dashboard.html"><i class="fas fa-box"></i> Products</a></li>
+      <li><a href="#"><i class="fas fa-shopping-cart"></i> Orders</a></li>  
+      <li><a href="../html/dsh-messages.html"><i class="fas fa-shopping-cart"></i> User Messages </a></li>
+      <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+    
+  </aside>
+
+
+  <main class="main">
+    <div class="profile-card">
+      <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
+
+      <img src="../images/about/testimonial.png" alt="Profile Photo" class="profile-img">
+      <h2 class="profile-name">Ahmes Mohammed </h2>
+      <h3 class="profile-email">ahmed456@gmail.com</h3>
+      <button class="edit-btn">
+        <i class="fa-solid fa-pen"></i>
+        Edit
+      </button>
+      <button class="edit-btn logout-btn">
+        Logout
+      </button>
+    </div>
+  </main>
+
+   <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const closeBtn = document.getElementById("close-btn");
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    });
+    document.querySelector('.logout-btn').addEventListener('click', function () {
+      localStorage.removeItem('currentAdmin')
+      window.location.replace("../html/login.html");
+    })
+  </script>
+    
+</body>
+</html>
