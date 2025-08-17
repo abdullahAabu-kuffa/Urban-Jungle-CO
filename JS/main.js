@@ -202,6 +202,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Functionality to redirect to product details page when a product is clicked
+document.addEventListener('DOMContentLoaded', () => {
+    const productLinks = document.querySelectorAll(".col-prodact");
+    productLinks.forEach(product => {
+        product.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const name = product.querySelector(".name").textContent;
+            const price = product.querySelector(".price").textContent;
+            const category = product.querySelector(".category").textContent;
+            const imageSrc = product.querySelector("img").src;
+            window.location.href = `/html/product-details.html?name=${name}&price=${price}&category=${category}&imageSrc=${imageSrc}`;
+        });
+    });
+});
+
+//read product details from URL parameters and display them
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+
+    const name = params.get("name");
+    const price = params.get("price");
+    const category = params.get("category");
+    const imageSrc = params.get("imageSrc");
+
+    document.querySelector(".name").textContent = name;
+    document.querySelector(".price").textContent = price;
+    const categoryEl = document.querySelector(".category");
+    if (categoryEl) {
+        categoryEl.textContent = category;
+    }
+    if (document.querySelector(".pro-img")) {
+        document.querySelector(".pro-img").src = imageSrc;
+    }
+    console.log(name, price, category, imageSrc);
+});
 
 
 
