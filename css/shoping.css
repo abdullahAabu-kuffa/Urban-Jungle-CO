@@ -54,7 +54,7 @@ header {
 
 }
 
-.trending-products .content .col-prodact .title-img p:first-of-type {
+.trending-products .content .col-prodact .title-img .category {
     color: #777;
     font-size: 13px;
 }

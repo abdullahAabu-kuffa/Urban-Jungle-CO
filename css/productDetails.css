@@ -2,7 +2,6 @@
 
 header {
   height: 10vh;
-  /* padding-bottom: 10px; */
   z-index: 1;
   background-color: var(--main-bg-Color) !important;
   background-image: none !important;
@@ -22,7 +21,6 @@ header {
 
 .product-image {
   flex: 1 1 45%;
-  /* height: 30%; */
 }
 
 .product-image img {

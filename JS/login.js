@@ -85,6 +85,7 @@ function login() {
                 localStorage.setItem('currentUser', JSON.stringify(user));
 
                 window.location.replace("../index.html");
+
             }
         } else {
             emailInput.style.border = '1px solid red';
