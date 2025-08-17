@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/checkout.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+
+      <header> 
+       <div class="container-main margin-page">
+            <div class="logo">
+                <img src="../images/logo.svg" alt="Waiting">
+            </div>
+            <div class="nav-bar" id="nav-bar-id">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="./html/shop.html" class="nav-link">Shop</a>
+                <a href="./html/about.html" class="nav-link">About</a>
+                <a href="./html/contact.html" class="nav-link">Contact</a>
+                <a href="./html/login.html" class="nav-link is-logged">LogIn</a>
+                <a href="#" class="cart-on-click">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <div class="count-orders">0</div>
+                </a>
+            </div>
+            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+            <button class="close-btn"><i class="fa-solid fa-times"></i></button>
+        </div>
+  </header> 
+    
+
+
+  <div class="checkout-container">
+    <h2 class="checkout-title">Checkout</h2>
+
+    <div class="checkout-wrapper">
+      <div class="checkout-form">
+        <h3 class="checkout-subtitle">Billing details</h3>
+
+        <form>
+          <div class="checkout-row">
+            <div class="checkout-field">
+              <label for="firstName">First name <span>*</span></label>
+              <input id="firstName" type="text">
+            </div>
+            <div class="checkout-field">
+              <label for="lastName">Last name <span>*</span></label>
+              <input id="lastName" type="text">
+            </div>
+          </div>
+
+          <div class="checkout-field">
+            <label for="company">Company name (optional)</label>
+            <input id="company" type="text">
+          </div>
+
+          <div class="checkout-field">
+            <label for="country">Country / Region <span>*</span></label>
+            <select id="country">
+              <option>United States (US)</option>
+              <option>United Kingdom (UK)</option>
+              <option>Egypt</option>
+            </select>
+          </div>
+
+          <div class="checkout-field">
+            <label for="street1">Street address <span>*</span></label>
+            <input id="street1" type="text" placeholder="House number and street name">
+            <input id="street2" type="text" placeholder="Apartment, suite, unit, etc. (optional)">
+          </div>
+
+          <div class="checkout-field">
+            <label for="city">Town / City <span>*</span></label>
+            <input id="city" type="text">
+          </div>
+
+          <div class="checkout-row">
+            <div class="checkout-field">
+              <label for="state">State <span>*</span></label>
+              <select id="state">
+                <option>California</option>
+                <option>Texas</option>
+                <option>New York</option>
+              </select>
+            </div>
+            <div class="checkout-field">
+              <label for="zip">ZIP Code <span>*</span></label>
+              <input id="zip" type="text">
+            </div>
+          </div>
+
+          <div class="checkout-field">
+            <label for="phone">Phone <span>*</span></label>
+            <input id="phone" type="text">
+          </div>
+
+          <div class="checkout-field">
+            <label for="email">Email address <span>*</span></label>
+            <input id="email" type="email">
+          </div>
+
+          <h3 class="checkout-subtitle">Additional information</h3>
+          <div class="checkout-field">
+            <label for="notes">Order notes (optional)</label>
+            <textarea id="notes" rows="4" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+          </div>
+        </form>
+      </div>
+
+      <div class="checkout-summary">
+        <h3>Your order</h3>
+
+        <div class="checkout-table-wrap">
+          <table class="checkout-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Golden Glow x 3</td>
+                <td>$255.00</td>
+              </tr>
+              <tr>
+                <td>Starlight Succulent  x 1</td>
+                <td>$95.00</td>
+              </tr>
+              <tr>
+                <td><span>Subtotal</span></td>
+                <td>$350.00</td>
+              </tr>
+              <tr>
+                <td><span>Total</span></td>
+                <td><span>$350.00</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="checkout-warning">
+          <input type="checkbox" id="payment-warning">
+          <label for="payment-warning">
+            Sorry, it seems that there are no available payment methods. Please contact us if you require assistance or wish to make alternate arrangements.
+          </label>
+        </div>
+
+        <button type="button" class="checkout-btn">Place order</button>
+      </div>
+    </div>
+  </div>
+ <div class="Ready-to-Find">
+        <div class="content">
+            <h1>Ready to Find your Perfect Plant?</h1>
+            <p>Browse our online store or visit us in person to experience the beauty of nature.</p>
+            <a href="./html/shop.html">Shop Now</a>
+        </div>
+    </div>
+
+
+     <footer>
+        <div class="footer-content margin-page">
+            <div class="logo">
+                <img src="../images/normal-header.svg" alt="Waiting">
+            </div>
+            <div class="col-footer">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="./html/shop.html" class="nav-link">Shop</a></li>
+                    <li><a href="./html/about.html" class="nav-link">About</a></li>
+                    <li><a href="./html/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="copy-right">
+            Copyright © 2025 Generic eCommerce
+        </div>
+    </footer>
+    <div class="to-top">
+        <a href="#" class="back-to-top">
+            <i class="fa-solid fa-angle-up"></i>
+        </a>
+    </div>
+
+
+    <script src="../JS/main.js"></script>
+</body>
+</html>
