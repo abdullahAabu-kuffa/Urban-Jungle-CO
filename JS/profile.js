@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // localStorage.removeItem('previousOrders');
     if (previousOrder.length === 0) {
         var tr = document.createElement('tr')
-        tr.innerHTML='<td colspan="4">No Items Found</td>'
+        tr.innerHTML = '<td colspan="4">No Items Found</td>'
         document.querySelector('.orders-items').appendChild(tr)
     }
     else {

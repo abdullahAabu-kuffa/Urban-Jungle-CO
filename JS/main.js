@@ -213,8 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const price = product.querySelector(".price").textContent;
             const category = product.querySelector(".category").textContent;
             const imageSrc = product.querySelector("img").src;
-            window.location.href = `/html/product-details.html?name=${name}&price=${price}&
-            category=${category}&imageSrc=${imageSrc}`;
+            window.location.href = `/html/product-details.html?name=${name}&price=${price}&category=${category}&imageSrc=${imageSrc}`;
         });
     });
 });
@@ -237,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.querySelector(".pro-img")) {
         document.querySelector(".pro-img").src = imageSrc;
     }
+    console.log(name, price, category, imageSrc);
 });
 
 
