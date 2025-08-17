@@ -34,31 +34,34 @@ document.querySelector('.logout-btn').addEventListener('click', () => {
     window.location.href = 'login.html';
 });
 
+// Previous Orders
+window.addEventListener('DOMContentLoaded', () => {
+
+    let previousOrder = JSON.parse(localStorage.getItem('previousOrders')) || [];
+    // localStorage.removeItem('previousOrders');
+    if (previousOrder.length === 0) {
+        var tr = document.createElement('tr')
+        tr.innerHTML='<td colspan="4">No Items Found</td>'
+        document.querySelector('.orders-items').appendChild(tr)
+    }
+    else {
+        // document.querySelector('.previous-orders').style.display = "block";
+        var tbody = document.querySelector('.orders-items')
+        previousOrder.forEach(item => {
+            const itemEl = document.createElement("tr");
+            itemEl.innerHTML = `
+               <td class="orders-product-cell">
+                   <img src=${item.image} alt="Golden Glow">
+                   <span class="name">${item.title}</span>
+                </td>
+                <td>${item.price}</td>
+                <td>${item.quantity}</td>
+                <td>$${parseFloat(item.price.replace(item.price[0], '')) * parseInt(item.quantity)}</td>
+                
+            `;
+            tbody.appendChild(itemEl);
+        });
 
 
-//previous orders
-{/* <a class="col-prodact">
-    <div class="image">
-        <img src="../images/home/product1.jpg" alt="">
-    </div>
-    <div class="title-img">
-        <h5>Tropical Breeze</h5>
-        <p>Indoor Plants</p>
-        <p>$80.00</p>
-    </div>
-</a> */}
-
-
-let previousOrder = JSON.parse(localStorage.getItem('previousOrders')) || [];
-document.getElementById('product-card').innerHTML = previousOrder.map(order => `
-    <a class="col-prodact">
-        <div class="image">
-            <img src="${order.image}" alt="">
-        </div>
-        <div class="title-img">
-            <h5>${order.title}</h5>
-            <p>${order.category}</p>
-            <p>$${order.price}</p>
-        </div>
-    </a>
-`).join('');
+    }
+})

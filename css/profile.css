@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #dfe9f3, #ffffff);
+    background: linear-gradient(to right, #2177ce, #b32b2b);
     margin: 0;
     padding: 0;
 }
@@ -100,27 +100,15 @@ body {
     margin: 50px auto;
     text-align: center;
 }
-.previous-orders {
-    /* max-width: 400px; */
-    display: none;
-    margin: 50px auto;
-    margin-left: 20px;
-    margin-right: 20px;
-    background: #fff;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: 0.3s ease-in-out;
+.orders-table {
+    width: 100% !important;
+    margin-bottom: 40px;
+    margin-right: 50px !important;
 }
-.row {
+.orders-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     gap: 20px;
-}
-.row .col-prodact img{
-    width: 100px;
-    height: auto;
-    border-radius: 10px;
+    margin-left: 40px;
+    justify-content: space-between;
 }
