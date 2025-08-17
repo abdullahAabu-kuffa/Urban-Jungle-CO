@@ -43,14 +43,15 @@
     <!-- Add Product Form -->
     <section class="form-section">
 
-      <form>
-        <input type="text" placeholder="Product Name" required>
-        <input type="number" placeholder="Price" required>
-        <input type="text" placeholder="Category" required>
-        <input type="file" accept="image/*" required>
-        <textarea placeholder="Description" required></textarea>
-        <button type="submit">Add Product</button>
-      </form>
+          <form id="product-form">
+      <input name="name" class="input-name" type="text"   placeholder="Product Name" required>
+      <input name="price"class="input-price" type="number" placeholder="Price"  required>
+      <input name="category" class="input-category" type="text" placeholder="Category" required>
+      <input name="image"class="input-image" type="file" accept="image/*"  required>
+  <textarea name="description" class="input-description" placeholder="Description" required></textarea>
+  <button type="submit">Add Product</button>
+</form>
+
     </section>
 
     <!-- Products Table -->
@@ -69,7 +70,7 @@
 
           </tr>
         </thead>
-        <tbody>
+        <tbody  id="products-table-body">
           <tr>
 
             <td> Product</td>
@@ -82,7 +83,7 @@
               <i class="fa-solid fa-trash delete-icon"></i>
             </td>
           </tr>
-        </tbody>
+        </tbody >
       </table>
     </section>
   </main>
@@ -100,6 +101,8 @@
     });
 
   </script>
+
+  <script src="../JS/dashboard.js"></script>
 
 </body>
 
