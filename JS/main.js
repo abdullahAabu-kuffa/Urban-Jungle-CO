@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.preventDefault();
             e.stopPropagation();
-
+            console.log("Add to cart clicked");
             const product = btn.closest(".col-prodact");
 
             const name = product.querySelector(".name").textContent;
@@ -240,6 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 // Functionality to render cart items and handle their removal
 document.addEventListener("DOMContentLoaded", () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -296,3 +297,144 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+// functionallity to load product after adding it from the admin dashboard for shop
+document.addEventListener("DOMContentLoaded", () => {
+    const productContainer = document.querySelector(".products-container");
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    document.querySelector('.show').innerHTML = `Showing all ${products.length} results`;
+    let product = {
+        name: "Breez",
+        price: "$100.00",
+        category: "Indoor Plants",
+        imageSrc: "../images/home/product1.jpg",
+        quantity: 1
+    }
+    // products.push(product);
+    // localStorage.setItem("products", JSON.stringify(products));
+    if (products.length === 0) {
+        productContainer.innerHTML = "<p style='color:black;'>No products available</p>";
+    }
+
+    function renderProducts() {
+        productContainer.innerHTML = "";
+        products.forEach(product => {
+            const productEl = document.createElement("a");
+            productEl.classList.add("col-prodact");
+            // productEl.href = `../html/product-details.html?name=${product.name}&price=${product.price}&category=${product.category}&imageSrc=${product.imageSrc}`;
+            // productEl.style.textDecoration = "none";
+            productEl.innerHTML = `
+                <div class="image">
+                <img src="${product.imageSrc}" alt="${product.name}">
+                </div>
+                
+                <div class="title-img">
+                        <ul>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                        </ul>
+                        <h5 class="name">${product.name}</h5>
+                        <p class="category">${product.category}</p>
+                        <p class="price">${product.price}</p>
+                        <p class="quantity">Stock:${product.quantity}</p>
+                        <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                    <div class="add-to-cart">Add to cart</div>
+                </i>
+                    </div>
+                `;
+            productContainer.appendChild(productEl);
+            
+        });
+        const productLinks = document.querySelectorAll(".col-prodact");
+        productLinks.forEach(product => {
+            product.addEventListener("click", (e) => {
+                e.preventDefault();
+                const name = product.querySelector(".name").textContent;
+                const price = product.querySelector(".price").textContent;
+                const category = product.querySelector(".category").textContent;
+                const imageSrc = product.querySelector("img").src;
+                window.location.href = `/html/product-details.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&category=${encodeURIComponent(category)}&imageSrc=${encodeURIComponent(imageSrc)}`;
+
+            });
+        });
+    }
+    renderProducts();
+});
+
+
+
+
+
+
+//home
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const productContainer = document.querySelector(".products-container-home");
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    let filteredProducts = products.slice(0, 3);
+    console.log(filteredProducts);
+    // let product = {
+    //     name: "Breez",
+    //     price: "$100.00",
+    //     category: "Indoor Plants",
+    //     imageSrc: "../images/home/product1.jpg",
+    //     quantity: 1
+    // }
+    // products.push(product);
+    // localStorage.setItem("products", JSON.stringify(products));
+    if (filteredProducts.length === 0) {
+        productContainer.innerHTML = "<p style='color:black;'>No products available</p>";
+        return;
+    }
+
+    function renderProducts() {
+        productContainer.innerHTML = "";
+        filteredProducts.forEach(product => {
+            const productEl = document.createElement("a");
+            productEl.classList.add("col-prodact");
+            // productEl.href = `../html/product-details.html?name=${product.name}&price=${product.price}&category=${product.category}&imageSrc=${product.imageSrc}`;
+            // productEl.style.textDecoration = "none";
+            productEl.innerHTML = `
+                <div class="image">
+                <img src="${product.imageSrc}" alt="${product.name}">
+                </div>
+                
+                <div class="title-img">
+                        <ul>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                        </ul>
+                        <h5 class="name">${product.name}</h5>
+                        <p class="category">${product.category}</p>
+                        <p class="price">${product.price}</p>
+                        <p class="quantity">Stock:${product.quantity}</p>
+                        <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                    <div class="add-to-cart">Add to cart</div>
+                </i>
+                    </div>
+                `;
+            productContainer.appendChild(productEl);
+
+        });
+        const productLinks = document.querySelectorAll(".col-prodact");
+        productLinks.forEach(product => {
+            product.addEventListener("click", (e) => {
+                e.preventDefault();
+                const name = product.querySelector(".name").textContent;
+                const price = product.querySelector(".price").textContent;
+                const category = product.querySelector(".category").textContent;
+                const imageSrc = product.querySelector("img").src;
+                window.location.href = `/html/product-details.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&category=${encodeURIComponent(category)}&imageSrc=${encodeURIComponent(imageSrc)}`;
+
+            });
+        });
+    }
+
+    renderProducts();
+});
