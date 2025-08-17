@@ -144,6 +144,23 @@
         </a>
     </div>
     <script src="../JS/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get("name");
+            const price = params.get("price");
+            const category = params.get("category");
+            const imageSrc = params.get("imageSrc");
+
+            document.querySelector(".name").textContent = name;
+            document.querySelector(".price").textContent = price;
+            document.querySelector(".category").textContent = category;
+
+            if (document.querySelector(".pro-img")) {
+                document.querySelector(".pro-img").src = imageSrc;
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
     const roleInput = document.getElementById('role');
     const errorMessage = document.querySelector('.error');
+    const errorName = document.querySelector('.errorName');
     const errorEmail = document.querySelector('.errorEmail');
     const errorPassword = document.querySelector('.errorPassword');
 
@@ -141,7 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
             [nameInput, emailInput, passwordInput, roleInput].forEach(f => f.style.border = '1px solid red');
             return;
         }
-
+        //validate that the name field not a number
+        const nameVal = nameInput.value.trim();
+        if (/\d/.test(nameVal)) {
+            nameInput.style.border = '1px solid red';
+            errorName.style.display = 'block';
+            errorName.textContent = 'Name cannot contain a number';
+            errorName.style.color='red'
+            return;
+        }
         const emailVal = emailInput.value.trim().toLowerCase();
         const passwordVal = passwordInput.value.trim();
 
