@@ -4,7 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
+  <meta property="og:description"
+    content="Welcome to Urban Jungle Co. Discover the Beauty of Nature at Your Fingertips Shop Now Secure Payment Elementum feugiat diam […]">
+  <meta property="og:url" content="https://abdullahaabu-kuffa.github.io/Urban-Jungle-CO/">
+  <meta property="og:site_name" content="Generic eCommerce">
+  <!-- Favicon path -->
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <title>Profile - Urban Jungle</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/dashboard.css">
   <link rel="stylesheet" href="../css/dash-profile.css">
@@ -24,7 +30,6 @@
       <li><a href="./dashboard.html"><i class="fas fa-box"></i> Products</a></li>
       <li><a href="./dash-orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
       <li><a href="../html/dsh-messages.html"><i class="fa-solid fa-comments"></i> User Messages </a></li>
-      <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
     </ul>
 
   </aside>
@@ -33,14 +38,10 @@
   <main class="main">
     <div class="profile-card">
       <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
-
       <img src="../images/about/testimonial.png" alt="Profile Photo" class="profile-img">
       <h2 class="profile-name">Ahmes Mohammed </h2>
       <h3 class="profile-email">ahmed456@gmail.com</h3>
-      <button class="edit-btn">
-        <i class="fa-solid fa-pen"></i>
-        Edit
-      </button>
+      <input type="file" class="edit-btn" />
       <button class="edit-btn logout-btn">
         Logout
       </button>
@@ -63,6 +64,29 @@
       localStorage.removeItem('currentAdmin')
       window.location.replace("../html/login.html");
     })
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const currentAdmin = JSON.parse(localStorage.getItem('currentAdmin'));
+      if (currentAdmin) {
+        document.querySelector('.profile-name').textContent = currentAdmin.name;
+        document.querySelector('.profile-email').textContent = currentAdmin.email;
+
+        const savedImage = currentAdmin.profileImage;
+        document.querySelector('.profile-img').src = savedImage || '../images/home/profile-image.png';
+      }
+    });
+    const editBtn = document.querySelector('.edit-btn');
+    editBtn.addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          localStorage.setItem('profileImage', e.target.result);
+          document.querySelector('.profile-img').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
   </script>
 
 </body>

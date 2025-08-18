@@ -297,6 +297,10 @@ header .check-out {
 
 }
 
+header .check-out:hover {
+    background-color: #4f6e0a
+}
+
 header .cart-orders .pending {
     color: rgb(176, 176, 50);
     font-size: 12px;
@@ -542,3 +546,13 @@ footer .copy-right {
 }
 
 /* Scroll to Top */
+
+.no-products {
+    margin-top: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    color: red;
+    text-align: center;
+}

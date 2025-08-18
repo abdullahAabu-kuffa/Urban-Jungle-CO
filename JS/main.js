@@ -137,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.preventDefault();
             e.stopPropagation();
-            console.log("Add to cart clicked");
             const product = btn.closest(".col-prodact");
 
             const name = product.querySelector(".name").textContent;
@@ -226,9 +225,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const price = params.get("price");
     const category = params.get("category");
     const imageSrc = params.get("imageSrc");
-
-    document.querySelector(".name").textContent = name;
-    document.querySelector(".price").textContent = price;
+    if (document.querySelector(".name") && document.querySelector(".price")) {
+        document.querySelector(".name").textContent = name;
+        document.querySelector(".price").textContent = price;
+    }
     const categoryEl = document.querySelector(".category");
     if (categoryEl) {
         categoryEl.textContent = category;
@@ -236,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.querySelector(".pro-img")) {
         document.querySelector(".pro-img").src = imageSrc;
     }
-    console.log(name, price, category, imageSrc);
 });
 
 
@@ -245,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartContainer = document.querySelector(".cart-orders-items");
+    if (cartContainer === null) return; // Ensure cartContainer exists
     const emptyMsg = cartContainer.querySelector(".empty-cart");
 
     function renderCart() {
@@ -301,27 +301,18 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const productContainer = document.querySelector(".products-container");
     let products = JSON.parse(localStorage.getItem("products")) || [];
-    document.querySelector('.show').innerHTML = `Showing all ${products.length} results`;
-    let product = {
-        name: "Breez",
-        price: "$100.00",
-        category: "Indoor Plants",
-        imageSrc: "../images/home/product1.jpg",
-        quantity: 1
+    if (document.querySelector('.show')) {
+        document.querySelector('.show').innerHTML = `Showing all ${products.length} results`;
     }
-    // products.push(product);
-    // localStorage.setItem("products", JSON.stringify(products));
-    if (products.length === 0) {
-        productContainer.innerHTML = "<p style='color:black;'>No products available</p>";
-    }
-
-    function renderProducts() {
+    if (productContainer && (products.length === 0 || !products)) {
         productContainer.innerHTML = "";
+        productContainer.innerHTML = "<p class='no-products'>No products available</p>"; isNoavailable = true;
+    }
+    function renderProducts() {
+        if (!productContainer) return;
         products.forEach(product => {
             const productEl = document.createElement("a");
             productEl.classList.add("col-prodact");
-            // productEl.href = `../html/product-details.html?name=${product.name}&price=${product.price}&category=${product.category}&imageSrc=${product.imageSrc}`;
-            // productEl.style.textDecoration = "none";
             productEl.innerHTML = `
                 <div class="image">
                 <img src="${product.imageSrc}" alt="${product.name}">
@@ -345,7 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
             productContainer.appendChild(productEl);
-            
+
         });
         const productLinks = document.querySelectorAll(".col-prodact");
         productLinks.forEach(product => {
@@ -375,28 +366,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const productContainer = document.querySelector(".products-container-home");
     let products = JSON.parse(localStorage.getItem("products")) || [];
     let filteredProducts = products.slice(0, 3);
-    console.log(filteredProducts);
-    // let product = {
-    //     name: "Breez",
-    //     price: "$100.00",
-    //     category: "Indoor Plants",
-    //     imageSrc: "../images/home/product1.jpg",
-    //     quantity: 1
-    // }
-    // products.push(product);
-    // localStorage.setItem("products", JSON.stringify(products));
-    if (filteredProducts.length === 0) {
-        productContainer.innerHTML = "<p style='color:black;'>No products available</p>";
+    if (productContainer && (filteredProducts.length === 0 || !filteredProducts)) {
+        productContainer.innerHTML = "<p class = 'no-products'>No products available</p>";
         return;
     }
 
     function renderProducts() {
+        if (!productContainer) return;
         productContainer.innerHTML = "";
         filteredProducts.forEach(product => {
             const productEl = document.createElement("a");
             productEl.classList.add("col-prodact");
-            // productEl.href = `../html/product-details.html?name=${product.name}&price=${product.price}&category=${product.category}&imageSrc=${product.imageSrc}`;
-            // productEl.style.textDecoration = "none";
             productEl.innerHTML = `
                 <div class="image">
                 <img src="${product.imageSrc}" alt="${product.name}">
@@ -438,3 +418,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderProducts();
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const checkOutBtn = document.querySelector(".check-out");
+    if (checkOutBtn) {
+        checkOutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            window.location.replace("../html/checkout.html");
+
+        });
+    }
+}); 

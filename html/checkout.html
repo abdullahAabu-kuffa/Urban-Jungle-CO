@@ -1,37 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/checkout.css">
-    <link rel="stylesheet" href="../css/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:description"
+    content="Welcome to Urban Jungle Co. Discover the Beauty of Nature at Your Fingertips Shop Now Secure Payment Elementum feugiat diam […]">
+  <meta property="og:url" content="https://abdullahaabu-kuffa.github.io/Urban-Jungle-CO/">
+  <meta property="og:site_name" content="Generic eCommerce">
+  <!-- Favicon path -->
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <title>Checkout - Urban Jungle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/checkout.css">
+  <link rel="stylesheet" href="../css/main.css">
 </head>
+
 <body>
 
 
-      <header> 
-       <div class="container-main margin-page">
-            <div class="logo">
-                <img src="../images/logo.svg" alt="Waiting">
-            </div>
-            <div class="nav-bar" id="nav-bar-id">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="./html/shop.html" class="nav-link">Shop</a>
-                <a href="./html/about.html" class="nav-link">About</a>
-                <a href="./html/contact.html" class="nav-link">Contact</a>
-                <a href="./html/login.html" class="nav-link is-logged">LogIn</a>
-                <a href="#" class="cart-on-click">
-                    <i class="fa-solid fa-cart-plus"></i>
-                    <div class="count-orders">0</div>
-                </a>
-            </div>
-            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
-            <button class="close-btn"><i class="fa-solid fa-times"></i></button>
+  <header>
+    <div class="container-main margin-page">
+      <div class="logo">
+        <img src="../images/logo.svg" alt="Waiting">
+      </div>
+      <div class="nav-bar" id="nav-bar-id">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./shop.html" class="nav-link">Shop</a>
+        <a href="./about.html" class="nav-link">About</a>
+        <a href="./contact.html" class="nav-link">Contact</a>
+        <a href="./login.html" class="nav-link is-logged">LogIn</a>
+        <a href="#" class="cart-on-click">
+          <i class="fa-solid fa-cart-plus"></i>
+          <div class="count-orders">0</div>
+        </a>
+      </div>
+      <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <button class="close-btn"><i class="fa-solid fa-times"></i></button>
+    </div>
+    <!-- ? Start Cart Orders -->
+    <div class="cart-orders">
+      <div class="cart-orders-content">
+        <div class="head">
+          <h3>Shopping Cart</h3>
+          <button class="close-orders-btn"> <i class="fa-solid fa-times"></i></button>
         </div>
-  </header> 
-    
+        <div class="cart-orders-items">
+          <p class="empty-cart">No products in the cart.</p>
+          <div class="cart-orders-item">
+            <div class="cart-orders-item-info">
+              <img src="../images/home/product1.jpg" width="60" height="60" alt="">
+              <div>
+                <div class="name">Tropical Breeze</div>
+                <span class="quantity"> 1</span>
+                <span class="x">x</span>
+                <span class="price">$80.00</span>
+              </div>
+            </div>
+            <div class="pending">pending</div>
+            <button class="cancel-order"> <i class="fa-solid fa-times"></i></button>
+          </div>
+        </div>
+        <div class="sum-price-orders">
+          <div class="subtotal">
+            Subtotal:
+          </div>
+          <div class="sum">
+            $95.00
+          </div>
+        </div>
+        <button class="check-out"> Checkout</button>
+      </div>
+    </div>
+    <!-- ? End Cart Orders -->
+  </header>
+
 
 
   <div class="checkout-container">
@@ -106,7 +149,8 @@
           <h3 class="checkout-subtitle">Additional information</h3>
           <div class="checkout-field">
             <label for="notes">Order notes (optional)</label>
-            <textarea id="notes" rows="4" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+            <textarea id="notes" rows="4"
+              placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
           </div>
         </form>
       </div>
@@ -122,22 +166,14 @@
                 <th>Subtotal</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="checkout-items">
               <tr>
-                <td>Golden Glow x 3</td>
-                <td>$255.00</td>
+                <td class="name-product">Golden Glow x 3</td>
+                <td class="subtotal">$255.00</td>
               </tr>
               <tr>
-                <td>Starlight Succulent  x 1</td>
-                <td>$95.00</td>
-              </tr>
-              <tr>
-                <td><span>Subtotal</span></td>
-                <td>$350.00</td>
-              </tr>
-              <tr>
-                <td><span>Total</span></td>
-                <td><span>$350.00</span></td>
+                <td>Total</td>
+                <td class="total-products">$350.00</td>
               </tr>
             </tbody>
           </table>
@@ -146,54 +182,75 @@
         <div class="checkout-warning">
           <input type="checkbox" id="payment-warning">
           <label for="payment-warning">
-            Sorry, it seems that there are no available payment methods. Please contact us if you require assistance or wish to make alternate arrangements.
+            Sorry, it seems that there are no available payment methods. Please contact us if you require assistance or
+            wish to make alternate arrangements.
           </label>
         </div>
-
         <button type="button" class="checkout-btn">Place order</button>
       </div>
     </div>
   </div>
- <div class="Ready-to-Find">
-        <div class="content">
-            <h1>Ready to Find your Perfect Plant?</h1>
-            <p>Browse our online store or visit us in person to experience the beauty of nature.</p>
-            <a href="./html/shop.html">Shop Now</a>
-        </div>
+  <div class="Ready-to-Find">
+    <div class="content">
+      <h1>Ready to Find your Perfect Plant?</h1>
+      <p>Browse our online store or visit us in person to experience the beauty of nature.</p>
+      <a href="./html/shop.html">Shop Now</a>
     </div>
+  </div>
 
 
-     <footer>
-        <div class="footer-content margin-page">
-            <div class="logo">
-                <img src="../images/normal-header.svg" alt="Waiting">
-            </div>
-            <div class="col-footer">
-                <ul>
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="./html/shop.html" class="nav-link">Shop</a></li>
-                    <li><a href="./html/about.html" class="nav-link">About</a></li>
-                    <li><a href="./html/contact.html" class="nav-link">Contact</a></li>
-                </ul>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            </div>
-        </div>
-        <div class="copy-right">
-            Copyright © 2025 Generic eCommerce
-        </div>
-    </footer>
-    <div class="to-top">
-        <a href="#" class="back-to-top">
-            <i class="fa-solid fa-angle-up"></i>
-        </a>
+  <footer>
+    <div class="footer-content margin-page">
+      <div class="logo">
+        <img src="../images/normal-header.svg" alt="Waiting">
+      </div>
+      <div class="col-footer">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="./shop.html" class="nav-link">Shop</a></li>
+          <li><a href="./about.html" class="nav-link">About</a></li>
+          <li><a href="./contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      </div>
     </div>
+    <div class="copy-right">
+      Copyright © 2025 Generic eCommerce
+    </div>
+  </footer>
+  <div class="to-top">
+    <a href="#" class="back-to-top">
+      <i class="fa-solid fa-angle-up"></i>
+    </a>
+  </div>
 
 
-    <script src="../JS/main.js"></script>
+  <script src="../JS/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const countOrders = document.querySelector(".checkout-items");
+      const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+      const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+      cart.forEach(item => {
+        const name = item.name;
+        const quantity = item.quantity;
+        countOrders.innerHTML = `<tr>
+          <td class="name-product">${cart.name} ${totalQuantity}</td>
+          <td class="subtotal">$${total.toFixed(2)}</td>
+          </tr>`;
+      });
+    });
+    document.querySelector(".checkout-btn").addEventListener("click", () => {
+      alert("No implemented yet");
+
+    });
+  </script>
 </body>
+
 </html>
