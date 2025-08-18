@@ -39,7 +39,7 @@
     <h2>Users Messages</h2>
     <div class="messages">
       <div class="message-box">
-       <div class="icon"><i class="fa-solid fa-comments"></i></div>
+        <div class="icon"><i class="fa-solid fa-comments"></i></div>
         <p>
           I am absolutely thrilled with the service I received from their company!
           They were attentive, responsive, and genuinely cared about meeting my needs.
@@ -50,10 +50,38 @@
           <span> Ahmed</span>
         </div>
       </div>
-  </div>
     </div>
   </div>
+  </div>
+<!-- <script>
+  const messagesContainer = document.querySelector(".messages");
+  let messages = JSON.parse(localStorage.getItem("contact")) || [];
+  let message = {
+    name: "Mustafa",
+    email: "mustafa@example.com",
+    phone: "1234567890",
+    message: "Hello, this is a test messa."
+  };
+  messages.push(message);
+  localStorage.setItem('contact', JSON.stringify(messages));
+  if (messagesContainer) {
+    messagesContainer.innerHTML = "";
 
+    messages.forEach((message) => {
+      messagesContainer.innerHTML += `
+        <div class="message-box">
+          <div class="icon"><i class="fa-solid fa-comments"></i></div>
+          <p>
+            ${message.message}
+          </p>
+          <div class="client">
+            <img src="../images/about/testimonial.png" alt="Client">
+            <span>${message.name}</span>
+          </div>
+        </div>`;
+    });
+  }
+</script> -->
 
   <script>
     const menuBtn = document.getElementById("menu-btn");
@@ -71,7 +99,7 @@
   </script>
   <script src="../JS/contact.js"></script>
 
-
+  
 </body>
 
 </html>
