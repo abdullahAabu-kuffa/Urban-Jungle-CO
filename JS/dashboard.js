@@ -12,6 +12,7 @@ function render() {
       <td>$${p.price}</td>
       <td>${p.category}</td>
       <td><img src="${p.image}" alt="${p.name}" width="50"></td>
+      <td>${p.quantity}</td>
       <td>${p.description}</td>
       <td class="actions">
         <i class="fa-solid fa-pencil edit-icon" onclick="editProduct(${i})"></i>
@@ -27,17 +28,29 @@ function render() {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const newProduct = {
-    name: form[0].value,
-    price: form[1].value,
-    category: form[2].value,
-    image: URL.createObjectURL(form[3].files[0]),
-    description: form[4].value
-  };
+  const file = form[3].files[0];
+  if (!file) {
+    return;
+  }
 
-  products.push(newProduct);
-  render();
-  form.reset();
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const newProduct = {
+      name: form[0].value,
+      price: form[1].value,
+      category: form[2].value,
+      image: event.target.result,
+      quantity: form[4].value,
+      description: form[5].value
+    };
+
+
+    products.push(newProduct);
+    localStorage.setItem("products", JSON.stringify(products));
+    render();
+    form.reset();
+  }
+  reader.readAsDataURL(file);
 });
 
 // delete product
@@ -52,9 +65,10 @@ function editProduct(index) {
   form[0].value = p.name;
   form[1].value = p.price;
   form[2].value = p.category;
-  form[4].value = p.description;
+  form[4].value = p.quantity;
+  form[5].value = p.description;
 
-//     Submit
+  //     Submit
   products.splice(index, 1);
   render();
 }

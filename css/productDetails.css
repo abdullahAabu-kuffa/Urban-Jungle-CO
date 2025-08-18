@@ -153,3 +153,27 @@ header {
     flex: 1 1 100%;
   }
 }
+
+
+
+/* alert */
+.custom-alert {
+  position: fixed;
+  top: 100px;
+  right: 38%;
+  background: #b53535;
+  color: #f4efef;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  z-index: 9999;
+  min-width: 300px;
+  animation: fadeIn 0.3s ease;
+  align-self: center;
+}
+
+.hidden {
+  display: none;
+}

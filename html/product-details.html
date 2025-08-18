@@ -77,14 +77,15 @@
         <div class="product-container">
             <!-- left -->
             <div class="product-image">
-                <img class="pro-img" src="../images/head-img.avif" alt="Zen Bamboo Grove" />
+                <img class="pro-img" src="" alt="Zen Bamboo Grove" />
             </div>
 
             <!-- right -->
             <div class="product-details">
-                <p class="category">Indoor Plants</p>
-                <h1 class="name">Zen Bamboo Grove</h1>
-                <div class="pro-price"> <span class="price"> 90.00 </span> <span class="shipping"> & Free
+                <p class="category"></p>
+                <h1 class="name"></h1>
+                <div class="pro-price">
+                    <span class="price"></span> <span class="shipping"> & Free
                         Shipping</span>
                 </div>
                 <p class="description">
@@ -96,7 +97,7 @@
                     <button class="add-to-cart-button">Add to cart</button>
                 </div>
                 <div class="product-meta">
-                    Category: <span class="category">Indoor Plants</span>
+                    Category: <span class="category"></span>
                 </div>
 
                 <!-- Safe Checkout -->
@@ -149,21 +150,83 @@
             <i class="fa-solid fa-angle-up"></i>
         </a>
     </div>
+    <div id="custom-alert" class="custom-alert hidden">
+        <p id="alert-message"></p>
+    </div>
     <script src="../JS/main.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const params = new URLSearchParams(window.location.search);
-            const name = params.get("name");
-            const price = params.get("price");
-            const category = params.get("category");
-            const imageSrc = params.get("imageSrc");
 
-            document.querySelector(".name").textContent = name;
-            document.querySelector(".price").textContent = price;
-            document.querySelector(".category").textContent = category;
+            //fetch the product
+            const product = JSON.parse(localStorage.getItem("selectedProduct"));
+            if (!product) return;
 
-            if (document.querySelector(".pro-img")) {
-                document.querySelector(".pro-img").src = imageSrc;
+            const productContainer = document.querySelector(".product-container");
+
+            productContainer.querySelector(".name").textContent = product.name;
+            productContainer.querySelector(".price").textContent = product.price;
+            productContainer.querySelector(".category").textContent = product.category;
+            productContainer.querySelector(".pro-img").src = product.image;
+
+            //add to cart
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            function updateCartCount() {
+                const countEl = document.querySelector('.count-orders');
+                if (!countEl) return;
+                const totalItems = cart.reduce((sum, p) => sum + (Number(p.quantity) || 0), 0);
+                countEl.textContent = totalItems;
+            }
+            const btn = productContainer.querySelector(".add-to-cart-button");
+            btn.addEventListener("click", function () {
+                const productName = productContainer.querySelector(".name").textContent;
+                const productPrice = productContainer.querySelector(".price").textContent;
+                const productCategory = productContainer.querySelector(".category").textContent;
+                const productImg = productContainer.querySelector(".pro-img").src;
+                const quantityInput = productContainer.querySelector("input[type='number']");
+                const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
+                if (quantity > product.quantity) {
+                    showAlert(`The Stock is ${product.quantity} Product`)
+                    setTimeout(() => closeAlert(), 5000);
+                    return
+                }
+                const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+                if (!currentUser) {
+                    window.location.replace("login.html");
+                    return;
+                }
+
+                const productData = {
+                    name: productName,
+                    price: productPrice,
+                    category: productCategory,
+                    imageSrc: productImg,
+                    quantity,
+                    currentUser
+                };
+
+                const existingProduct = cart.find(item => item.name === productName);
+                if (existingProduct) {
+                    existingProduct.quantity += quantity;
+                } else {
+                    cart.push(productData);
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount();
+                window.location.reload();
+            });
+            updateCartCount();
+
+            function showAlert(message) {
+                const alertBox = document.getElementById("custom-alert");
+                const alertMessage = document.getElementById("alert-message");
+
+                alertMessage.textContent = message;
+                alertBox.classList.remove("hidden");
+            }
+
+            function closeAlert() {
+                document.getElementById("custom-alert").classList.add("hidden");
             }
         });
     </script>
