@@ -75,3 +75,33 @@ function editProduct(index) {
 
 
 render();
+
+// search
+const searchInput = document.querySelector(".search-box input");
+
+searchInput.addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase();
+
+
+  const filtered = products.filter(p => 
+    p.name.toLowerCase().includes(value) || 
+    p.category.toLowerCase().includes(value)
+  );
+
+
+  tableBody.innerHTML = filtered.map((p, i) => `
+    <tr>
+      <td>${p.name}</td>
+      <td>$${p.price}</td>
+      <td>${p.category}</td>
+      <td><img src="${p.image}" alt="${p.name}" width="50"></td>
+      <td>${p.quantity}</td>
+      <td>${p.description}</td>
+      <td class="actions">
+        <i class="fa-solid fa-pencil edit-icon" onclick="editProduct(${i})"></i>
+        <i class="fa-solid fa-trash delete-icon" onclick="deleteProduct(${i})"></i>
+      </td>
+    </tr>
+  `).join("");
+});
+
