@@ -52,6 +52,7 @@
         <input name="price" class="input-price" type="text" placeholder="Price" required>
         <input name="category" class="input-category" type="text" placeholder="Category" required>
         <input name="image" class="input-image" type="file" accept="image/*" required>
+        <input name="stock" class="input-stock" type="number" placeholder="quantity" required>
         <textarea name="description" class="input-description" placeholder="Description" required></textarea>
         <button type="submit">Add Product</button>
       </form>
@@ -69,6 +70,7 @@
             <th>Price</th>
             <th>Category</th>
             <th>Image</th>
+            <th>Quantity</th>
             <th>Description</th>
             <th>Actions</th>
 
@@ -76,11 +78,11 @@
         </thead>
         <tbody id="products-table-body">
           <tr>
-
             <td> Product</td>
             <td>$10</td>
             <td>Indoor </td>
             <td><img src="../images/home/product2.jpg" alt="Product"></td>
+            <td>30</td>
             <td>Short description </td>
             <td class="actions">
               <i class="fa-solid fa-pencil edit-icon"></i>

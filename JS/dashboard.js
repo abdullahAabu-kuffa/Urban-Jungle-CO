@@ -12,6 +12,7 @@ function render() {
       <td>$${p.price}</td>
       <td>${p.category}</td>
       <td><img src="${p.image}" alt="${p.name}" width="50"></td>
+      <td>${p.quantity}</td>
       <td>${p.description}</td>
       <td class="actions">
         <i class="fa-solid fa-pencil edit-icon" onclick="editProduct(${i})"></i>
@@ -39,11 +40,13 @@ form.addEventListener("submit", (e) => {
       price: form[1].value,
       category: form[2].value,
       image: event.target.result,
-      description: form[4].value
+      quantity: form[4].value,
+      description: form[5].value
     };
 
 
     products.push(newProduct);
+    localStorage.setItem("products", JSON.stringify(products));
     render();
     form.reset();
   }
@@ -62,7 +65,8 @@ function editProduct(index) {
   form[0].value = p.name;
   form[1].value = p.price;
   form[2].value = p.category;
-  form[4].value = p.description;
+  form[4].value = p.quantity;
+  form[5].value = p.description;
 
   //     Submit
   products.splice(index, 1);
