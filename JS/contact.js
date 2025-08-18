@@ -50,12 +50,13 @@
 
         // if everything is correct store data
         let contact = JSON.parse(localStorage.getItem("contact")) || [];
-
+        let profileImage = localStorage.getItem("profileImage") || "../images/home/profile-image.png";
         let newMessage = {
             name: nameField.value,
             email: emailField.value,
             phone: phoneField.value,
             message: messageField.value,
+            profileImage: profileImage
         };
 
         contact.push(newMessage);
