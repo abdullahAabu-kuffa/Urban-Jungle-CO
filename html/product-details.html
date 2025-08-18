@@ -150,74 +150,84 @@
             <i class="fa-solid fa-angle-up"></i>
         </a>
     </div>
+    <div id="custom-alert" class="custom-alert hidden">
+        <p id="alert-message"></p>
+    </div>
     <script src="../JS/main.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const params = new URLSearchParams(window.location.search);
-            const name = params.get("name");
-            const price = params.get("price");
-            const category = params.get("category");
-            const imageSrc = params.get("imageSrc");
+
+            //fetch the product
+            const product = JSON.parse(localStorage.getItem("selectedProduct"));
+            if (!product) return;
 
             const productContainer = document.querySelector(".product-container");
-            if (!productContainer) return;
 
-            productContainer.querySelector(".name").textContent = name;
-            productContainer.querySelector(".price").textContent = price;
-            productContainer.querySelectorAll(".category").forEach(element => {
-                element.textContent = category;
-            });
+            productContainer.querySelector(".name").textContent = product.name;
+            productContainer.querySelector(".price").textContent = product.price;
+            productContainer.querySelector(".category").textContent = product.category;
+            productContainer.querySelector(".pro-img").src = product.image;
 
-            const imgEl = productContainer.querySelector(".pro-img");
-            if (imgEl) imgEl.src = imageSrc;
-
+            //add to cart
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
             function updateCartCount() {
                 const countEl = document.querySelector('.count-orders');
                 if (!countEl) return;
                 const totalItems = cart.reduce((sum, p) => sum + (Number(p.quantity) || 0), 0);
                 countEl.textContent = totalItems;
             }
-
             const btn = productContainer.querySelector(".add-to-cart-button");
-            if (btn) {
-                btn.addEventListener("click", function () {
-                    const productName = productContainer.querySelector(".name").textContent;
-                    const productPrice = productContainer.querySelector(".price").textContent;
-                    const productCategory = productContainer.querySelector(".category").textContent;
-                    const productImg = productContainer.querySelector(".pro-img").src;
-                    const quantityInput = productContainer.querySelector("input[type='number']");
-                    const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
+            btn.addEventListener("click", function () {
+                const productName = productContainer.querySelector(".name").textContent;
+                const productPrice = productContainer.querySelector(".price").textContent;
+                const productCategory = productContainer.querySelector(".category").textContent;
+                const productImg = productContainer.querySelector(".pro-img").src;
+                const quantityInput = productContainer.querySelector("input[type='number']");
+                const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
+                if (quantity > product.quantity) {
+                    showAlert(`The Stock is ${product.quantity} Product`)
+                    setTimeout(() => closeAlert(), 5000);
+                    return
+                }
+                const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+                if (!currentUser) {
+                    window.location.replace("login.html");
+                    return;
+                }
 
-                    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-                    if (!currentUser) {
-                        window.location.replace("login.html");
-                        return;
-                    }
+                const productData = {
+                    name: productName,
+                    price: productPrice,
+                    category: productCategory,
+                    imageSrc: productImg,
+                    quantity,
+                    currentUser
+                };
 
-                    const productData = {
-                        name: productName,
-                        price: productPrice,
-                        category: productCategory,
-                        imageSrc: productImg,
-                        quantity,
-                        currentUser
-                    };
+                const existingProduct = cart.find(item => item.name === productName);
+                if (existingProduct) {
+                    existingProduct.quantity += quantity;
+                } else {
+                    cart.push(productData);
+                }
 
-                    const existingProduct = cart.find(item => item.name === productName);
-                    if (existingProduct) {
-                        existingProduct.quantity += quantity;
-                    } else {
-                        cart.push(productData);
-                    }
-
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    updateCartCount();
-                    window.location.reload();
-                });
-            }
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount();
+                window.location.reload();
+            });
             updateCartCount();
+
+            function showAlert(message) {
+                const alertBox = document.getElementById("custom-alert");
+                const alertMessage = document.getElementById("alert-message");
+
+                alertMessage.textContent = message;
+                alertBox.classList.remove("hidden");
+            }
+
+            function closeAlert() {
+                document.getElementById("custom-alert").classList.add("hidden");
+            }
         });
     </script>
 </body>

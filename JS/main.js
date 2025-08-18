@@ -342,44 +342,44 @@ document.addEventListener("DOMContentLoaded", () => {
             productEl.classList.add("col-prodact");
             productEl.innerHTML = `
                 <div class="image">
-                <img src="${product.imageSrc}" alt="${product.name}">
+                <img src="${product.image}" alt="${product.name}">
                 </div>
                 <div class="title-img">
                         <ul>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
                             <li><i class="fa-regular fa-star"></i></li>
                         </ul>
                         <h5 class="name">${product.name}</h5>
                         <p class="category">${product.category}</p>
                         <p class="price">${product.price}</p>
-                        <p class="quantity">Stock:${product.quantity}</p>
+                        <p class="quantity">Stock:${product.quantity} </p>
                         <i class="fa-solid fa-cart-plus add-to-cart-icon">
                     <div class="add-to-cart">Add to cart</div>
-                </i>
+                             </i>
                     </div>
                 `;
             productContainer.appendChild(productEl);
 
         });
     }
+    renderProducts();
     const productLinks = document.querySelectorAll(".col-prodact");
     productLinks.forEach(product => {
         product.addEventListener("click", (e) => {
             e.preventDefault();
-            const name = product.querySelector(".name").textContent;
-            const price = product.querySelector(".price").textContent;
-            const category = product.querySelector(".category").textContent;
-            const imageSrc = product.querySelector("img").src;
-            console.log(name, price, category, imageSrc);
-            window.location.replace(`/html/product-details.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&category=${encodeURIComponent(category)}&imageSrc=${encodeURIComponent(imageSrc)}`);
+            let quantityText = product.querySelector('.quantity').textContent;
+            const clickedProduct = {
+                name: product.querySelector(".name").textContent,
+                price: product.querySelector(".price").textContent,
+                category: product.querySelector(".category").textContent,
+                image: product.querySelector("img").src,
+                quantity: quantityText.replace("Stock:", "").trim()
+            };
+            localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
+            window.location.href = "/html/product-details.html";
         });
     });
 
-    renderProducts();
 });
 
-
+// localStorage.removeItem("previousOrders");
 

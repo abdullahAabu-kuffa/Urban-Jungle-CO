@@ -50,9 +50,9 @@ window.addEventListener('DOMContentLoaded', () => {
         previousOrder.forEach(item => {
             const itemEl = document.createElement("tr");
             itemEl.innerHTML = `
-               <td class="orders-product-cell">
-                   <img src=${item.image} alt="Golden Glow">
-                   <span class="name">${item.title}</span>
+               <td class="orders-product-cell" style ="margin-left:30px">
+                   <img src=${item.imageSrc} alt="Golden Glow">
+                   <span class="name" style ="margin-left:30px">${item.name}</span>
                 </td>
                 <td>${item.price}</td>
                 <td>${item.quantity}</td>

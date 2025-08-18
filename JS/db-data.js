@@ -57,6 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let acceptedBtns = document.querySelectorAll(".accepted-btn");
     let rejectedBtns = document.querySelectorAll(".rejected-btn");
     let previousOrders = JSON.parse(localStorage.getItem("previousOrders")) || [];
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+
     acceptedBtns.forEach((item) => {
         item.addEventListener("click", (e) => {
             item.nextElementSibling.style.display = "none"
@@ -69,10 +71,18 @@ document.addEventListener("DOMContentLoaded", () => {
             previousOrders.push(order);
             localStorage.setItem("previousOrders", JSON.stringify(previousOrders));
             let name = e.target.parentElement.parentElement.querySelector(".name").textContent;
+            let quantityText = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
+            let quantity = parseInt(quantityText.replace("Stock:", "").trim());
             cart.forEach((product) => {
                 if (product.name == name) {
                     cart = cart.filter(item => item.name !== name);
                     localStorage.setItem("cart", JSON.stringify(cart));
+                }
+            });
+            products.forEach((p) => {
+                if (p.name === name) {
+                    p.quantity -= quantity;
+                    console.log(p.quantity)
                 }
             });
             window.location.reload();
@@ -94,8 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("cart", JSON.stringify(cart));
         });
     });
-
-
 });
 
 
@@ -132,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!countEl) return;
         const totalItemsPrice = acceptedOrders.reduce((sumPrice, product) => sumPrice + (parseFloat(product.quantity) * parseFloat(product.price.replace(product.price[0], '')) || 0), 0);
         countEl.textContent = `$${totalItemsPrice.toFixed(2)}`;
-        console.log(totalItemsPrice);
     }
     updateAcceptedOrdersCount();
     updateAcceptedOrdersPrice();
