@@ -61,6 +61,35 @@ window.addEventListener('DOMContentLoaded', () => {
             `;
             tbody.appendChild(itemEl);
         });
+    }
+
+
+});
+window.addEventListener('DOMContentLoaded', () => {
+
+    //wishlist
+    let wishList = JSON.parse(localStorage.getItem('wishList')) || [];
+    if (wishList.length === 0) {
+        var tr = document.createElement('tr')
+        tr.innerHTML = '<td colspan="4">No Items Found</td>'
+        document.querySelector('.wish-items').appendChild(tr)
+    }
+    else {
+        var tbody = document.querySelector('.wish-items')
+        wishList.forEach(item => {
+            const itemEl = document.createElement("tr");
+            itemEl.innerHTML = `
+               <td class="orders-product-cell" style ="margin-left:30px">
+                   <img src=${item.imageSrc} alt="Golden Glow">
+                   <span class="name" style ="margin-left:30px">${item.name}</span>
+                </td>
+                <td>${item.price}</td>
+                <td>${item.quantity.replace(/[^0-9.]/g, '')}</td>
+                <td>$${parseFloat(item.price.replace(/[^0-9.]/g, '')) * parseInt(item.quantity.replace(/[^0-9.]/g, ''))}</td>
+
+            `;
+            tbody.appendChild(itemEl);
+        });
 
 
     }

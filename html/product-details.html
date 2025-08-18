@@ -165,7 +165,10 @@
 
             productContainer.querySelector(".name").textContent = product.name;
             productContainer.querySelector(".price").textContent = product.price;
-            productContainer.querySelector(".category").textContent = product.category;
+            const categories = productContainer.querySelectorAll(".category");
+            categories.forEach((el) => {
+                el.textContent = product.category;
+            });
             productContainer.querySelector(".pro-img").src = product.image;
 
             //add to cart
@@ -184,15 +187,15 @@
                 const productImg = productContainer.querySelector(".pro-img").src;
                 const quantityInput = productContainer.querySelector("input[type='number']");
                 const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
-                if (quantity > product.quantity) {
-                    showAlert(`The Stock is ${product.quantity} Product`)
-                    setTimeout(() => closeAlert(), 5000);
-                    return
-                }
                 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
                 if (!currentUser) {
                     window.location.replace("login.html");
                     return;
+                }
+                if (quantity > product.quantity) {
+                    showAlert(`The Stock is ${product.quantity} Product`)
+                    setTimeout(() => closeAlert(), 5000);
+                    return
                 }
 
                 const productData = {
@@ -213,7 +216,6 @@
 
                 localStorage.setItem("cart", JSON.stringify(cart));
                 updateCartCount();
-                window.location.reload();
             });
             updateCartCount();
 
