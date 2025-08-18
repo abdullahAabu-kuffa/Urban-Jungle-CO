@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cart.forEach((item) => {
             const itemEl = document.createElement("tr");
             itemEl.innerHTML = `
+            <td class="client-name">${item.currentUser.name}</td>
                <td class="orders-product-cell">
                    <img src=${item.imageSrc} alt="Golden Glow">
                    <span class="name">${item.name}</span>
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (cart == null || cart.length === 0) {
         const itemEl = document.createElement("tr");
-        itemEl.innerHTML = `<td colspan="5" class="empty-cart">No items in the cart</td>`;
+        itemEl.innerHTML = `<td colspan="6" class="empty-cart">No items in the cart</td>`;
         cartBody.appendChild(itemEl);
     } else {
         renderCart();
@@ -63,6 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
         item.addEventListener("click", (e) => {
             item.nextElementSibling.style.display = "none"
             let order = {
+                currentUser: {
+                    name: e.target.parentElement.parentElement.querySelector(".client-name").textContent
+                },
                 name: e.target.parentElement.parentElement.querySelector(".name").textContent,
                 price: e.target.parentElement.previousElementSibling.textContent,
                 quantity: e.target.parentElement.previousElementSibling.previousElementSibling.textContent,
@@ -115,19 +119,19 @@ document.addEventListener("DOMContentLoaded", () => {
         acceptedOrders.forEach((item) => {
             const itemEl = document.createElement("tr");
             itemEl.innerHTML = `
-               <td class="orders-product-cell">
-                   <img src=${item.imageSrc} alt="Golden Glow">
-                   <span class="name">${item.name}</span>
-                </td>
-                <td>${item.price}</td>
-                <td>${item.quantity}</td>
-                <td>$${parseFloat(item.price.replace(item.price[0], '')) * parseInt(item.quantity)}</td>
-                <td class="orders-actions">
-                   <i class="fa-solid fa-check accepted-btn"></i>
-                </td>
-            `;
+        <td>${item.currentUser ? item.currentUser.name : "Unknown"}</td>
+        <td class="orders-product-cell">
+            <img src=${item.imageSrc} alt="Golden Glow">
+            <span class="name">${item.name}</span>
+        </td>
+        <td>${item.price}</td>
+        <td>${item.quantity}</td>
+        <td>$${parseFloat(item.price.replace(item.price[0], '')) * parseInt(item.quantity)}</td>
+        
+    `;
             prevBody.appendChild(itemEl);
         });
+
     }
     function updateAcceptedOrdersCount() {
         const countEl = document.querySelector('.total-orders-accepted');

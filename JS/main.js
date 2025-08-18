@@ -568,3 +568,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // localStorage.removeItem("previousOrders");
 
+// wishlist
