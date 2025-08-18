@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // functionality to show products in the shop page
 document.addEventListener("DOMContentLoaded", () => {
     const productContainer = document.querySelector(".products-container");
-    const filterSelect = document.getElementById("filter-products"); // 👈 your dropdown
+    const filterSelect = document.getElementById("filter-products"); // your dropdown
     let products = JSON.parse(localStorage.getItem("products")) || [];
 
     // Show results count
@@ -281,13 +281,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderProducts(list = products) {
         if (!productContainer) return;
 
-        productContainer.innerHTML = "";
+
 
         if (list.length === 0) {
-            productContainer.innerHTML = "<p class='no-products'>No products available</p>";
+            // productContainer.innerHTML = "<p class='no-products'>No products available</p>";
             return;
         }
-
+        productContainer.innerHTML = "";
         list.forEach(product => {
             const productEl = document.createElement("a");
             productEl.classList.add("col-prodact");
@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 👇 Filtering / Sorting logic
+    // Filtering / Sorting logic
     function filterProducts() {
         let sortedProducts = [...products];
 
@@ -426,7 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProducts();
     updateCartCount();
 
-    // 👇 Event for filter dropdown
+    //  Event for filter dropdown
     if (filterSelect) {
         filterSelect.addEventListener("change", filterProducts);
     }
@@ -449,12 +449,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderProducts() {
         if (!productContainer) return;
 
-        productContainer.innerHTML = "";
 
         if (filteredProducts.length === 0) {
-            productContainer.innerHTML = "<p class='no-products'>No products available</p>";
+            // productContainer.innerHTML = "<p class='no-products'>No products available</p>";
             return;
         }
+        productContainer.innerHTML = "";
 
         filteredProducts.forEach(product => {
             const productEl = document.createElement("a");
