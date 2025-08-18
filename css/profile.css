@@ -2,8 +2,8 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* background: linear-gradient(to right, #2177ce, #b32b2b); */  
-    background: linear-gradient(to right,var(--main-bg-Color),#36490c);
+    /* background: linear-gradient(to right, #2177ce, #b32b2b); */
+    background: linear-gradient(to right, var(--main-bg-Color), #36490c);
     margin: 0;
     padding: 0;
 }
@@ -17,6 +17,12 @@ body {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: 0.3s ease-in-out;
+}
+
+@media (max-width:400px) {
+    .profile-container {
+        margin: 40px 15px;
+    }
 }
 
 .profile-container:hover {
@@ -97,7 +103,8 @@ body {
 .logout-btn:hover {
     background: #d32f2f;
 }
-.container-title{
+
+.container-title {
     margin: 50px auto;
     text-align: center;
     font-size: 1.5rem;
@@ -105,17 +112,20 @@ body {
     text-transform: uppercase;
     text-decoration: underline;
 }
+
 .orders-table {
-    width: 100% !important;
     margin-bottom: 40px;
-    margin-right: 50px !important;
+    max-width: 100%;
+    max-height: 400px;
+    overflow-x: auto;
 }
+
 .orders-wrapper {
-    /* width: 100%; */
+    overflow-x: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-left: 60px;
+    width: 1000px;
+    margin: 0 auto;
     justify-content: space-between;
     scrollbar-width: thin;
     scroll-behavior: smooth;

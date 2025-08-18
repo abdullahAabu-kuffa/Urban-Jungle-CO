@@ -13,7 +13,7 @@ function render() {
       <td>${p.category}</td>
       <td><img src="${p.image}" alt="${p.name}" width="50"></td>
       <td>${p.quantity}</td>
-      <td>${p.description}</td>
+      <td class = "description-input">${p.description}</td>
       <td class="actions">
         <i class="fa-solid fa-pencil edit-icon" onclick="editProduct(${i})"></i>
         <i class="fa-solid fa-trash delete-icon" onclick="deleteProduct(${i})"></i>
@@ -23,6 +23,14 @@ function render() {
 
   localStorage.setItem("products", JSON.stringify(products));
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const descriptionInput = document.querySelector(".input-description");
+  if (!descriptionInput) return;
+
+  // Set default description
+  descriptionInput.value = "It is adding a calm and serene atmosphere. Easy to care for and grows beautifully indoors or outdoors.";
+});
 
 // add new product
 form.addEventListener("submit", (e) => {
@@ -83,8 +91,8 @@ searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
 
 
-  const filtered = products.filter(p => 
-    p.name.toLowerCase().includes(value) || 
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(value) ||
     p.category.toLowerCase().includes(value)
   );
 
@@ -104,4 +112,5 @@ searchInput.addEventListener("input", (e) => {
     </tr>
   `).join("");
 });
+
 

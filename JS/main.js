@@ -117,13 +117,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Functionality to add products to the cart
 document.addEventListener('DOMContentLoaded', () => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || []
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
     function updateCartCount() {
         const countEl = document.querySelector('.count-orders');
         if (!countEl) return;
         const totalItems = cart.reduce((sum, p) => sum + (Number(p.quantity) || 0), 0);
         countEl.textContent = totalItems;
     }
+
+    updateCartCount(); // run once on page load
+
     document.querySelectorAll(".add-to-cart-icon").forEach((btn) => {
         btn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -140,8 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
             if (!currentUser) {
                 window.location.replace("html/login.html");
-            }
-            else {
+            } else {
                 const productData = { name, price, category, imageSrc, quantity, currentUser };
                 const existingProduct = cart.find(item => item.name === name);
                 if (existingProduct) {
@@ -150,12 +153,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     cart.push(productData);
                 }
                 localStorage.setItem("cart", JSON.stringify(cart));
+
+                // just update cart count without reloading the page
                 updateCartCount();
-                window.location.reload();
             }
         });
     });
 });
+
 
 //for home and shop
 // Functionality to redirect to product details page when a product is clicked
@@ -281,8 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderProducts(list = products) {
         if (!productContainer) return;
 
-
-
         if (list.length === 0) {
             // productContainer.innerHTML = "<p class='no-products'>No products available</p>";
             return;
@@ -295,21 +298,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="image">
                     <img src="${product.image}" alt="${product.name}">
                 </div>
+                <div class = "to-flex">
                 <div class="title-img">
-                    <ul>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                    </ul>
-                    <h5 class="name">${product.name}</h5>
-                    <p class="category">${product.category}</p>
-                    <p class="price">${product.price}</p>
+                <h5 class="name">${product.name}</h5>
+                <p class="category">${product.category}</p>
+                <p class="price">$${product.price} </p>
+                <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                <div class="add-to-cart">Add to cart</div>
+                </i>
+                </div>
+                <div class = "wishlist">
+                    <i class="fa-regular fa-star wishlist-click"></i>
                     <p class="quantity">Stock: ${product.quantity}</p>
-                    <i class="fa-solid fa-cart-plus add-to-cart-icon">
-                        <div class="add-to-cart">Add to cart</div>
-                    </i>
+                </div>
                 </div>
             `;
             productContainer.appendChild(productEl);
@@ -342,8 +343,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Add to cart button
+
         document.querySelectorAll(".add-to-cart-icon").forEach((btn) => {
             btn.addEventListener("click", function (e) {
+                updateCartCount();
+
                 e.preventDefault();
                 e.stopPropagation(); // stop product-details navigation
 
@@ -374,8 +378,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 localStorage.setItem("cart", JSON.stringify(cart));
 
-                updateCartCount();
                 window.location.reload();
+                updateCartCount();
             });
         });
     }
@@ -418,14 +422,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
                 break;
         }
-
         renderProducts(sortedProducts);
     }
-
     // Initial load
     renderProducts();
     updateCartCount();
-
     //  Event for filter dropdown
     if (filterSelect) {
         filterSelect.addEventListener("change", filterProducts);
@@ -449,7 +450,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderProducts() {
         if (!productContainer) return;
 
-
         if (filteredProducts.length === 0) {
             // productContainer.innerHTML = "<p class='no-products'>No products available</p>";
             return;
@@ -463,24 +463,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="image">
                     <img src="${product.image}" alt="${product.name}">
                 </div>
+                <div class = "to-flex">
                 <div class="title-img">
-                    <ul>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                        <li><i class="fa-regular fa-star"></i></li>
-                    </ul>
-                    <h5 class="name">${product.name}</h5>
-                    <p class="category">${product.category}</p>
-                    <p class="price">${product.price}</p>
+                <h5 class="name">${product.name}</h5>
+                <p class="category">${product.category}</p>
+                <p class="price">$${product.price} </p>
+                <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                <div class="add-to-cart">Add to cart</div>
+                </i>
+                </div>
+                <div class = "wishlist">
+                    <i class="fa-regular fa-star wishlist-click"></i>
                     <p class="quantity">Stock: ${product.quantity}</p>
-                    <i class="fa-solid fa-cart-plus add-to-cart-icon">
-                        <div class="add-to-cart">Add to cart</div>
-                    </i>
+                </div>
                 </div>
             `;
             productContainer.appendChild(productEl);
+
         });
 
         bindProductEvents();
@@ -502,7 +501,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     image: product.querySelector("img").src,
                     quantity: quantityText.replace("Stock:", "").trim()
                 };
-
                 // Save selected product for details page
                 localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
                 window.location.href = "/html/product-details.html";
@@ -568,4 +566,47 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // localStorage.removeItem("previousOrders");
 
-// wishlist
+
+//wish list
+document.addEventListener("DOMContentLoaded", () => {
+    let wishList = JSON.parse(localStorage.getItem("wishList")) || [];
+
+    const wishListClick = document.querySelectorAll(".wishlist-click");
+
+    wishListClick.forEach((wish) => {
+        const productElement = wish.closest(".col-prodact");
+        const productName = productElement.querySelector(".name").textContent;
+
+        if (wishList.some(item => item.name === productName)) {
+            wish.style.color = "#f8f403ff";
+        } else {
+            wish.style.color = "";
+        }
+
+        wish.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const order = {
+                name: productName,
+                price: productElement.querySelector(".price").textContent,
+                quantity: productElement.querySelector(".quantity").textContent,
+                imageSrc: productElement.querySelector("img").src
+            };
+
+
+            const exists = wishList.some(item => item.name === order.name);
+
+            if (!exists) {
+                wishList.push(order);
+                wish.style.color = "#f8f403ff";
+            } else {
+                wishList = wishList.filter(item => item.name !== order.name);
+                wish.style.color = "";
+            }
+
+            localStorage.setItem("wishList", JSON.stringify(wishList));
+        });
+    });
+});
+

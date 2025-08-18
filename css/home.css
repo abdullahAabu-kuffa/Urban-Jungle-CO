@@ -78,6 +78,10 @@ section .content .col h2 {
     color: var(--main-font-color);
 }
 
+.trending-products .content .col-prodact .title-img i {
+    color: #ccc;
+}
+
 .trending-products .content .col-prodact .title-img h5 {
     font-size: 17px;
     font-weight: normal;

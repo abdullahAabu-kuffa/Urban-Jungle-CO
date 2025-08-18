@@ -204,6 +204,7 @@ header .cart-orders .head h3 {
 header .cart-orders .cart-orders-items {
     padding: 0 10px;
     height: 500px;
+    overflow-y: auto;
 }
 
 header .close-orders-btn {
@@ -302,7 +303,7 @@ header .check-out:hover {
 }
 
 header .cart-orders .pending {
-    color: rgb(176, 176, 50);
+    color: rgb(234, 234, 65);
     font-size: 12px;
     align-self: center;
     margin-right: 30px;
@@ -555,4 +556,31 @@ footer .copy-right {
     font-size: 25px;
     color: red;
     text-align: center;
+}
+
+.quantity {
+    margin-top: 5px;
+
+}
+
+.col-prodact {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.to-flex {
+
+    max-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.wishlist {
+    padding-top: 5px;
+    text-align: end;
+}
+
+.wishlist i {
+    text-align: left;
 }

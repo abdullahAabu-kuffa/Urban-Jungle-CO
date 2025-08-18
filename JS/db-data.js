@@ -63,6 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
     acceptedBtns.forEach((item) => {
         item.addEventListener("click", (e) => {
             item.nextElementSibling.style.display = "none"
+            if (document.querySelector(".pending")) {
+                document.querySelector(".pending").innerHTML = "accepted";
+                document.querySelector(".pending").style.color = "#6e941bff";
+            }
             let order = {
                 currentUser: {
                     name: e.target.parentElement.parentElement.querySelector(".client-name").textContent
