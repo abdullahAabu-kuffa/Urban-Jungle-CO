@@ -64,27 +64,55 @@
         form.reset();
 
         // show messages in dashboard
-        });
-        const messageBox = document.querySelector(".message-box");
+    });
+        // const messagesContainer = document.querySelector(".messages");
+        // let messages = JSON.parse(localStorage.getItem("contact")) || [];
+
+        // if (messagesContainer) {
+        //     messagesContainer.innerHTML = "";
+
+        //     messages.forEach((message) => {
+        //         messagesContainer.innerHTML += `
+        //         <div class="message-box">
+        //             <div class="icon"><i class="fa-solid fa-comments"></i></div>
+        //             <p>
+        //                 ${message.message}
+        //             </p>
+        //             <div class="client">
+        //                 <img src="../images/about/testimonial.png" alt="Client">
+        //                 <span> ${message.nameField.value}</span>
+        //             </div>
+        //         </div>`
+
+
+        //     })
+        // }
+        const messagesContainer = document.querySelector(".messages");
         let messages = JSON.parse(localStorage.getItem("contact")) || [];
+        // let message = {
+        //     name: "Mustafa",
+        //     email: "mustafa@example.com",
+        //     phone: "1234567890",
+        //     message: "Hello, this is a test messa."
+        // };
+        // messages.push(message);
+        // localStorage.setItem('contact', JSON.stringify(messages));
+        if (messagesContainer) {
+            messagesContainer.innerHTML = "";
 
-        if (messageBox) {
-
-            messages.forEach((message) =>{
-                messageBox.appendChild(`
-            <div class="icon"><i class="fa-solid fa-comments"></i></div>
-
-            <p class="user-message">
-            ${message.messageField}
-            </p>
-            <div class="client">
+            messages.forEach((message) => {
+                messagesContainer.innerHTML += `
+        <div class="message-box">
+          <div class="icon"><i class="fa-solid fa-comments"></i></div>
+          <p>
+            ${message.message}
+          </p>
+          <div class="client">
             <img src="../images/about/testimonial.png" alt="Client">
-            <span class="user-name">${message.nameField}</span>
-            </div>` 
-        )
-        console.log(message.messageField, message.nameField);
-
-            })
+            <span>${message.name}</span>
+          </div>
+        </div>`;
+            });
         }
     
 });
