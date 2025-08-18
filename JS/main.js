@@ -263,62 +263,176 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// functionallity to load product after adding it from the admin dashboard for shop
+// functionality to show products in the shop page
 document.addEventListener("DOMContentLoaded", () => {
     const productContainer = document.querySelector(".products-container");
+    const filterSelect = document.getElementById("filter-products"); // 👈 your dropdown
     let products = JSON.parse(localStorage.getItem("products")) || [];
-    if (document.querySelector('.show')) {
-        document.querySelector('.show').innerHTML = `Showing all ${products.length} results`;
+
+    // Show results count
+    if (products.length > 0) {
+        const resultsInfo = document.querySelector('.show');
+        if (resultsInfo) {
+            resultsInfo.innerHTML = `Showing all ${products.length} results`;
+        }
     }
-    if (productContainer && (products.length === 0 || !products)) {
-        productContainer.innerHTML = "";
-        productContainer.innerHTML = "<p class='no-products'>No products available</p>"; isNoavailable = true;
-    }
-    function renderProducts() {
+
+    // Render products
+    function renderProducts(list = products) {
         if (!productContainer) return;
-        products.forEach(product => {
+
+        productContainer.innerHTML = "";
+
+        if (list.length === 0) {
+            productContainer.innerHTML = "<p class='no-products'>No products available</p>";
+            return;
+        }
+
+        list.forEach(product => {
             const productEl = document.createElement("a");
             productEl.classList.add("col-prodact");
             productEl.innerHTML = `
                 <div class="image">
-                <img src="${product.imageSrc}" alt="${product.name}">
+                    <img src="${product.image}" alt="${product.name}">
                 </div>
-                
                 <div class="title-img">
-                        <ul>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                        </ul>
-                        <h5 class="name">${product.name}</h5>
-                        <p class="category">${product.category}</p>
-                        <p class="price">${product.price}</p>
-                        <p class="quantity">Stock:${product.quantity}</p>
-                        <i class="fa-solid fa-cart-plus add-to-cart-icon">
-                    <div class="add-to-cart">Add to cart</div>
-                </i>
-                    </div>
-                `;
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5 class="name">${product.name}</h5>
+                    <p class="category">${product.category}</p>
+                    <p class="price">${product.price}</p>
+                    <p class="quantity">Stock: ${product.quantity}</p>
+                    <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                        <div class="add-to-cart">Add to cart</div>
+                    </i>
+                </div>
+            `;
             productContainer.appendChild(productEl);
-
         });
-        const productLinks = document.querySelectorAll(".col-prodact");
-        productLinks.forEach(product => {
+
+        bindProductEvents();
+    }
+
+    // Handle product clicks + cart
+    function bindProductEvents() {
+        // Navigate to product details
+        document.querySelectorAll(".col-prodact").forEach(product => {
             product.addEventListener("click", (e) => {
                 e.preventDefault();
+
+                let quantityText = product.querySelector('.quantity').textContent;
+
+                const clickedProduct = {
+                    name: product.querySelector(".name").textContent,
+                    price: product.querySelector(".price").textContent,
+                    category: product.querySelector(".category").textContent,
+                    image: product.querySelector("img").src,
+                    quantity: quantityText.replace("Stock:", "").trim()
+                };
+
+                // Save selected product for details page
+                localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
+                window.location.href = "/html/product-details.html";
+            });
+        });
+
+        // Add to cart button
+        document.querySelectorAll(".add-to-cart-icon").forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation(); // stop product-details navigation
+
+                const product = btn.closest(".col-prodact");
                 const name = product.querySelector(".name").textContent;
                 const price = product.querySelector(".price").textContent;
                 const category = product.querySelector(".category").textContent;
                 const imageSrc = product.querySelector("img").src;
-                window.location.href = `/html/product-details.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&category=${encodeURIComponent(category)}&imageSrc=${encodeURIComponent(imageSrc)}`;
 
+                // default quantity = 1 when added to cart
+                const quantity = 1;
+
+                // check logged in user
+                const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+                if (!currentUser) {
+                    window.location.replace("html/login.html");
+                    return;
+                }
+
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                const existingProduct = cart.find(item => item.name === name && item.currentUser === currentUser);
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push({ name, price, category, imageSrc, quantity, currentUser });
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+                updateCartCount();
+                window.location.reload();
             });
         });
     }
+
+    // Update cart count in header/badge
+    function updateCartCount() {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const count = cart
+            .filter(item => item.currentUser === currentUser)
+            .reduce((acc, item) => acc + item.quantity, 0);
+
+        const cartCountEl = document.querySelector(".cart-count");
+        if (cartCountEl) {
+            cartCountEl.textContent = count;
+        }
+    }
+
+    // 👇 Filtering / Sorting logic
+    function filterProducts() {
+        let sortedProducts = [...products];
+
+        switch (filterSelect.value) {
+            case "category": // sort by category (A–Z)
+                sortedProducts.sort((a, b) => a.category.localeCompare(b.category));
+                break;
+            case "price": // low to high
+                sortedProducts.sort((a, b) =>
+                    parseFloat(a.price.replace(/[^0-9.]/g, "")) -
+                    parseFloat(b.price.replace(/[^0-9.]/g, ""))
+                );
+                break;
+            case "price-desc": // high to low
+                sortedProducts.sort((a, b) =>
+                    parseFloat(b.price.replace(/[^0-9.]/g, "")) -
+                    parseFloat(a.price.replace(/[^0-9.]/g, ""))
+                );
+                break;
+            default: // default sort (by name)
+                sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+        }
+
+        renderProducts(sortedProducts);
+    }
+
+    // Initial load
     renderProducts();
+    updateCartCount();
+
+    // 👇 Event for filter dropdown
+    if (filterSelect) {
+        filterSelect.addEventListener("change", filterProducts);
+    }
 });
+
+
 
 
 
@@ -326,60 +440,131 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //home 
-
 document.addEventListener("DOMContentLoaded", () => {
     const productContainer = document.querySelector(".products-container-home");
     let products = JSON.parse(localStorage.getItem("products")) || [];
     let filteredProducts = products.slice(0, 3);
-    if (productContainer && (filteredProducts.length === 0 || !filteredProducts)) {
-        return;
-    }
+
+    // Render products
     function renderProducts() {
         if (!productContainer) return;
+
         productContainer.innerHTML = "";
+
+        if (filteredProducts.length === 0) {
+            productContainer.innerHTML = "<p class='no-products'>No products available</p>";
+            return;
+        }
+
         filteredProducts.forEach(product => {
             const productEl = document.createElement("a");
             productEl.classList.add("col-prodact");
             productEl.innerHTML = `
                 <div class="image">
-                <img src="${product.image}" alt="${product.name}">
+                    <img src="${product.image}" alt="${product.name}">
                 </div>
                 <div class="title-img">
-                        <ul>
-                            <li><i class="fa-regular fa-star"></i></li>
-                        </ul>
-                        <h5 class="name">${product.name}</h5>
-                        <p class="category">${product.category}</p>
-                        <p class="price">${product.price}</p>
-                        <p class="quantity">Stock:${product.quantity} </p>
-                        <i class="fa-solid fa-cart-plus add-to-cart-icon">
-                    <div class="add-to-cart">Add to cart</div>
-                             </i>
-                    </div>
-                `;
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5 class="name">${product.name}</h5>
+                    <p class="category">${product.category}</p>
+                    <p class="price">${product.price}</p>
+                    <p class="quantity">Stock: ${product.quantity}</p>
+                    <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                        <div class="add-to-cart">Add to cart</div>
+                    </i>
+                </div>
+            `;
             productContainer.appendChild(productEl);
+        });
 
+        bindProductEvents();
+    }
+
+    // Handle product clicks + cart
+    function bindProductEvents() {
+        // Navigate to product details
+        document.querySelectorAll(".col-prodact").forEach(product => {
+            product.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                let quantityText = product.querySelector('.quantity').textContent;
+
+                const clickedProduct = {
+                    name: product.querySelector(".name").textContent,
+                    price: product.querySelector(".price").textContent,
+                    category: product.querySelector(".category").textContent,
+                    image: product.querySelector("img").src,
+                    quantity: quantityText.replace("Stock:", "").trim()
+                };
+
+                // Save selected product for details page
+                localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
+                window.location.href = "/html/product-details.html";
+            });
+        });
+
+        // Add to cart button
+        document.querySelectorAll(".add-to-cart-icon").forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation(); // stop product-details navigation
+
+                const product = btn.closest(".col-prodact");
+                const name = product.querySelector(".name").textContent;
+                const price = product.querySelector(".price").textContent;
+                const category = product.querySelector(".category").textContent;
+                const imageSrc = product.querySelector("img").src;
+
+                // default quantity = 1 when added to cart
+                const quantity = 1;
+
+                // check logged in user
+                const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+                if (!currentUser) {
+                    window.location.replace("html/login.html");
+                    return;
+                }
+
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                const existingProduct = cart.find(item => item.name === name && item.currentUser === currentUser);
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push({ name, price, category, imageSrc, quantity, currentUser });
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+                updateCartCount();
+                window.location.reload();
+            });
         });
     }
+
+    // Update cart count in header/badge
+    function updateCartCount() {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const count = cart
+            .filter(item => item.currentUser === currentUser)
+            .reduce((acc, item) => acc + item.quantity, 0);
+
+        const cartCountEl = document.querySelector(".cart-count");
+        if (cartCountEl) {
+            cartCountEl.textContent = count;
+        }
+    }
+
+    // Initial load
     renderProducts();
-    const productLinks = document.querySelectorAll(".col-prodact");
-    productLinks.forEach(product => {
-        product.addEventListener("click", (e) => {
-            e.preventDefault();
-            let quantityText = product.querySelector('.quantity').textContent;
-            const clickedProduct = {
-                name: product.querySelector(".name").textContent,
-                price: product.querySelector(".price").textContent,
-                category: product.querySelector(".category").textContent,
-                image: product.querySelector("img").src,
-                quantity: quantityText.replace("Stock:", "").trim()
-            };
-            localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
-            window.location.href = "/html/product-details.html";
-        });
-    });
-
+    updateCartCount();
 });
-
 // localStorage.removeItem("previousOrders");
 
