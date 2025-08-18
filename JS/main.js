@@ -301,58 +301,126 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const productContainer = document.querySelector(".products-container");
     let products = JSON.parse(localStorage.getItem("products")) || [];
-    if (document.querySelector('.show')) {
-        document.querySelector('.show').innerHTML = `Showing all ${products.length} results`;
+
+    // Show results count
+    if (products.length > 0) {
+        const resultsInfo = document.querySelector('.show');
+        if (resultsInfo) {
+            resultsInfo.innerHTML = `Showing all ${products.length} results`;
+        }
     }
-    if (productContainer && (products.length === 0 || !products)) {
-        productContainer.innerHTML = "";
-        productContainer.innerHTML = "<p class='no-products'>No products available</p>"; isNoavailable = true;
-    }
+
+    // Render products
     function renderProducts() {
         if (!productContainer) return;
+
+        // Clear default/static content
+        productContainer.innerHTML = "";
+
+        if (products.length === 0) {
+            productContainer.innerHTML = "<p class='no-products'>No products available</p>";
+            return;
+        }
+
         products.forEach(product => {
             const productEl = document.createElement("a");
             productEl.classList.add("col-prodact");
             productEl.innerHTML = `
                 <div class="image">
-                <img src="${product.imageSrc}" alt="${product.name}">
+                    <img src="${product.image}" alt="${product.name}">
                 </div>
-                
                 <div class="title-img">
-                        <ul>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                            <li><i class="fa-regular fa-star"></i></li>
-                        </ul>
-                        <h5 class="name">${product.name}</h5>
-                        <p class="category">${product.category}</p>
-                        <p class="price">${product.price}</p>
-                        <p class="quantity">Stock:${product.quantity}</p>
-                        <i class="fa-solid fa-cart-plus add-to-cart-icon">
-                    <div class="add-to-cart">Add to cart</div>
-                </i>
-                    </div>
-                `;
+                    <ul>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                        <li><i class="fa-regular fa-star"></i></li>
+                    </ul>
+                    <h5 class="name">${product.name}</h5>
+                    <p class="category">${product.category}</p>
+                    <p class="price">${product.price}</p>
+                    <p class="quantity">Stock: ${product.quantity}</p>
+                    <i class="fa-solid fa-cart-plus add-to-cart-icon">
+                        <div class="add-to-cart">Add to cart</div>
+                    </i>
+                </div>
+            `;
             productContainer.appendChild(productEl);
-
         });
-        const productLinks = document.querySelectorAll(".col-prodact");
-        productLinks.forEach(product => {
+
+        // Bind click + cart events
+        bindProductEvents();
+    }
+
+    // Attach events (details + add-to-cart)
+    function bindProductEvents() {
+        // Product details navigation
+        document.querySelectorAll(".col-prodact").forEach(product => {
             product.addEventListener("click", (e) => {
                 e.preventDefault();
                 const name = product.querySelector(".name").textContent;
                 const price = product.querySelector(".price").textContent;
                 const category = product.querySelector(".category").textContent;
                 const imageSrc = product.querySelector("img").src;
-                window.location.href = `/html/product-details.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&category=${encodeURIComponent(category)}&imageSrc=${encodeURIComponent(imageSrc)}`;
 
+                window.location.href = `/html/product-details.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&category=${encodeURIComponent(category)}&imageSrc=${encodeURIComponent(imageSrc)}`;
+            });
+        });
+
+        // Add-to-cart click
+        document.querySelectorAll(".add-to-cart-icon").forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation(); // stop product-details navigation
+
+                const product = btn.closest(".col-prodact");
+                const name = product.querySelector(".name").textContent;
+                const price = product.querySelector(".price").textContent;
+                const category = product.querySelector(".category").textContent;
+                const imageSrc = product.querySelector("img").src;
+                const quantity = 1;
+
+                const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+                if (!currentUser) {
+                    window.location.replace("html/login.html");
+                    return;
+                }
+
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                const existingProduct = cart.find(item => item.name === name && item.currentUser === currentUser);
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push({ name, price, category, imageSrc, quantity, currentUser });
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                // updateCartCount();
+                window.location.reload();
             });
         });
     }
+
+    // Update cart count in header/badge
+    function updateCartCount() {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const count = cart.filter(item => item.currentUser === currentUser)
+            .reduce((acc, item) => acc + item.quantity, 0);
+
+        const cartCountEl = document.querySelector(".cart-count");
+        if (cartCountEl) {
+            cartCountEl.textContent = count;
+        }
+    }
+
+    // Initial load
     renderProducts();
+    updateCartCount();
 });
+
 
 
 
@@ -417,6 +485,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderProducts();
+    
 });
 
 
