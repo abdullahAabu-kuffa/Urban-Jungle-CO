@@ -566,6 +566,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // localStorage.removeItem("previousOrders");
 
+
 //wish list
 document.addEventListener("DOMContentLoaded", () => {
     let wishList = JSON.parse(localStorage.getItem("wishList")) || [];
@@ -608,3 +609,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
