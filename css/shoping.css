@@ -21,7 +21,10 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    max-width: 1200px
+    max-width: 1200px;
+    position: relative;
+    /* so absolute children stay inside */
+    min-height: 100px;
 }
 
 .trending-products .content .col-prodact {
