@@ -1,3 +1,5 @@
+
+
 const menuBtn = document.getElementById("menu-btn");
 const closeBtn = document.getElementById("close-btn");
 const sidebar = document.getElementById("sidebar");
@@ -78,23 +80,23 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             previousOrders.push(order);
             localStorage.setItem("previousOrders", JSON.stringify(previousOrders));
-            let name = e.target.parentElement.parentElement.querySelector(".name").textContent;
-            let quantityText = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
-            let quantity = parseInt(quantityText.replace("Stock:", "").trim());
-            cart.forEach((product) => {
-                if (product.name == name) {
-                    cart = cart.filter(item => item.name !== name);
-                    localStorage.setItem("cart", JSON.stringify(cart));
+            // cart.forEach((product) => {
+            //     if (product.name == order.name) {
+            //         cart = cart.filter(item => item.name !== order.name);
+            //         localStorage.setItem("cart", JSON.stringify(cart));
+            //         console.log("cart");
+            //     }
+            // });
+            products.forEach((product) => {
+                console.log(product.quantity);
+                if (product.name == order.name) {
+                    product.quantity -= order.quantity;
                 }
-            });
-            products.forEach((p) => {
-                if (p.name === name) {
-                    p.quantity -= quantity;
-                    console.log(p.quantity)
-                }
-            });
+            })
+
             window.location.reload();
         });
+        localStorage.setItem("products", JSON.stringify(products));
         localStorage.setItem("cart", JSON.stringify(cart));
     });
 
@@ -113,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const prevBody = document.querySelector(".prev-orders-items");

@@ -155,6 +155,16 @@ header {
     height: 35px;
 }
 
+@media (max-width:767px) {
+    .filter {
+        flex-direction: column;
+    }
+
+    .filter .sort {
+        margin-top: 20px;
+    }
+}
+
 .filter #filter-products {
     height: 100%;
     padding: 5px;
