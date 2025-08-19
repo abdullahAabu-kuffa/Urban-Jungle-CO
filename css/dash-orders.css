@@ -141,6 +141,7 @@
 
      .orders-wrapper {
        flex-direction: column;
+       margin-bottom: 50px;
      }
 
      .orders-table-wrapper,

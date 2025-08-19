@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Adding a border to the filter button when clicked
 let isBordered = false;
-const selectFilter = document.getElementById(".filter-products");
+const selectFilter = document.getElementById("filter-products");
 if (selectFilter) {
     selectFilter.addEventListener("click", function (e) {
         e.preventDefault();
@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Functionality to add products to the cart
 document.addEventListener('DOMContentLoaded', () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let products = JSON.parse(localStorage.getItem("products")) || [];
 
     function updateCartCount() {
         const countEl = document.querySelector('.count-orders');
@@ -144,19 +145,30 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
             if (!currentUser) {
                 window.location.replace("html/login.html");
-            } else {
-                const productData = { name, price, category, imageSrc, quantity, currentUser };
-                const existingProduct = cart.find(item => item.name === name);
-                if (existingProduct) {
-                    existingProduct.quantity += 1;
-                } else {
-                    cart.push(productData);
-                }
-                localStorage.setItem("cart", JSON.stringify(cart));
-
-                // just update cart count without reloading the page
-                updateCartCount();
             }
+
+            products.forEach((product) => {
+                if (product.name === name) {
+                    if (product.quantity < quantity)
+                        showAlert(`The Stock is ${product.quantity} Product`)
+                    setTimeout(() => closeAlert(), 5000);
+                    return
+                }
+            });
+
+            const productData = { name, price, category, imageSrc, quantity, currentUser };
+            const existingProduct = cart.find(item => item.name === name);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+                console.log("sdfjspofjsjf")
+            } else {
+                cart.push(productData);
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // just update cart count without reloading the page
+            updateCartCount();
+
         });
     });
 });
@@ -287,7 +299,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!productContainer) return;
 
         if (list.length === 0) {
-            // productContainer.innerHTML = "<p class='no-products'>No products available</p>";
             return;
         }
         productContainer.innerHTML = "";
@@ -369,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-                const existingProduct = cart.find(item => item.name === name && item.currentUser === currentUser);
+                const existingProduct = cart.find(item => item.name === name);
                 if (existingProduct) {
                     existingProduct.quantity += 1;
                 } else {
@@ -531,7 +542,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-                const existingProduct = cart.find(item => item.name === name && item.currentUser === currentUser);
+                const existingProduct = cart.find(item => item.name === name);
                 if (existingProduct) {
                     existingProduct.quantity += 1;
                 } else {
@@ -609,4 +620,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-

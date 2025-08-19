@@ -334,6 +334,10 @@ header .cart-orders .pending {
         display: block;
     }
 
+    header {
+        position: relative;
+    }
+
     header #nav-bar-id {
         display: none;
         position: absolute;
@@ -357,6 +361,17 @@ header .cart-orders .pending {
     header #nav-bar-id a:hover {
         color: white;
         background-color: rgb(0 0 0 /50%);
+    }
+
+    header .container-main .nav-bar a .count-orders {
+        left: 30px;
+        top: 2px;
+        background-color: black;
+        color: white;
+    }
+
+    header .cart-orders {
+        width: 350px;
     }
 }
 
