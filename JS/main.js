@@ -196,7 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Functionality to render cart items and handle their removal
 // cart-utils.js
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+let previousOrders = JSON.parse(localStorage.getItem("previousOrders")) || [];
+console.log(previousOrders);
 function updateCartCount() {
     const countEl = document.querySelector('.count-orders');
     if (!countEl) return;
@@ -228,7 +229,37 @@ function renderCart() {
     } else {
         if (emptyMsg) emptyMsg.style.display = "none";
     }
+    //Accepted Orders
+    previousOrders.forEach(item => {
+        const itemEl = document.createElement("div");
+        itemEl.classList.add("cart-orders-item");
+        itemEl.innerHTML = `
+            <div class="cart-orders-item-info">
+                <img src="${item.imageSrc}" width="60" height="60" alt="">
+                <div>
+                    <div class="name">${item.name}</div>
+                    <span class="quantity">${item.quantity}</span>
+                    <span class="x">x</span>
+                    <span class="price">${item.price}</span>
+                </div>
+            </div>
+            <div class="accepted">accepted</div>
+            <button class="cancel-order"><i class="fa-solid fa-times"></i></button>
+        `;
 
+        itemEl.querySelector(".cancel-order").addEventListener("click", () => {
+            const name = itemEl.querySelector(".name").textContent;
+            previousOrders = previousOrders.filter(p => p.name !== name);
+            localStorage.setItem("previousOrders", JSON.stringify(previousOrders));
+            renderCart();
+            updateCartCount();
+            updateTotalPrice();
+        });
+
+        cartContainer.appendChild(itemEl);
+    });
+
+    //pending Orders
     cart.forEach(item => {
         const itemEl = document.createElement("div");
         itemEl.classList.add("cart-orders-item");
