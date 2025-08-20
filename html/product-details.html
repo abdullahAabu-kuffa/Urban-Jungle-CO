@@ -173,6 +173,9 @@
 
             //add to cart
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let products = JSON.parse(localStorage.getItem("products")) || [];
+
+
             function updateCartCount() {
                 const countEl = document.querySelector('.count-orders');
                 if (!countEl) return;
@@ -192,10 +195,20 @@
                 if (!currentUser) {
                     window.location.replace("login.html");
                 }
-                if (quantity > product.quantity) {
-                    showAlert(`The Stock is ${product.quantity} Product`)
+                let isQuentaty = false;
+                let proQuantity;
+                products.forEach((product) => {
+                    if (product.name == productName) proQuantity = product.quantity;
+                    if (product.name == productName && product.quantity >= quantity) {
+                        product.quantity -= quantity;
+                        isQuentaty = true;
+                        localStorage.setItem("products", JSON.stringify(products));
+                    }
+                })
+                if (!isQuentaty) {
+                    showAlert(`The Stock is ${proQuantity} Product`)
                     setTimeout(() => closeAlert(), 5000);
-                    return
+                    return;
                 }
 
                 const productData = {
@@ -215,6 +228,8 @@
                 }
 
                 localStorage.setItem("cart", JSON.stringify(cart));
+                localStorage.setItem("products", JSON.stringify(products));
+
                 updateCartCount();
                 window.location.reload();
             });
