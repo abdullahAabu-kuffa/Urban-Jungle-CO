@@ -168,19 +168,21 @@ body {
   margin-bottom: 50px;
   margin-top: 20px;
   padding: 20px;
-  border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  width: 100%;
 }
 
 .table-Products th,
 .table-Products td {
+  overflow-x: auto;
   padding: 10px;
   border: 1px solid #ddd;
   max-width: 300px;
-  max-height: 200px !important;
+  max-height: 100px !important;
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

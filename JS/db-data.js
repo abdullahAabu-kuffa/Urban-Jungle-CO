@@ -77,13 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             previousOrders.push(order);
             localStorage.setItem("previousOrders", JSON.stringify(previousOrders));
-            products.forEach((product) => {
-                if (product.name == order.name) {
-                    console.log(product.quantity);
-                    product.quantity -= order.quantity;
-                    localStorage.setItem("products", JSON.stringify(products));
-                }
-            })
+
             cart.forEach((product) => {
                 if (product.name == order.name) {
                     cart = cart.filter(item => item.name !== order.name);
@@ -92,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             window.location.reload();
         });
-        localStorage.setItem("products", JSON.stringify(products));
         localStorage.setItem("cart", JSON.stringify(cart));
     });
 
@@ -102,12 +95,21 @@ document.addEventListener("DOMContentLoaded", () => {
         item.addEventListener("click", (e) => {
             window.location.reload();
             let name = e.target.parentElement.parentElement.querySelector(".name").textContent;
+            let quantity = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
+            products.forEach((product) => {
+                if (product.name == name) {
+                    product.quantity += parseInt(quantity);
+                    localStorage.setItem("products", JSON.stringify(products));
+                }
+            })
             cart.forEach((product) => {
                 if (product.name == name) {
                     cart = cart.filter(item => item.name !== name);
                 }
             })
             localStorage.setItem("cart", JSON.stringify(cart));
+            localStorage.setItem("products", JSON.stringify(products));
+
         });
     });
 });
