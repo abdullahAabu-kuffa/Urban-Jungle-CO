@@ -167,14 +167,6 @@
               </tr>
             </thead>
             <tbody class="checkout-items">
-              <tr>
-                <td class="name-product">Golden Glow x 3</td>
-                <td class="subtotal">$255.00</td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td class="total-products">$350.00</td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -233,22 +225,25 @@
   <script src="../JS/main.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let acceptedOrders = JSON.parse(localStorage.getItem("previousOrders")) || [];
       const countOrders = document.querySelector(".checkout-items");
-      const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-      const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-      cart.forEach(item => {
+      const total = acceptedOrders.reduce((acc, item) => acc + parseFloat(item.price.replace(/[^0-9.]/g, "")) * parseInt(item.quantity), 0);
+      const totalQuantity = acceptedOrders.reduce((acc, item) => acc + parseInt(item.quantity), 0);
+      acceptedOrders.forEach(item => {
         const name = item.name;
         const quantity = item.quantity;
-        countOrders.innerHTML = `<tr>
-          <td class="name-product">${cart.name} ${totalQuantity}</td>
+        const total = parseFloat(item.price.replace(/[^0-9.]/g, "")) * parseInt(item.quantity);
+        countOrders.innerHTML += `<tr>
+          <td class="name-product">${item.name} : ${quantity}</td>
           <td class="subtotal">$${total.toFixed(2)}</td>
-          </tr>`;
+          </tr>
+          `;
       });
-    });
-    document.querySelector(".checkout-btn").addEventListener("click", () => {
-      alert("No implemented yet");
-
+      countOrders.innerHTML += `<tr>
+          <td class="name-product">Total: ${totalQuantity}</td>
+          <td class="subtotal">$${total.toFixed(2)}</td>
+          </tr>
+          `;
     });
   </script>
 </body>
