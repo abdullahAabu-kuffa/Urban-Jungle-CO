@@ -65,9 +65,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
+
+//wishlist
 window.addEventListener('DOMContentLoaded', () => {
 
-    //wishlist
     let wishList = JSON.parse(localStorage.getItem('wishList')) || [];
     if (wishList.length === 0) {
         var tr = document.createElement('tr')
@@ -85,12 +87,30 @@ window.addEventListener('DOMContentLoaded', () => {
                 </td>
                 <td>${item.price}</td>
                 <td>${item.quantity.replace(/[^0-9.]/g, '')}</td>
-                <td>$${parseFloat(item.price.replace(/[^0-9.]/g, '')) * parseInt(item.quantity.replace(/[^0-9.]/g, ''))}</td>
+                <td class="orders-actions"><i class="fa-regular fa-star wishlist-click"></i></td>
 
             `;
             tbody.appendChild(itemEl);
         });
-
-
+        const wishListClick = document.querySelectorAll(".wishlist-click");
+        wishListClick.forEach((whish) => {
+            whish.style.color = '#f8f403ff'
+            
+        })
     }
+    
+    document.querySelectorAll('.orders-actions').forEach(actionCell => {
+        actionCell.addEventListener('click', (e) => {
+            const row = e.target.closest("tr");
+            const name = row.querySelector(".name").textContent;
+            wishList = wishList.filter(item => item.name !== name);
+            localStorage.setItem('wishList', JSON.stringify(wishList));
+            row.remove(); 
+            if(wishList.length === 0){
+                var tr = document.createElement('tr')
+                tr.innerHTML = '<td colspan="4">No Items Found</td>'
+                document.querySelector('.wish-items').appendChild(tr)
+            }
+        });
+    });
 })
