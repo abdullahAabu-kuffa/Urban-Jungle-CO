@@ -58,7 +58,7 @@ header .container-main {
     display: flex;
     justify-content: space-between;
     padding: 25px 0;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 header .container-main .nav-bar a {
@@ -80,6 +80,7 @@ header .container-main .nav-bar a i {
     position: relative;
     font-size: 20px;
 }
+
 
 header .container-main .nav-bar a .count-orders {
     position: absolute;
