@@ -65,10 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     acceptedBtns.forEach((item) => {
         item.addEventListener("click", (e) => {
             item.nextElementSibling.style.display = "none"
-            if (document.querySelector(".pending")) {
-                document.querySelector(".pending").innerHTML = "accepted";
-                document.querySelector(".pending").style.color = "#6e941bff";
-            }
+
             let order = {
                 currentUser: {
                     name: e.target.parentElement.parentElement.querySelector(".client-name").textContent
@@ -80,20 +77,19 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             previousOrders.push(order);
             localStorage.setItem("previousOrders", JSON.stringify(previousOrders));
-            // cart.forEach((product) => {
-            //     if (product.name == order.name) {
-            //         cart = cart.filter(item => item.name !== order.name);
-            //         localStorage.setItem("cart", JSON.stringify(cart));
-            //         console.log("cart");
-            //     }
-            // });
             products.forEach((product) => {
-                console.log(product.quantity);
                 if (product.name == order.name) {
+                    console.log(product.quantity);
                     product.quantity -= order.quantity;
+                    localStorage.setItem("products", JSON.stringify(products));
                 }
             })
-
+            cart.forEach((product) => {
+                if (product.name == order.name) {
+                    cart = cart.filter(item => item.name !== order.name);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                }
+            });
             window.location.reload();
         });
         localStorage.setItem("products", JSON.stringify(products));

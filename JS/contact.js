@@ -6,7 +6,7 @@
     const phoneField = document.querySelector('input[name="phone"]');
     const messageField = document.getElementById("message");
     const messageContainer = document.querySelector(".messages");
-
+     if(!form)return;
     form.addEventListener("submit", function(e) {
         e.preventDefault();
 

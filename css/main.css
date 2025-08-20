@@ -310,6 +310,14 @@ header .cart-orders .pending {
 
 }
 
+header .cart-orders .accepted {
+    color: var(--main-color);
+    font-size: 12px;
+    align-self: center;
+    margin-right: 30px;
+
+}
+
 /* ?End Cart Order */
 /* Media Quary */
 @media (max-width:767px) {
@@ -583,7 +591,6 @@ footer .copy-right {
 }
 
 .to-flex {
-
     max-height: 80px;
     display: flex;
     justify-content: space-between;

@@ -95,18 +95,18 @@ window.addEventListener('DOMContentLoaded', () => {
         const wishListClick = document.querySelectorAll(".wishlist-click");
         wishListClick.forEach((whish) => {
             whish.style.color = '#f8f403ff'
-            
+
         })
     }
-    
+
     document.querySelectorAll('.orders-actions').forEach(actionCell => {
         actionCell.addEventListener('click', (e) => {
             const row = e.target.closest("tr");
             const name = row.querySelector(".name").textContent;
             wishList = wishList.filter(item => item.name !== name);
             localStorage.setItem('wishList', JSON.stringify(wishList));
-            row.remove(); 
-            if(wishList.length === 0){
+            row.remove();
+            if (wishList.length === 0) {
                 var tr = document.createElement('tr')
                 tr.innerHTML = '<td colspan="4">No Items Found</td>'
                 document.querySelector('.wish-items').appendChild(tr)

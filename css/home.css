@@ -61,7 +61,12 @@ section .content .col h2 {
     z-index: 0;
 }
 
+.image {
+    padding: 0 !important;
+}
+
 .trending-products .content .col-prodact img {
+    margin: 0 !important;
     width: 100%;
 }
 
@@ -70,17 +75,8 @@ section .content .col h2 {
 
 }
 
-.trending-products .content .col-prodact .title-img ul {
-    list-style-type: none;
-    display: flex;
-    font-size: 12px;
-    padding: 5px 0;
-    color: var(--main-font-color);
-}
 
-.trending-products .content .col-prodact .title-img i {
-    color: #ccc;
-}
+
 
 .trending-products .content .col-prodact .title-img h5 {
     font-size: 17px;
@@ -147,7 +143,7 @@ section .content .col h2 {
     height: 35px;
     padding: 13px 0;
     font-family: 400;
-    background-color: var(--main-font-color);
+    background-color: var(--main-font-color) !important;
     color: white;
     letter-spacing: 1px;
     border-radius: 5px;
