@@ -17,17 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         el.textContent = product.category;
     });
 
-
-
-
     //add to cart
-
-    function updateCartCount() {
-        const countEl = document.querySelector('.count-orders');
-        if (!countEl) return;
-        const totalItems = cart.reduce((sum, p) => sum + (Number(p.quantity) || 0), 0);
-        countEl.textContent = totalItems;
-    }
     const btn = productContainer.querySelector(".add-to-cart-button");
     btn.addEventListener("click", function () {
         const productName = productContainer.querySelector(".name").textContent;
@@ -82,20 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.setItem("cart", JSON.stringify(cart));
         localStorage.setItem("products", JSON.stringify(products));
-
         updateCartCount();
+        window.location.reload();
     });
     updateCartCount();
-
-    function showAlert(message, bgColor) {
-        const alertBox = document.getElementById("custom-alert");
-        const alertMessage = document.getElementById("alert-message");
-        alertBox.style.backgroundColor = bgColor;
-        alertMessage.textContent = message;
-        alertBox.classList.remove("hidden");
-    }
-
-    function closeAlert() {
-        document.getElementById("custom-alert").classList.add("hidden");
-    }
 });

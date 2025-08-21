@@ -119,29 +119,42 @@ let wishList = JSON.parse(localStorage.getItem("wishList")) || [];
 function updateCartCount() {
     // Always get latest cart and user from localStorage
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let count = 0;
+    let countPending = 0;
+    let conntAccepted = 0;
     if (currentUser) {
-        count = cart
+        countPending = cart
             .filter(item => item.currentUser && item.currentUser.email === currentUser.email)
+            .reduce((acc, item) => acc + Number(item.quantity), 0);
+        conntAccepted = previousOrders
+            //.filter(item => item.currentUser && item.currentUser.email === currentUser.email)
             .reduce((acc, item) => acc + Number(item.quantity), 0);
     }
     const cartCountEl = document.querySelector(".count-orders");
     if (cartCountEl) {
-        cartCountEl.textContent = count;
+        cartCountEl.textContent = (countPending + conntAccepted);
     }
 }
 
 
 function updateTotalPrice() {
-    const sumPrice = document.querySelector(".sum");
-    if (!sumPrice) return;
-    let total = 0;
-    cart.forEach(item => {
-        const cleanPrice = parseFloat(item.price.replace(/[^0-9.]/g, "")) || 0;
-        total += cleanPrice * parseFloat(item.quantity || 0);
-    });
-    sumPrice.textContent = `$${total.toFixed(2)}`;
+    const sumPrice = document.querySelector(".sum-pending");
+    if (sumPrice) {
+        let total = 0;
+        cart.forEach(item => {
+            const cleanPrice = parseFloat(item.price.replace(/[^0-9.]/g, "")) || 0;
+            total += cleanPrice * parseFloat(item.quantity || 0);
+        });
+        sumPrice.textContent = `$${total.toFixed(2)}`;
+    }
+    const sumPriceAccepted = document.querySelector(".sum-accepted");
+    if (sumPriceAccepted) {
+        let totalAccepted = 0;
+        previousOrders.forEach(item => {
+            const cleanPrice = parseFloat(item.price.replace(/[^0-9.]/g, "")) || 0;
+            totalAccepted += cleanPrice * parseFloat(item.quantity || 0);
+        });
+        sumPriceAccepted.textContent = `$${totalAccepted.toFixed(2)}`;
+    }
 }
 
 function showAlert(message, bgColor) {
@@ -177,7 +190,7 @@ function renderCart() {
     const emptyMsg = cartContainer.querySelector(".empty-cart");
     cartContainer.querySelectorAll(".cart-orders-item").forEach(el => el.remove());
 
-    if (cart.length === 0) {
+    if (cart.length === 0 && previousOrders === 0) {
         if (emptyMsg) emptyMsg.style.display = "block";
         return;
     } else {
@@ -235,15 +248,13 @@ function renderCart() {
 
         itemEl.querySelector(".cancel-order").addEventListener("click", () => {
             const name = itemEl.querySelector(".name").textContent;
-            const quantity = itemEl.querySelector(".quantity").textContent;
+            const quantityInput = itemEl.querySelector(".quantity").textContent;
+            const quantity = quantityInput ? Number(quantityInput) || 1 : 1;
             cart = cart.filter(p => p.name !== name);
             localStorage.setItem("cart", JSON.stringify(cart));
             products.forEach((product) => {
                 if (product.name == name) {
-                    console.log(product.quantity)
-                    console.log(quantity);
-                    product.quantity += parseInt(quantity);
-                    console.log(product.quantity)
+                    product.quantity += quantity;
                 }
             })
             renderCart();
@@ -331,7 +342,8 @@ document.addEventListener("DOMContentLoaded", () => {
             product.addEventListener("click", (e) => {
                 e.preventDefault();
 
-                let quantityText = product.querySelector('.quantity').textContent;
+                let quantityInput = product.querySelector('.quantity').textContent;
+                const quantity = quantityInput ? Number(quantityInput) || 1 : 1;
                 let name = product.querySelector(".name").textContent;
                 let description;
                 products.forEach((item) => {
@@ -345,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     price: product.querySelector(".price").textContent,
                     category: product.querySelector(".category").textContent,
                     image: product.querySelector("img").src,
-                    quantity: quantityText.replace("Stock:", "").trim(),
+                    quantity: quantity,
                     description: description,
                 };
                 // Save selected product for details page
@@ -381,7 +393,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (product.name == name) {
                         proQuantity = product.quantity;
                         if (product.quantity >= 1) {
-                            product.quantity -= quantity;
+                            product.quantity -= 1;
+                            console.log(typeof product.quantity)
+                            console.log(typeof quantity);
+                            console.log(typeof product.quantity)
+
                             isQuentaty = true;
                         }
                     }
@@ -409,14 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateCartCount();
                 renderCart();
                 // Update the stock number visually
-                const quantityElem = product.querySelector('.quantity');
-                if (quantityElem) {
-                    // Find the updated product in products array
-                    const updatedProduct = products.find(p => p.name === name);
-                    if (updatedProduct) {
-                        quantityElem.textContent = `Stock: ${updatedProduct.quantity}`;
-                    }
-                }
+                window.location.reload();
 
             });
 
@@ -478,4 +487,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
+// localStorage.removeItem('previousOrders');

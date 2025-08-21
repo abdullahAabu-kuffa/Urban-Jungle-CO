@@ -12,6 +12,7 @@ closeBtn.addEventListener("click", () => {
     sidebar.classList.remove("active");
 });
 
+const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
 //
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,14 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderCart() {
         cart.forEach((item) => {
             const itemEl = document.createElement("tr");
+            console.log(item.currentUser.name);
             itemEl.innerHTML = `
             <td class="client-name">${item.currentUser.name}</td>
                <td class="orders-product-cell">
                    <img src=${item.imageSrc} alt="Golden Glow">
                    <span class="name">${item.name}</span>
                 </td>
-                <td>${item.price}</td>
-                <td>${item.quantity}</td>
+                <td class = "price">${item.price}</td>
+                <td >${item.quantity}</td>
                 <td>$${parseFloat(item.price.replace(item.price[0], '')) * parseInt(item.quantity)}</td>
                 <td class="orders-actions">
                    <i class="fa-solid fa-check accepted-btn"></i>
@@ -65,15 +67,17 @@ document.addEventListener("DOMContentLoaded", () => {
     acceptedBtns.forEach((item) => {
         item.addEventListener("click", (e) => {
             item.nextElementSibling.style.display = "none"
-
+            console.log("accepted")
+            console.log(e.target.parentElement.parentElement.querySelector(".client-name").textContent);
             let order = {
                 currentUser: {
                     name: e.target.parentElement.parentElement.querySelector(".client-name").textContent
                 },
                 name: e.target.parentElement.parentElement.querySelector(".name").textContent,
-                price: e.target.parentElement.previousElementSibling.textContent,
+                price: e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent,
                 quantity: e.target.parentElement.previousElementSibling.previousElementSibling.textContent,
-                imageSrc: e.target.parentElement.parentElement.querySelector("img").src
+                imageSrc: e.target.parentElement.parentElement.querySelector("img").src,
+                currentUser: currentUser,
             };
             previousOrders.push(order);
             localStorage.setItem("previousOrders", JSON.stringify(previousOrders));
@@ -84,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     localStorage.setItem("cart", JSON.stringify(cart));
                 }
             });
-            window.location.reload();
+            // window.location.reload();
         });
         localStorage.setItem("cart", JSON.stringify(cart));
     });
@@ -114,12 +118,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+
+//accepted orders display
 document.addEventListener("DOMContentLoaded", () => {
     const prevBody = document.querySelector(".prev-orders-items");
     let acceptedOrders = JSON.parse(localStorage.getItem("previousOrders")) || [];
 
     function renderCart() {
         acceptedOrders.forEach((item) => {
+            // console.log(item.currentUser.name);
             const itemEl = document.createElement("tr");
             itemEl.innerHTML = `
         <td>${item.currentUser ? item.currentUser.name : "Unknown"}</td>
