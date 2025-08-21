@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 products.forEach((product) => {
                     if (product.name == name) proQuantity = product.quantity;
                     if (product.name == name && product.quantity >= 1) {
-                        product.quantity -= quantity;
+                        product.quantity -= parseFloat(quantity || 0);;
                         isQuentaty = true;
                         localStorage.setItem("products", JSON.stringify(products));
                     }
@@ -147,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateCartCount();
                 // Update global cart UI if available
                 renderCart();
+                window.location.reload();
             });
         });
     }

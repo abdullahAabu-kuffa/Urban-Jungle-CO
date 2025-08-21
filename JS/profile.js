@@ -38,7 +38,7 @@ document.querySelector('.logout-btn').addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', () => {
 
     let previousOrder = JSON.parse(localStorage.getItem('previousOrders')) || [];
-    // localStorage.removeItem('previousOrders');
+
     if (previousOrder.length === 0) {
         var tr = document.createElement('tr')
         tr.innerHTML = '<td colspan="4">No Items Found</td>'
