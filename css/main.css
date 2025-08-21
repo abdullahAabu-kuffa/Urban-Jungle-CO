@@ -204,7 +204,7 @@ header .cart-orders .head h3 {
 
 header .cart-orders .cart-orders-items {
     padding: 0 10px;
-    height: 500px;
+    height: 500px !important;
     overflow-y: auto;
 }
 

@@ -197,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // cart-utils.js
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let previousOrders = JSON.parse(localStorage.getItem("previousOrders")) || [];
+let products = JSON.parse(localStorage.getItem("products")) || [];
 
 function updateCartCount() {
     const countEl = document.querySelector('.count-orders');
@@ -284,11 +285,19 @@ function renderCart() {
 
         itemEl.querySelector(".cancel-order").addEventListener("click", () => {
             const name = itemEl.querySelector(".name").textContent;
+            const quantity = itemEl.querySelector(".quantity").textContent;
             cart = cart.filter(p => p.name !== name);
             localStorage.setItem("cart", JSON.stringify(cart));
+            products.forEach((product) => {
+                if (product.name == name) {
+                    product.quantity += parseInt(quantity);
+                    localStorage.setItem("products", JSON.stringify(products));
+                }
+            })
             renderCart();
             updateCartCount();
             updateTotalPrice();
+            window.location.reload();
         });
 
         cartContainer.appendChild(itemEl);
@@ -522,7 +531,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!productContainer) return;
 
         if (filteredProducts.length === 0) {
-            // productContainer.innerHTML = "<p class='no-products'>No products available</p>";
             return;
         }
         productContainer.innerHTML = "";
@@ -687,6 +695,11 @@ document.addEventListener("DOMContentLoaded", () => {
         wish.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
+            const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+            if (!currentUser) {
+                window.location.href = "html/login.html";
+                return;
+            }
 
             const order = {
                 name: productName,
