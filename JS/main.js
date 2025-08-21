@@ -614,7 +614,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!isQuentaty) {
                     console.log("saddsafsd");
                     showAlert(`The Stock is ${proQuantity} Product`)
-                    setTimeout(() => closeAlert(), 50000);
+                    setTimeout(() => closeAlert(), 5000);
                     return;
                 }
                 let cart = JSON.parse(localStorage.getItem("cart")) || [];
