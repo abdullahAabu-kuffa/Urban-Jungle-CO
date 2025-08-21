@@ -621,7 +621,8 @@ footer .copy-right {
     position: fixed;
     top: 100px;
     right: 38%;
-    background: #b53535;
+    text-align: center;
+    background: #d93232;
     color: #f4efef;
     border-radius: 8px;
     padding: 16px 20px;

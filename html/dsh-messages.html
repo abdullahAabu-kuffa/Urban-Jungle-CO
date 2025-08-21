@@ -58,53 +58,7 @@
     </div>
   </div>
   </div>
-  <script>
-    const messagesContainer = document.querySelector(".messages");
-    const profileImage = localStorage.getItem("profileImage") || "../images/home/profile-image.png";
-    let messages = JSON.parse(localStorage.getItem("contact")) || [];
-    // let message = {
-    //   name: "Mustafa",
-    //   email: "mustafa@example.com",
-    //   phone: "1234567890",
-    //   message: "Hello, this is a test messa."
-    // };
-    // messages.push(message);
-    // localStorage.setItem('contact', JSON.stringify(messages));
-    if (messagesContainer) {
-      messagesContainer.innerHTML = "";
-
-      messages.forEach((message) => {
-        messagesContainer.innerHTML += `
-        <div class="message-box">
-          <div class="icon"><i class="fa-solid fa-comments"></i></div>
-          <p>
-            ${message.message}
-          </p>
-          <div class="client">
-            <img src="${message.profileImage}" alt="Client">
-            <span>${message.name}</span>
-          </div>
-        </div>`;
-      });
-    }
-  </script>
-
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const closeBtn = document.getElementById("close-btn");
-    const sidebar = document.getElementById("sidebar");
-
-    menuBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("active");
-    });
-
-    closeBtn.addEventListener("click", () => {
-      sidebar.classList.remove("active");
-    });
-
-  </script>
   <script src="../JS/contact.js"></script>
-
 
 </body>
 
