@@ -72,22 +72,24 @@
         document.querySelector('.profile-name').textContent = currentAdmin.name;
         document.querySelector('.profile-email').textContent = currentAdmin.email;
 
-        const savedImage = currentAdmin.profileImage;
+        const savedImage = localStorage.getItem('profileImageAdmin');
         document.querySelector('.profile-img').src = savedImage || '../images/home/profile-image.png';
       }
     });
-    const editBtn = document.querySelector('.edit-btn');
-    editBtn.addEventListener('change', function (event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          localStorage.setItem('profileImage', e.target.result);
-          document.querySelector('.profile-img').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
+    if (currentAdmin) {
+      const editBtn = document.querySelector('.edit-btn');
+      editBtn.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            localStorage.setItem('profileImageAdmin', e.target.result);
+            document.querySelector('.profile-img').src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
   </script>
 
 </body>
