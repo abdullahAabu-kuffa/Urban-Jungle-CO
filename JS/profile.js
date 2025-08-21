@@ -31,7 +31,7 @@ document.getElementById('selected-image').addEventListener('change', function (e
 // Logout
 document.querySelector('.logout-btn').addEventListener('click', () => {
     localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
+    window.location.replace('/index.html');
 });
 
 // Previous Orders
