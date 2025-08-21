@@ -1,3 +1,16 @@
+const menuBtn = document.getElementById("menu-btn");
+const closeBtn = document.getElementById("close-btn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+});
+
+closeBtn.addEventListener("click", () => {
+  sidebar.classList.remove("active");
+});
+
+
 const form = document.querySelector(".form-section form");
 const tableBody = document.querySelector(".table-Products tbody");
 
