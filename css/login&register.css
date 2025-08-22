@@ -84,7 +84,8 @@ label {
 .error,
 .errorEmail,
 .errorPassword,
-.errorName {
+.errorName,
+.errorRe-Password {
     display: none;
     padding: 0.5rem;
     margin-top: 0.5rem;

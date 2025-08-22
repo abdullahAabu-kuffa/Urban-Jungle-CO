@@ -120,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('re-password');
+    const errorRePassword = document.querySelector('.errorRe-Password');
     const roleInput = document.getElementById('role');
     const errorMessage = document.querySelector('.error');
     const errorName = document.querySelector('.errorName');
@@ -130,11 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         // Reset previous errors
-        [nameInput, emailInput, passwordInput, roleInput].forEach(f => f.style.border = '');
+        [nameInput, emailInput, passwordInput, roleInput, confirmPasswordInput].forEach(f => f.style.border = '');
         errorMessage.style.display = 'none';
         errorEmail.style.display = 'none';
         errorPassword.style.display = 'none';
-
+        errorRePassword.style.display = 'none';
         // Validate empty fields
         if (!nameInput.value || !emailInput.value || !passwordInput.value || !roleInput.value) {
             errorMessage.style.display = 'block';
@@ -171,7 +173,17 @@ document.addEventListener('DOMContentLoaded', () => {
             passwordInput.style.border = '1px solid red';
             return;
         }
-
+        // confirm passowrd
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            errorRePassword.style.display = 'block';
+            errorRePassword.textContent = 'Passwords do not match';
+            errorRePassword.style.textContent='center';
+            errorRePassword.style.color = 'red';
+            
+            confirmPasswordInput.style.border = '1px solid red';
+            return;
+        }
+        errorRePassword.style.display = 'none';
         // Check if email already exists
         let users = JSON.parse(localStorage.getItem('users') || '[]');
         if (users.some(u => u.email === emailVal)) {
@@ -180,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             emailInput.style.border = '1px solid red';
             return;
         }
-
         // Save user
         if (roleInput.value.trim() === 'admin') {
             if (emailInput.value.includes('admin')) {

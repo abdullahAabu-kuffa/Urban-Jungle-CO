@@ -1,3 +1,5 @@
+
+
 let user = JSON.parse(localStorage.getItem('currentUser'));
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -11,8 +13,11 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.profile-role').textContent = 'Guest';
     }
 
-    const savedImage = localStorage.getItem('profileImage');
+    const savedImages = JSON.parse(localStorage.getItem('profileImage')) || [];
+    const imagesArray = Array.isArray(savedImages) ? savedImages : [];
+    const savedImage = imagesArray.find(img => img.id === user.id)?.src;
     document.querySelector('.profile-image img').src = savedImage || '../images/home/profile-image.png';
+
 });
 
 // Save image
@@ -21,24 +26,33 @@ document.getElementById('selected-image').addEventListener('change', function (e
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-            localStorage.setItem('profileImage', e.target.result);
+            let images = JSON.parse(localStorage.getItem('profileImage')) || [];
+            if (!Array.isArray(images)) {
+                images = []; // reset if it's not an array
+            }
+            images = images.filter(img => img.id !== user.id);
+            const imagedata = { id: user.id, src: e.target.result };
+            images.push(imagedata);
+            localStorage.setItem('profileImage', JSON.stringify(images));
+
             document.querySelector('.profile-image img').src = e.target.result;
         };
         reader.readAsDataURL(file);
     }
 });
 
+
 // Logout
 document.querySelector('.logout-btn').addEventListener('click', () => {
     localStorage.removeItem('currentUser');
-    window.location.replace('/index.html');
+    window.location.href = 'login.html';
 });
 
 // Previous Orders
 window.addEventListener('DOMContentLoaded', () => {
 
     let previousOrder = JSON.parse(localStorage.getItem('previousOrders')) || [];
-
+    // localStorage.removeItem('previousOrders');
     if (previousOrder.length === 0) {
         var tr = document.createElement('tr')
         tr.innerHTML = '<td colspan="4">No Items Found</td>'
