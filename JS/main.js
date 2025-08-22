@@ -126,7 +126,7 @@ function updateCartCount() {
             .filter(item => item.currentUser && item.currentUser.email === currentUser.email)
             .reduce((acc, item) => acc + Number(item.quantity), 0);
         conntAccepted = previousOrders
-            //.filter(item => item.currentUser && item.currentUser.email === currentUser.email)
+            .filter(item => item.currentUser && item.currentUser.email === currentUser.email)
             .reduce((acc, item) => acc + Number(item.quantity), 0);
     }
     const cartCountEl = document.querySelector(".count-orders");
