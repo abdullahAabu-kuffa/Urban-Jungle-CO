@@ -14,16 +14,15 @@ closeBtn.addEventListener("click", () => {
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
-//
+// read orders of user
 document.addEventListener("DOMContentLoaded", () => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let checkoutOrders = JSON.parse(localStorage.getItem("checkoutOrders")) || [];
     const cartBody = document.querySelector(".orders-items");
     cartBody.querySelectorAll("tr").forEach(el => el.remove());
 
     function renderCart() {
-        cart.forEach((item) => {
+        checkoutOrders.forEach((item) => {
             const itemEl = document.createElement("tr");
-            console.log(item.currentUser.name);
             itemEl.innerHTML = `
             <td class="client-name">${item.currentUser.name}</td>
                <td class="orders-product-cell">
@@ -44,11 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateCartCount() {
         const countEl = document.querySelector('.total-orders');
         if (!countEl) return;
-        const totalItems = cart.reduce((sum, p) => sum + (Number(p.quantity) || 0), 0);
+        const totalItems = checkoutOrders.reduce((sum, p) => sum + (Number(p.quantity) || 0), 0);
         countEl.textContent = totalItems;
     }
 
-    if (cart == null || cart.length === 0) {
+    if (checkoutOrders == null || checkoutOrders.length === 0) {
         const itemEl = document.createElement("tr");
         itemEl.innerHTML = `<td colspan="6" class="empty-cart">No items in the cart</td>`;
         cartBody.appendChild(itemEl);
@@ -63,12 +62,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let rejectedBtns = document.querySelectorAll(".rejected-btn");
     let previousOrders = JSON.parse(localStorage.getItem("previousOrders")) || [];
     let products = JSON.parse(localStorage.getItem("products")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 
     acceptedBtns.forEach((item) => {
         item.addEventListener("click", (e) => {
             item.nextElementSibling.style.display = "none"
-            console.log("accepted")
-            console.log(e.target.parentElement.parentElement.querySelector(".client-name").textContent);
             let order = {
                 currentUser: {
                     name: e.target.parentElement.parentElement.querySelector(".client-name").textContent
@@ -77,20 +76,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 price: e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent,
                 quantity: e.target.parentElement.previousElementSibling.previousElementSibling.textContent,
                 imageSrc: e.target.parentElement.parentElement.querySelector("img").src,
-                currentUser: currentUser,
             };
             previousOrders.push(order);
             localStorage.setItem("previousOrders", JSON.stringify(previousOrders));
 
+            checkoutOrders.forEach((product) => {
+                if (product.name == order.name) {
+                    checkoutOrders = checkoutOrders.filter(item => item.name !== order.name);
+                    localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
+                }
+            });
             cart.forEach((product) => {
                 if (product.name == order.name) {
                     cart = cart.filter(item => item.name !== order.name);
                     localStorage.setItem("cart", JSON.stringify(cart));
                 }
             });
-            // window.location.reload();
+            window.location.reload();
         });
-        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
     });
 
 
@@ -106,12 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     localStorage.setItem("products", JSON.stringify(products));
                 }
             })
-            cart.forEach((product) => {
+            checkoutOrders.forEach((product) => {
                 if (product.name == name) {
-                    cart = cart.filter(item => item.name !== name);
+                    checkoutOrders = checkoutOrders.filter(item => item.name !== name);
                 }
             })
-            localStorage.setItem("cart", JSON.stringify(cart));
+            localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
             localStorage.setItem("products", JSON.stringify(products));
 
         });
