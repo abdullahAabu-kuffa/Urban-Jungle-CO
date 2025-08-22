@@ -10,6 +10,7 @@
     padding: 2rem 1rem;
     background-image: url(../images/head-img3.avif);
     background-size: cover;
+    position: relative;
 }
 
 .container::after {
