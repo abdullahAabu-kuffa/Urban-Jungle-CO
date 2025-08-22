@@ -27,7 +27,7 @@ if (messagesContainer) {
             ${message.message}
           </p>
           <div class="client">
-            <img src="${message.profileImage}" alt="Client">
+            <img src="${message.img}" alt="Client">
             <span>${message.name}</span>
           </div>
         </div>`;

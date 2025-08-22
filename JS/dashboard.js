@@ -26,7 +26,7 @@ function render() {
       <td>${p.category}</td>
       <td><img src="${p.image}" alt="${p.name}" width="50"></td>
       <td>${p.quantity}</td>
-      <td class = "description-input">${p.description}</td>
+      <td ><div class="description-input">${p.description}</div></td>
       <td class="actions">
         <i class="fa-solid fa-pencil edit-icon" onclick="editProduct(${i})"></i>
         <i class="fa-solid fa-trash delete-icon" onclick="deleteProduct(${i})"></i>

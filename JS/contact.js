@@ -1,14 +1,14 @@
-const menuBtn = document.getElementById("menu-btn");
-const closeBtn = document.getElementById("close-btn");
-const sidebar = document.getElementById("sidebar");
+// const menuBtn = document.getElementById("menu-btn");
+// const closeBtn = document.getElementById("close-btn");
+// const sidebar = document.getElementById("sidebar");
 
-menuBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("active");
-});
+// menuBtn.addEventListener("click", () => {
+//     sidebar.classList.toggle("active");
+// });
 
-closeBtn.addEventListener("click", () => {
-    sidebar.classList.remove("active");
-});
+// closeBtn.addEventListener("click", () => {
+//     sidebar.classList.remove("active");
+// });
 
 
 let messages = JSON.parse(localStorage.getItem("messages")) || [];
@@ -61,14 +61,16 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // if everything is correct store data
-        let profileImage = localStorage.getItem("profileImage") || "../images/home/profile-image.png";
+        // if everything is correct store data "../images/home/profile-image.png"
+        let profileImage = JSON.parse(localStorage.getItem("profileImage")) || []
+        let currentUser=JSON.parse(localStorage.getItem("currentUser"))
+        const img=profileImage.find(img => img.id === currentUser.id)?.src || "../images/home/profile-image.png"
         let newMessage = {
             name: nameField.value,
             email: emailField.value,
             phone: phoneField.value,
             message: messageField.value,
-            profileImage: profileImage
+            profileImage: img
         };
 
         messages.push(newMessage);
