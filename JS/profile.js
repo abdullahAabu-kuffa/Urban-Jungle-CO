@@ -47,7 +47,7 @@ document.getElementById('selected-image').addEventListener('change', function (e
 // Logout
 document.querySelector('.logout-btn').addEventListener('click', () => {
     localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
+    window.location.replace('login.html');
 });
 
 // Previous Orders
@@ -92,7 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (wishList.length === 0) {
         var tr = document.createElement('tr')
-        tr.innerHTML = '<td colspan="4">No Items Found</td>'
+        tr.innerHTML = '<td colspan="5">No Items Found</td>'
         document.querySelector('.wish-items').appendChild(tr)
     }
     else {

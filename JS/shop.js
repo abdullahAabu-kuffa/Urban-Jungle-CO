@@ -8,7 +8,6 @@ if (selectFilter) {
         selectFilter.style.border = isBordered ? "1px dashed var(--main-font-color)" : "none";
     });
 }
-
 // functionality to show products in the shop page
 document.addEventListener("DOMContentLoaded", () => {
     const productContainer = document.querySelector(".products-container");
