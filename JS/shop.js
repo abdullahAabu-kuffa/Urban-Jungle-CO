@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Save selected product for details page
                 localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
-                window.location.href = "/html/product-details.html";
+                window.location.href = "../html/product-details.html";
             });
         });
 
