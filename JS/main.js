@@ -449,9 +449,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-// localStorage.removeItem('previousOrders');
-//localStorage.removeItem('cart');
-// localStorage.removeItem('previousOrders');
+
+localStorage.removeItem('cart');
+localStorage.removeItem('users');
+localStorage.removeItem('previousOrders');
+localStorage.removeItem('currentUser');
+
 
 
 
