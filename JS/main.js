@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.is-logged').innerHTML = 'Profile';
         document.querySelector('.is-logged').addEventListener('click', (e) => {
             e.preventDefault();
-            window.location.href = '../html/profile.html';
+            window.location.href = '/html/profile.html';
         });
     } else {
         document.querySelector('.is-logged').innerHTML = 'Login';
@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
                 // Save selected product for details page
                 localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
-                window.location.href = "../html/product-details.html";
+                window.location.href = "/html/product-details.html";
             });
         });
 
