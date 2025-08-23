@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!currentUser) {
                 localStorage.removeItem('currentAdmin')
-                window.location.href = "html/login.html";
+                window.location.href = "../html/login.html";
                 return;
             }
 
