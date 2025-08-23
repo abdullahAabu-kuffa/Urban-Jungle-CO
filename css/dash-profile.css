@@ -39,32 +39,44 @@
   margin: 5px 0 15px;
 }
 
-.edit-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  background-color: #4CAF50;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
 .logout-btn {
-  background-color: #f44336;
+  display: inline-block;
+  background: #f44336;
   color: #fff;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  transition: 0.3s;
 }
 
 .logout-btn:hover {
-  background-color: #d32f2f !important;
+  background: #d32f2f;
 }
 
-.edit-btn:hover {
+
+/* .edit-btn:hover {
   background-color: #45a049;
+} */
+
+.upload-img {
+    display: inline-block;
+    background: #4CAF50;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    transition: 0.3s;
 }
+
+.upload-img:hover {
+    background: #45a049;
+}
+
 
 @media (max-width: 768px) {
   .main {
