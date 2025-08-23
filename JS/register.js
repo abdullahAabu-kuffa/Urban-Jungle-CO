@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(nameVal)) {
             nameInput.style.border = '1px solid red';
             errorName.style.display = 'block';
-            errorName.textContent = 'Name is invalid';
+            errorName.textContent = 'Name is invalid name must be only characters';
             errorName.style.color = 'red'
             return;
         }
