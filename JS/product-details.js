@@ -1,6 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     //fetch the product
@@ -28,9 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const quantity = quantityInput ? Number(quantityInput.value) || 1 : 1;
 
 
-        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
         if (!currentUser) {
             window.location.replace("login.html");
+            return;
         }
         let isQuentaty = false;
         let proQuantity;

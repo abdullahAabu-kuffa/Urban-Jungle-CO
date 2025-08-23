@@ -32,7 +32,7 @@
 
    /* Orders Table Section */
    .orders-table-wrapper {
-     width: 65%;
+     width: 80%;
      overflow-x: auto;
    }
 
@@ -108,7 +108,7 @@
    /* Totals / */
    .orders-totals-box {
      align-self: center;
-     width: 30%;
+     width: 18%;
      background: #fff;
      padding: 20px;
      border-radius: 10px;

@@ -12,7 +12,7 @@ closeBtn.addEventListener("click", () => {
 
 document.querySelector('.logout-btn').addEventListener('click', function () {
     localStorage.removeItem('currentAdmin')
-    window.location.replace("../html/login.html");
+    window.location.replace("../index.html");
 })
 
 const currentAdmin = JSON.parse(localStorage.getItem('currentAdmin'));
