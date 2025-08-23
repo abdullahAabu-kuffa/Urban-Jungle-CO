@@ -87,10 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
             cart = checkoutOrders;
+            localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
+            localStorage.setItem("cart", JSON.stringify(cart));
             window.location.reload();
         });
-        localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
-        localStorage.setItem("cart", JSON.stringify(cart));
 
     });
 
@@ -110,14 +110,13 @@ document.addEventListener("DOMContentLoaded", () => {
             checkoutOrders.forEach((product) => {
                 if (product.name == name) {
                     checkoutOrders = checkoutOrders.filter(item => item.name !== name);
+                    localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
                 }
             })
             cart = checkoutOrders;
             localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
             localStorage.setItem("products", JSON.stringify(products));
             localStorage.setItem("cart", JSON.stringify(cart));
-
-
         });
     });
 });
