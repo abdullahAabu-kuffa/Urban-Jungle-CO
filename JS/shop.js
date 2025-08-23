@@ -65,17 +65,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.preventDefault();
 
                 let quantityText = product.querySelector('.quantity').textContent;
-
+                let description;
+                products.forEach((item) => {
+                    if (item.name == product.querySelector(".name").textContent) {
+                        description = item.description;
+                    }
+                });
                 const clickedProduct = {
                     name: product.querySelector(".name").textContent,
                     price: product.querySelector(".price").textContent,
                     category: product.querySelector(".category").textContent,
                     image: product.querySelector("img").src,
-                    quantity: quantityText.replace("Stock:", "").trim()
+                    quantity: quantityText.replace("Stock:", "").trim(),
+                    description: description
                 };
 
                 // Save selected product for details page
-                localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
+                localStorage.setItem("clickedProduct", JSON.stringify(clickedProduct));
                 window.location.href = "../html/product-details.html";
             });
         });

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     //fetch the product
-    const product = JSON.parse(localStorage.getItem("selectedProduct"));
+    const product = JSON.parse(localStorage.getItem("clickedProduct"));
     if (!product) return;
 
     const productContainer = document.querySelector(".product-container");
