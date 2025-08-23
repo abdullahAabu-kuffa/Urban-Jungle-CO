@@ -30,11 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (checkOutBtn) {
     checkOutBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      showAlert(`Done!`, "#779c26")
-      setTimeout(() => closeAlert(), 2000);
       checkoutOrders = cart;
-      cart = [];
-      localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
+      if (checkoutOrders != 0) {
+        showAlert(`Done!`, "#779c26")
+        setTimeout(() => closeAlert(), 2000);
+        localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
+      }
+      else {
+        showAlert(`The Cart Is Empty`, "#b11111ff")
+        setTimeout(() => closeAlert(), 2000);
+      }
+
     });
   }
 });

@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     description: description,
                 };
                 // Save selected product for details page
-                localStorage.setItem("selectedProduct", JSON.stringify(clickedProduct));
+                localStorage.setItem("clickedProduct", JSON.stringify(clickedProduct));
                 window.location.href = "../html/product-details.html";
             });
         });
