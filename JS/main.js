@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!currentUser) {
                 localStorage.removeItem('currentAdmin')
-                window.location.href = "html/login.html";
+                window.location.href = "../html/login.html";
                 return;
             }
 
@@ -450,10 +450,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-localStorage.removeItem('cart');
-localStorage.removeItem('users');
-localStorage.removeItem('previousOrders');
-localStorage.removeItem('currentUser');
+// localStorage.removeItem('cart');
+// localStorage.removeItem('users');
+// localStorage.removeItem('previousOrders');
+// localStorage.removeItem('currentUser');
 
 
 
