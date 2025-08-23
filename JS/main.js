@@ -450,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 // localStorage.removeItem('previousOrders');
-// localStorage.removeItem('cart');
+//localStorage.removeItem('cart');
 // localStorage.removeItem('previousOrders');
 
 
