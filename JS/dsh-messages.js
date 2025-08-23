@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
               ${message.message}
             </p>
             <div class="client">
-              <img src="${message.image}" alt="  ">
+              <img src="${message.profileImage}" alt="  ">
               <span>${message.name}</span>
             </div>
           </div>`;

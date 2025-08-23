@@ -260,6 +260,13 @@ body {
   }
 }
 
+.description-input{
+    overflow-y: auto;
+    height: 50px;
+    display: block;
+    flex-direction: row;
+
+}
 @media (min-width: 769px) {
   .sidebar {
     transform: translateX(0) !important;

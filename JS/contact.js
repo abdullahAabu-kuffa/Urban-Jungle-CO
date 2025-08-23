@@ -50,14 +50,20 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // if everything is correct store data
-        let profileImage = localStorage.getItem("profileImage") || "../images/home/profile-image.png";
+        // if everything is correct store data "../images/home/profile-image.png"
+        let profileImage = JSON.parse(localStorage.getItem("profileImage")) || []
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+
+        let img = "../images/home/profile-image.png"; // default
+        if (currentUser) {
+            img = profileImage.find(img => img.id === currentUser.id)?.src || img;
+        }
         let newMessage = {
             name: nameField.value,
             email: emailField.value,
             phone: phoneField.value,
             message: messageField.value,
-            profileImage: profileImage
+            profileImage: img
         };
 
         messages.push(newMessage);
