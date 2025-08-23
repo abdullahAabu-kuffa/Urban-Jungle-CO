@@ -138,19 +138,19 @@ document.addEventListener('DOMContentLoaded', () => {
         errorPassword.style.display = 'none';
         errorRePassword.style.display = 'none';
         // Validate empty fields
-        if (!nameInput.value || !emailInput.value || !passwordInput.value || !roleInput.value) {
+        if (!nameInput.value || !emailInput.value || !passwordInput.value || !roleInput.value || !confirmPasswordInput.value) {
             errorMessage.style.display = 'block';
             errorMessage.textContent = 'Please fill in all fields';
-            [nameInput, emailInput, passwordInput, roleInput].forEach(f => f.style.border = '1px solid red');
+            [nameInput, emailInput, passwordInput, roleInput, confirmPasswordInput].forEach(f => f.style.border = '1px solid red');
             return;
         }
         //validate that the name field not a number
         const nameVal = nameInput.value.trim();
-        if (/\d/.test(nameVal)) {
+        if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(nameVal)) {
             nameInput.style.border = '1px solid red';
             errorName.style.display = 'block';
-            errorName.textContent = 'Name cannot contain a number';
-            errorName.style.color='red'
+            errorName.textContent = 'Name is invalid';
+            errorName.style.color = 'red'
             return;
         }
         const emailVal = emailInput.value.trim().toLowerCase();
@@ -177,9 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (passwordInput.value !== confirmPasswordInput.value) {
             errorRePassword.style.display = 'block';
             errorRePassword.textContent = 'Passwords do not match';
-            errorRePassword.style.textContent='center';
+            errorRePassword.style.textContent = 'center';
             errorRePassword.style.color = 'red';
-            
+
             confirmPasswordInput.style.border = '1px solid red';
             return;
         }
