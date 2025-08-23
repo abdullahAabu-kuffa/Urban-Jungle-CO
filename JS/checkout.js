@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showAlert(`Done!`, "#779c26")
       setTimeout(() => closeAlert(), 2000);
       checkoutOrders = cart;
+      cart = [];
       localStorage.setItem("checkoutOrders", JSON.stringify(checkoutOrders));
     });
   }
