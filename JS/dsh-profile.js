@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 if (currentAdmin) {
-    const editBtn = document.querySelector('.edit-btn');
+    const editBtn = document.querySelector('#upload-photo');
     editBtn.addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
