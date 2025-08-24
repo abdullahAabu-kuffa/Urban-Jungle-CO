@@ -1,4 +1,5 @@
 // Adding a border to the filter button when clicked
+
 let isBordered = false;
 const selectFilter = document.getElementById("filter-products");
 if (selectFilter) {
@@ -8,12 +9,14 @@ if (selectFilter) {
         selectFilter.style.border = isBordered ? "1px dashed var(--main-font-color)" : "none";
     });
 }
+
+
 // functionality to show products in the shop page
 document.addEventListener("DOMContentLoaded", () => {
+
     const productContainer = document.querySelector(".products-container");
     const filterSelect = document.getElementById("filter-products"); // your dropdown
 
-    // Show results count
     if (products.length > 0) {
         const resultsInfo = document.querySelector('.show');
         if (resultsInfo) {
@@ -23,18 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render products
     function renderProducts(list = products) {
-        if (!productContainer) return;
 
-        if (list.length === 0) {
-            return;
-        }
+        if (!productContainer || list.length === 0) return;
+
         productContainer.innerHTML = "";
         list.forEach(product => {
             const productEl = document.createElement("a");
             productEl.classList.add("col-prodact");
             productEl.innerHTML = `
                 <div class="image">
-                    <img src="${product.image}" alt="${product.name}">
+                    <img src="../${product.image}" alt="${product.name}">
                 </div>
                 <div class = "to-flex">
                 <div class="title-img">
@@ -64,13 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
             product.addEventListener("click", (e) => {
                 e.preventDefault();
 
-                let quantityText = product.querySelector('.quantity').textContent;
                 let description;
                 products.forEach((item) => {
                     if (item.name == product.querySelector(".name").textContent) {
                         description = item.description;
                     }
                 });
+
+                let quantityText = product.querySelector('.quantity').textContent;
                 const clickedProduct = {
                     name: product.querySelector(".name").textContent,
                     price: product.querySelector(".price").textContent,
@@ -113,11 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 let isQuentaty = false;
                 let proQuantity;
                 products.forEach((product) => {
-                    if (product.name == name) proQuantity = product.quantity;
-                    if (product.name == name && product.quantity >= 1) {
-                        product.quantity -= parseFloat(quantity || 0);;
-                        isQuentaty = true;
-                        localStorage.setItem("products", JSON.stringify(products));
+
+                    if (product.name == name) {
+                        proQuantity = product.quantity;
+
+                        if (product.quantity >= quantity) {
+
+                            product.quantity -= quantity;
+                            isQuentaty = true;
+                        }
                     }
                 })
                 if (!isQuentaty) {
@@ -140,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("cart", JSON.stringify(cart));
                 localStorage.setItem("products", JSON.stringify(products));
 
-                // Update the stock number visually
                 const quantityElem = product.querySelector('.quantity');
                 if (quantityElem) {
                     // Find the updated product in products array
@@ -149,10 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         quantityElem.textContent = `Stock: ${updatedProduct.quantity}`;
                     }
                 }
+
                 updateCartCount();
-                // Update global cart UI if available
                 renderCart();
-                window.location.reload();
             });
         });
     }
@@ -168,14 +172,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case "price": // low to high
                 sortedProducts.sort((a, b) =>
-                    parseFloat(a.price.replace(/[^0-9.]/g, "")) -
-                    parseFloat(b.price.replace(/[^0-9.]/g, ""))
+                    parseFloat(String(a.price).replace(/[^0-9.]/g, "")) -
+                    parseFloat(String(b.price).replace(/[^0-9.]/g, ""))
                 );
                 break;
             case "price-desc": // high to low
                 sortedProducts.sort((a, b) =>
-                    parseFloat(b.price.replace(/[^0-9.]/g, "")) -
-                    parseFloat(a.price.replace(/[^0-9.]/g, ""))
+                    parseFloat(String(b.price).replace(/[^0-9.]/g, "")) -
+                    parseFloat(String(a.price).replace(/[^0-9.]/g, ""))
                 );
                 break;
             default: // default sort (by name)
