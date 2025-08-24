@@ -24,7 +24,7 @@ function render() {
       <td>${p.name}</td>
       <td>$${p.price}</td>
       <td>${p.category}</td>
-      <td><img src="${p.image}" alt="${p.name}" width="50"></td>
+      <td><img src="../${p.image}" alt="${p.name}" width="80"></td>
       <td>${p.quantity}</td>
       <td ><div class="description-input">${p.description}</div></td>
       <td class="actions">

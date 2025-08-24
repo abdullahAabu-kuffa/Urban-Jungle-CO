@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
 // Functionality to remove the cart orders when scrolling
 document.addEventListener("DOMContentLoaded", () => {
     const cartOrders = document.querySelector(".cart-orders");
@@ -100,10 +101,36 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 //current user 
 const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
 
+
+//fetch products data from json 
+document.addEventListener("DOMContentLoaded", function () {
+
+    async function loadProducts() {
+        try {
+            const response = await fetch('https://urban-jungle-products.netlify.app/products.json');
+
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            const data = await response.json();
+            const productList = Array.isArray(data) ? data : Object.values(data.products)
+
+            localStorage.setItem('products', JSON.stringify(productList));
+
+        } catch (error) {
+            console.error('Error fetching JSON:', error);
+            return [];
+        }
+    }
+
+    // Usage:
+    if (!localStorage.getItem('products'))
+        loadProducts();
+})
 
 // read the date form local storage
 
@@ -117,10 +144,8 @@ let wishList = JSON.parse(localStorage.getItem("wishList")) || [];
 
 // Update cart of user count in header/badge
 function updateCartCount() {
-    // Always get latest cart and user from localStorage
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
     let countPending = 0;
-    let conntAccepted = 0;
     if (currentUser) {
         countPending = cart
             .filter(item => item.currentUser && item.currentUser.email === currentUser.email)
@@ -128,7 +153,7 @@ function updateCartCount() {
     }
     const cartCountEl = document.querySelector(".count-orders");
     if (cartCountEl) {
-        cartCountEl.textContent = (countPending + conntAccepted);
+        cartCountEl.textContent = countPending;
     }
 }
 
@@ -142,15 +167,6 @@ function updateTotalPrice() {
             total += cleanPrice * parseFloat(item.quantity || 0);
         });
         sumPrice.textContent = `$${total.toFixed(2)}`;
-    }
-    const sumPriceAccepted = document.querySelector(".sum-accepted");
-    if (sumPriceAccepted) {
-        let totalAccepted = 0;
-        previousOrders.forEach(item => {
-            const cleanPrice = parseFloat(item.price.replace(/[^0-9.]/g, "")) || 0;
-            totalAccepted += cleanPrice * parseFloat(item.quantity || 0);
-        });
-        sumPriceAccepted.textContent = `$${totalAccepted.toFixed(2)}`;
     }
 }
 
@@ -168,24 +184,16 @@ function closeAlert() {
 
 
 
-
-
 // Functionality to render cart items and handle their removal
 function renderCart() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     const cartContainer = document.querySelector(".cart-orders-items");
-    if (!cartContainer) return;
 
-    if (!currentUser) {
-        return;
-    }
+    if (!cartContainer || !currentUser) return;
 
     const emptyMsg = cartContainer.querySelector(".empty-cart");
     cartContainer.querySelectorAll(".cart-orders-item").forEach(el => el.remove());
 
-    if (cart.length === 0 && previousOrders === 0) {
+    if (cart.length === 0) {
         if (emptyMsg) emptyMsg.style.display = "block";
         return;
     } else {
@@ -214,18 +222,20 @@ function renderCart() {
             const name = itemEl.querySelector(".name").textContent;
             const quantityInput = itemEl.querySelector(".quantity").textContent;
             const quantity = quantityInput ? Number(quantityInput) || 1 : 1;
+
             cart = cart.filter(p => p.name !== name);
             localStorage.setItem("cart", JSON.stringify(cart));
+
             products.forEach((product) => {
                 if (product.name == name) {
                     product.quantity += quantity;
                 }
             })
+            localStorage.setItem("products", JSON.stringify(products));
+
             renderCart();
             updateCartCount();
             updateTotalPrice();
-            localStorage.setItem("cart", JSON.stringify(cart));
-            localStorage.setItem("products", JSON.stringify(products));
         });
 
         cartContainer.appendChild(itemEl);
@@ -255,20 +265,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //read products in home page
 document.addEventListener("DOMContentLoaded", () => {
+
     const productContainer = document.querySelector(".products-container-home");
     let products = JSON.parse(localStorage.getItem("products")) || [];
     let filteredProducts = products.slice(0, 3);
 
     // Render products
     function renderProducts() {
-        if (!productContainer) return;
 
-        if (filteredProducts.length === 0) {
-            return;
-        }
+        if (!productContainer || filteredProducts.length === 0) return;
+
         productContainer.innerHTML = "";
 
         filteredProducts.forEach(product => {
+
             const productEl = document.createElement("a");
             productEl.classList.add("col-prodact");
             productEl.innerHTML = `
@@ -308,6 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const quantity = quantityInput ? Number(quantityInput) || 1 : 1;
                 let name = product.querySelector(".name").textContent;
                 let description;
+
                 products.forEach((item) => {
                     if (item.name == name) {
                         description = item.description;
@@ -335,35 +346,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.preventDefault();
                 e.stopPropagation(); // stop product-details navigation
 
+                if (!currentUser) {
+                    window.location.replace("html/login.html");
+                    return;
+                }
+
                 const product = btn.closest(".col-prodact");
                 const name = product.querySelector(".name").textContent;
                 const price = product.querySelector(".price").textContent;
                 const category = product.querySelector(".category").textContent;
                 const imageSrc = product.querySelector("img").src;
-
-                // default quantity = 1 when added to cart
                 const quantity = 1;
 
                 // check logged in user
-                if (!currentUser) {
-                    window.location.replace("html/login.html");
-                    return;
-                }
+
                 let isQuentaty = false;
                 let proQuantity;
                 products.forEach((product) => {
                     if (product.name == name) {
                         proQuantity = product.quantity;
-                        if (product.quantity >= 1) {
-                            product.quantity -= 1;
-                            console.log(typeof product.quantity)
-                            console.log(typeof quantity);
-                            console.log(typeof product.quantity)
-
+                        if (product.quantity >= quantity) {
+                            product.quantity -= quantity;
                             isQuentaty = true;
                         }
                     }
                 })
+
                 if (!isQuentaty) {
                     showAlert(`The Stock is ${proQuantity} Product Only!`, '#b11111ff')
                     setTimeout(() => closeAlert(), 2000);
@@ -382,19 +390,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     cart.push({ name, price, category, imageSrc, quantity, currentUser });
                 }
 
+                const quantityElem = product.querySelector('.quantity');
+                if (quantityElem) {
+                    // Find the updated product in products array
+                    const updatedProduct = products.find(p => p.name === name);
+                    if (updatedProduct) {
+                        quantityElem.textContent = `Stock: ${updatedProduct.quantity}`;
+                    }
+                }
+
                 localStorage.setItem("cart", JSON.stringify(cart));
                 localStorage.setItem("products", JSON.stringify(products));
+
                 updateCartCount();
                 renderCart();
-                // Update the stock number visually
-                window.location.reload();
-
             });
 
         });
 
     }
-
 
     // Initial load
     renderProducts();
@@ -426,7 +440,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = "../html/login.html";
                 return;
             }
-
             const order = {
                 name: productName,
                 price: productElement.querySelector(".price").textContent,
