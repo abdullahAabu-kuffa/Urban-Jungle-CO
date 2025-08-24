@@ -38,21 +38,14 @@ View all orders in the system
 
 💾 Data Handling
 
-Implemented with Local Storage / Firebase for persistence
+Implemented with Local Storage & json.file
 
 Products include ID, Name, Image, Category, Price, Description, Stock Quantity
 
-🎁 Bonus (Optional)
-
-PayPal sandbox integration for payments
-
-Product feedback & ratings
-
-Return order functionality
 
 🛠 Tech Stack & Tools
 
-HTML5, CSS3, Vanilla JavaScript
+HTML5, CSS3, JavaScript
 
 Git & GitHub for version control & collaboration
 
