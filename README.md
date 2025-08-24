@@ -60,4 +60,4 @@ Netlify for deployment & hosting
 
 This project gave our team hands-on experience with end-to-end web development, role-based access control, CRUD systems, and realistic e-commerce workflows. It was also a great chance to practice team collaboration using GitHub.
 
-🔗 Live Demo: urban-jungle-eco.netlify.app
+🔗 Live Demo: https://urban-jungle-eco.netlify.app/
