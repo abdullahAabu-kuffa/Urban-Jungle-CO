@@ -106,7 +106,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 </td>
                 <td class = "price">${item.price}</td>
                 <td class = "quantity">${item.quantity.replace(/[^0-9.]/g, '')}</td>
-                <td class="orders-actions"><i class="fa-regular fa-star wishlist-click"></i></td>
+                <td class = "delete-from-wishlist"><i class="fa-regular fa-star wishlist-click"></i></td>
                 <td> <i class="fa-solid fa-cart-plus add-to-cart-icon"></i></td>
             `;
             tbody.appendChild(itemEl);
@@ -114,12 +114,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const wishListClick = document.querySelectorAll(".wishlist-click");
         wishListClick.forEach((whish) => {
             whish.style.color = '#f8f403ff'
-
+            whish.style.cursor='pointer'
         })
     }
 
     //delete form wishlist
-    document.querySelectorAll('.orders-actions').forEach(actionCell => {
+    document.querySelectorAll('.delete-from-wishlist').forEach(actionCell => {
         actionCell.addEventListener('click', (e) => {
             const row = e.target.closest("tr");
             const name = row.querySelector(".name").textContent;
@@ -128,7 +128,7 @@ window.addEventListener('DOMContentLoaded', () => {
             row.remove();
             if (wishList.length === 0) {
                 var tr = document.createElement('tr')
-                tr.innerHTML = '<td colspan="4">No Items Found</td>'
+                tr.innerHTML = '<td colspan="5">No Items Found</td>'
                 document.querySelector('.wish-items').appendChild(tr)
             }
         });
