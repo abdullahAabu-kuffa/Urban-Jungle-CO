@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '../html/profile.html';
         });
     } else {
-        document.querySelector('.is-logged').innerHTML = 'Login';
+        const el = document.querySelector(".is-logged");
+        if (el) {
+            el.innerHTML = "Login";
+        }
     }
 });
 
@@ -103,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //current user 
-const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
 
 
@@ -134,16 +136,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // read the date form local storage
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let previousOrders = JSON.parse(localStorage.getItem("previousOrders")) || [];
-let products = JSON.parse(localStorage.getItem("products")) || [];
-let wishList = JSON.parse(localStorage.getItem("wishList")) || [];
+export const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+export let cart = JSON.parse(localStorage.getItem("cart")) || [];
+export let products = JSON.parse(localStorage.getItem("products")) || [];
+export let wishList = JSON.parse(localStorage.getItem("wishList")) || [];
 
 
 // const functions 
 
 // Update cart of user count in header/badge
-function updateCartCount() {
+export function updateCartCount() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
     let countPending = 0;
     if (currentUser) {
@@ -158,7 +160,7 @@ function updateCartCount() {
 }
 
 
-function updateTotalPrice() {
+export function updateTotalPrice() {
     const sumPrice = document.querySelector(".sum-pending");
     if (sumPrice) {
         let total = 0;
@@ -170,7 +172,7 @@ function updateTotalPrice() {
     }
 }
 
-function showAlert(message, bgColor) {
+export function showAlert(message, bgColor) {
     const alertBox = document.getElementById("custom-alert");
     const alertMessage = document.getElementById("alert-message");
     alertBox.style.backgroundColor = bgColor;
@@ -178,14 +180,14 @@ function showAlert(message, bgColor) {
     alertBox.classList.remove("hidden");
 }
 
-function closeAlert() {
+export function closeAlert() {
     document.getElementById("custom-alert").classList.add("hidden");
 }
 
 
 
 // Functionality to render cart items and handle their removal
-function renderCart() {
+export function renderCart() {
     const cartContainer = document.querySelector(".cart-orders-items");
 
     if (!cartContainer || !currentUser) return;
@@ -417,52 +419,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //wish list
-document.addEventListener('DOMContentLoaded', () => {
 
-    const wishListClick = document.querySelectorAll(".wishlist-click");
-    wishListClick.forEach((wish) => {
-        const productElement = wish.closest(".col-prodact");
-        const productName = productElement.querySelector(".name").textContent;
+export function addToWisList() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const wishListClick = document.querySelectorAll(".wishlist-click");
+        wishListClick.forEach((wish) => {
+            const productElement = wish.closest(".col-prodact");
+            const productName = productElement.querySelector(".name").textContent;
 
-        if (wishList.some(item => item.name === productName)) {
-            wish.style.color = "#f8f403ff";
-        } else {
-            wish.style.color = "";
-        }
-
-        wish.addEventListener("click", (e) => {
-
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (!currentUser) {
-                localStorage.removeItem('currentAdmin')
-                window.location.href = "../html/login.html";
-                return;
-            }
-            const order = {
-                name: productName,
-                price: productElement.querySelector(".price").textContent,
-                quantity: productElement.querySelector(".quantity").textContent,
-                imageSrc: productElement.querySelector("img").src
-            };
-
-
-            const exists = wishList.some(item => item.name === order.name);
-
-            if (!exists) {
-                wishList.push(order);
+            if (wishList.some(item => item.name === productName)) {
                 wish.style.color = "#f8f403ff";
             } else {
-                wishList = wishList.filter(item => item.name !== order.name);
                 wish.style.color = "";
             }
 
-            localStorage.setItem("wishList", JSON.stringify(wishList));
+            wish.addEventListener("click", (e) => {
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (!currentUser) {
+                    localStorage.removeItem('currentAdmin')
+                    window.location.href = "../html/login.html";
+                    return;
+                }
+                const order = {
+                    name: productName,
+                    price: productElement.querySelector(".price").textContent,
+                    quantity: productElement.querySelector(".quantity").textContent,
+                    imageSrc: productElement.querySelector("img").src
+                };
+
+
+                const exists = wishList.some(item => item.name === order.name);
+
+                if (!exists) {
+                    wishList.push(order);
+                    wish.style.color = "#f8f403ff";
+                } else {
+                    wishList = wishList.filter(item => item.name !== order.name);
+                    wish.style.color = "";
+                }
+
+                localStorage.setItem("wishList", JSON.stringify(wishList));
+            });
         });
     });
-});
-
+}
+addToWisList();
 // localStorage.removeItem('cart');
 // localStorage.removeItem('users');
 // localStorage.removeItem('previousOrders');

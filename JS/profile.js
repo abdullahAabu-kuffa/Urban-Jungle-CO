@@ -50,6 +50,7 @@ document.querySelector('.logout-btn').addEventListener('click', () => {
     window.location.replace('../index.html');
 });
 
+
 // Previous Orders
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -60,7 +61,6 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.orders-items').appendChild(tr)
     }
     else {
-        // document.querySelector('.previous-orders').style.display = "block";
         var tbody = document.querySelector('.orders-items')
         previousOrders.forEach(item => {
             const itemEl = document.createElement("tr");

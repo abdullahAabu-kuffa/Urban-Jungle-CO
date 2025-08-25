@@ -1,3 +1,8 @@
+body::selection {
+  background-color: #779c26;
+  color: white;
+}
+
 .main {
   flex: 2;
   display: flex;
@@ -62,19 +67,19 @@
 } */
 
 .upload-img {
-    display: inline-block;
-    background: #4CAF50;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 0.9rem;
-    transition: 0.3s;
+  display: inline-block;
+  background: #4CAF50;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  transition: 0.3s;
 }
 
 .upload-img:hover {
-    background: #45a049;
+  background: #45a049;
 }
 
 

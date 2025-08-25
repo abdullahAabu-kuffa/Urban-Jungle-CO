@@ -1,5 +1,9 @@
 // Adding a border to the filter button when clicked
 
+import { addToWisList, updateCartCount, renderCart, showAlert, closeAlert } from "./main.js";
+import { cart, products, currentUser } from "./main.js";
+
+
 let isBordered = false;
 const selectFilter = document.getElementById("filter-products");
 if (selectFilter) {
@@ -107,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const quantity = 1;
 
                 // check logged in user
-                const currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
                 if (!currentUser) {
                     window.location.replace("login.html");
                     return;
@@ -197,53 +200,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
-
 //wish list
-document.addEventListener("DOMContentLoaded", () => {
-
-    const wishListClick = document.querySelectorAll(".wishlist-click");
-
-    wishListClick.forEach((wish) => {
-        const productElement = wish.closest(".col-prodact");
-        const productName = productElement.querySelector(".name").textContent;
-
-        if (wishList.some(item => item.name === productName)) {
-            wish.style.color = "#f8f403ff";
-        } else {
-            wish.style.color = "";
-        }
-
-        wish.addEventListener("click", (e) => {
-
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (!currentUser) {
-                localStorage.removeItem('currentAdmin')
-                window.location.href = "../html/login.html";
-                return;
-            }
-
-            const order = {
-                name: productName,
-                price: productElement.querySelector(".price").textContent,
-                quantity: productElement.querySelector(".quantity").textContent,
-                imageSrc: productElement.querySelector("img").src
-            };
-
-
-            const exists = wishList.some(item => item.name === order.name);
-
-            if (!exists) {
-                wishList.push(order);
-                wish.style.color = "#f8f403ff";
-            } else {
-                wishList = wishList.filter(item => item.name !== order.name);
-                wish.style.color = "";
-            }
-
-            localStorage.setItem("wishList", JSON.stringify(wishList));
-        });
-    });
-});
+addToWisList();

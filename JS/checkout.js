@@ -1,13 +1,12 @@
 
-
+import { showAlert, closeAlert } from "./main.js";
+import { cart } from "./main.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const countOrders = document.querySelector(".checkout-items");
   const total = cart.reduce((acc, item) => acc + parseFloat(item.price.replace(/[^0-9.]/g, "")) * parseInt(item.quantity), 0);
   const totalQuantity = cart.reduce((acc, item) => acc + parseInt(item.quantity), 0);
   cart.forEach(item => {
-    const name = item.name;
     const quantity = item.quantity;
     const total = parseFloat(item.price.replace(/[^0-9.]/g, "")) * parseInt(item.quantity);
     countOrders.innerHTML += `<tr>

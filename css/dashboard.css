@@ -9,6 +9,11 @@ body {
   background-color: #f5f6fa;
 }
 
+body::selection {
+  background-color: #779c26;
+  color: white;
+}
+
 /* Sidebar */
 .sidebar {
   background: linear-gradient(180deg, #2f3640, #205a31);
@@ -260,13 +265,14 @@ body {
   }
 }
 
-.description-input{
-    overflow-y: auto;
-    height: 50px;
-    display: block;
-    flex-direction: row;
+.description-input {
+  overflow-y: auto;
+  height: 50px;
+  display: block;
+  flex-direction: row;
 
 }
+
 @media (min-width: 769px) {
   .sidebar {
     transform: translateX(0) !important;

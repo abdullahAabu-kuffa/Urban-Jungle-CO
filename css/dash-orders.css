@@ -1,3 +1,8 @@
+   body::selection {
+     background-color: #779c26;
+     color: white;
+   }
+
    /* Orders Page Main Container */
    .orders-container {
      margin-left: 250px;
